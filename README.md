@@ -2,6 +2,14 @@
 
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40WasteOfADrumBum-green)
 
+![GitHub license](https://img.shields.io/badge/Made%20by-%40maxgerringer-green)
+
+![GitHub license](https://img.shields.io/badge/Made%20by-%40jhf1203-green)
+
+![GitHub license](https://img.shields.io/badge/Made%20by-%40markspeer-green)
+
+[![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
+
 ## Description
 
 Project III Description
@@ -32,7 +40,35 @@ Project III Description
 
 ## Installation
 
-`npm i`
+```
+npm i
+```
+
+### Dependencies
+```
+"@testing-library/jest-dom": "^5.11.4",
+"@testing-library/react": "^11.1.0",
+"@testing-library/user-event": "^12.1.10",
+"react": "^17.0.1",
+"react-bootstrap": "^1.4.0",
+"react-dom": "^17.0.1",
+"react-router-dom": "^5.2.0",
+"react-scripts": "4.0.0",
+"web-vitals": "^0.2.4",
+"workbox-background-sync": "^5.1.3",
+"workbox-broadcast-update": "^5.1.3",
+"workbox-cacheable-response": "^5.1.3",
+"workbox-core": "^5.1.3",
+"workbox-expiration": "^5.1.3",
+"workbox-google-analytics": "^5.1.3",
+"workbox-navigation-preload": "^5.1.3",
+"workbox-precaching": "^5.1.3",
+"workbox-range-requests": "^5.1.3",
+"workbox-routing": "^5.1.3",
+"workbox-strategies": "^5.1.3",
+"workbox-streams": "^5.1.3"
+```
+
 
 ## Instructions
 
