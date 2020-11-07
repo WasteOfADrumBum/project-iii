@@ -1,4 +1,4 @@
-# **Project III**
+# **Project III** [![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
 
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40WasteOfADrumBum-green)
 
@@ -10,8 +10,6 @@
 
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40arodrigu1-green)
 
-[![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
-
 ## Description
 
 Project III Description
@@ -21,14 +19,14 @@ Project III Description
 ![GitHub top language](https://img.shields.io/github/languages/top/WasteOfADrumBum/project-iii?color=green&logo=github&logoColor=green)
 ![GitHub language count](https://img.shields.io/github/languages/count/WasteOfADrumBum/project-iii?color=green&logo=github&logoColor=green)
 
-- Heroku
-- React.js
-- MongoDB
-- Express.js
-- Bootstrap 4
-- HTML5
-- SCSS
-- Node.js
+<img src="https://i.morioh.com/139b757e13.png" width="220px"> 
+
+|Technologies:|M.E.R.N.|
+|:---:|:---:|
+|Heroku|React.js|
+|MongoDB|Express.js|
+|Bootstrap 4|HTML5|
+|SCSS|Node.js|
 
 ## Table of contents
 
@@ -74,7 +72,7 @@ npm i
 
 ## Instructions
 
-[Heroku App](https://unc-team1-project3.herokuapp.com/)
+Link to deployed [Heroku App](https://unc-team1-project3.herokuapp.com/).
 
 ## Features
 
@@ -111,6 +109,10 @@ Project 3 Features
 | ![GitHub Followers](https://img.shields.io/github/followers/WasteOfADrumBum?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/maxgerringer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/jhf1203?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/mark-speer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/arodrigu1?label=Follow) |
 
 ## Test
+
+<img src="https://travis-ci.com/images/logos/TravisCI-Mascot-1.png" width="50px">
+
+Build tested by [Travis CI](https://travis-ci.org/)
 
 ![GitHub test](https://img.shields.io/badge/test-100%25-success)
 [![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
