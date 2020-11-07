@@ -113,6 +113,7 @@ Project 3 Features
 ## Test
 
 ![GitHub test](https://img.shields.io/badge/test-100%25-success)
+[![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
 
 ![GitHub open issues](https://img.shields.io/github/issues/WasteOfADrumBum/project-iii)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/WasteOfADrumBum/project-iii)
