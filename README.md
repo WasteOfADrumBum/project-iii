@@ -23,9 +23,9 @@ Project III Description
 
 |Technologies:|M.E.R.N.|
 |:---:|:---:|
-|Heroku|React.js|
-|MongoDB|Express.js|
-|Bootstrap 4|HTML5|
+|Heroku|MongoDB|
+|HTML5|Express.js|
+|Bootstrap 4|React.js|
 |SCSS|Node.js|
 
 ## Table of contents
