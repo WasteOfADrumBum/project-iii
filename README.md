@@ -8,6 +8,8 @@
 
 ![GitHub license](https://img.shields.io/badge/Made%20by-%40markspeer-green)
 
+![GitHub license](https://img.shields.io/badge/Made%20by-%40arodrigu1-green)
+
 [![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
 
 ## Description
@@ -102,11 +104,11 @@ Project 3 Features
 ![GitHub Forks](https://img.shields.io/github/forks/WasteOfADrumBum/project-iii?label=Fork)
 ![GitHub Watchers](https://img.shields.io/github/watchers/WasteOfADrumBum/project-iii?label=Watch)
 
-| <img src="https://avatars0.githubusercontent.com/u/66432859?v=460" width="50" />          | <img src="https://avatars1.githubusercontent.com/u/65460851?s=460" width="50" />       | <img src="https://avatars1.githubusercontent.com/u/66701459?s=460" width="50" />  | <img src="https://avatars3.githubusercontent.com/u/66832524?s=460" width="50" />     | <img src="https://avatars1.githubusercontent.com/u/66701459?s=460" width="50" />  |
+| <img src="https://avatars0.githubusercontent.com/u/66432859?v=460" width="50" />          | <img src="https://avatars1.githubusercontent.com/u/65460851?s=460" width="50" />       | <img src="https://avatars1.githubusercontent.com/u/66701459?s=460" width="50" />  | <img src="https://avatars3.githubusercontent.com/u/66832524?s=460" width="50" />     | <img src="https://avatars3.githubusercontent.com/u/66389835?s=460" width="50" />  |
 | ----------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------- |
-| [Joshua M. Small](https://github.com/WasteOfADrumBum)                                     | [Max Gerringer](https://github.com/maxgerringer)                                       | [Jim Faulkner](https://github.com/jhf1203)                                        | [Mark Speer](https://github.com/mark-speer)                                          | [Arlene Rodriguez](https://github.com/)                                           |
-| <JMSmall89@gmail.com>                                                                     | <quadra7hundred@aol.com>                                                               | <jhf1203@gmail.com>                                                               | <mark.speer@yahoo.com>                                                                    | <Arlene-Rodriguez@gmail.com>                                                      |
-| ![GitHub Followers](https://img.shields.io/github/followers/WasteOfADrumBum?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/maxgerringer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/jhf1203?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/mark-speer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/jhf1203?label=Follow) |
+| [Joshua M. Small](https://github.com/WasteOfADrumBum)                                     | [Max Gerringer](https://github.com/maxgerringer)                                       | [Jim Faulkner](https://github.com/jhf1203)                                        | [Mark Speer](https://github.com/mark-speer)                                          | [Arlene Rodriguez](https://github.com/arodrigu1)                                           |
+| <JMSmall89@gmail.com>                                                                     | <quadra7hundred@aol.com>                                                               | <jhf1203@gmail.com>                                                               | <mark.speer@yahoo.com>                                                                    | <arlene.rodriguez1@gmail.com>                                                      |
+| ![GitHub Followers](https://img.shields.io/github/followers/WasteOfADrumBum?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/maxgerringer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/jhf1203?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/mark-speer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/arodrigu1?label=Follow) |
 
 ## Test
 
