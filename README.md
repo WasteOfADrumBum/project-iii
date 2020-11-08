@@ -1,14 +1,11 @@
 # **Project III** [![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
 
-![GitHub license](https://img.shields.io/badge/Made%20by-%40WasteOfADrumBum-green)
+![GitHub license](https://img.shields.io/badge/Front%20End%20Developer-%40WasteOfADrumBum-green)
+![GitHub license](https://img.shields.io/badge/Front%20End%20Developer-%40maxgerringer-green)
 
-![GitHub license](https://img.shields.io/badge/Made%20by-%40maxgerringer-green)
-
-![GitHub license](https://img.shields.io/badge/Made%20by-%40jhf1203-green)
-
-![GitHub license](https://img.shields.io/badge/Made%20by-%40markspeer-green)
-
-![GitHub license](https://img.shields.io/badge/Made%20by-%40arodrigu1-green)
+![GitHub license](https://img.shields.io/badge/Back%20End%20Developer-%40jhf1203-green)
+![GitHub license](https://img.shields.io/badge/Back%20End%20Developer-%40markspeer-green)
+![GitHub license](https://img.shields.io/badge/Back%20End%20Developer-%40arodrigu1-green)
 
 ## Description
 
@@ -29,12 +26,12 @@ Project III brings value to the modern world of transportation by allowing users
 
 <img src="https://i.morioh.com/139b757e13.png" width="220px"> 
 
-|Technologies:|M.E.R.N.|
-|:---:|:---:|
-|Heroku|MongoDB|
-|HTML5|Express.js|
-|Bootstrap 4|React.js|
-|SCSS|Node.js|
+|Technologies:||M.E.R.N.|
+|:---:|:---:|:---:|
+|Heroku|WorkBox|MongoDB Atlas|
+|HTML5|JavaScript|Express.js|
+|Bootstrap 4|Travis CI|React.js|
+|SCSS|CSS3|Node.js|
 
 ## Table of contents
 
@@ -116,36 +113,28 @@ Project 3 Features
 | <JMSmall89@gmail.com>                                                                     | <max.gerringer@gmail.com>                                                               | <jhf1203@gmail.com>                                                               | <mark.speer@yahoo.com>                                                                    | <arlene.rodriguez1@gmail.com>                                                      |
 | ![GitHub Followers](https://img.shields.io/github/followers/WasteOfADrumBum?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/maxgerringer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/jhf1203?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/mark-speer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/arodrigu1?label=Follow) |
 
-### Role Breakdown
+### Role Breakdown:
 
-#### Front End Development 
+#### Front End Developers 
 
-**Joshua**:
-- SCSS
-- SEO
-- UX/UI
-- Bootstrap
-- Component Content Layout
+|**Joshua**|**Max**|
+|:---:|:---:|
+|SCSS|Component Content Creation|
+|SEO|Component Functionality with datasets|
+|UX/UI|UX/UI|
+|Bootstrap||
+|Component Content Layout||
+|Heroku Deployment||
+|||
 
-**Max**:
-- UX/UI
-- Component Content Creation
-- Component Functionality with datasets
+#### Back End Developers 
 
-#### Back End Development 
-
-**Jim**:
-- API Management
-
-**Mark**:
-- Database Management
-- Database Creation
-- MongoDB Atlas
-
-**Arlene**:
-- Database Management
-- Database Creation
-- MongoDB Atlas
+|**Jim**|**Mark**|**Arlene**|
+|:---:|:---:|:---:|
+|API Management|Database Management|Database Management|
+||Database Creation|Database Creation|
+||MongoDB Atlas|MongoDB Atlas|
+||||
 
 ## Test
 
