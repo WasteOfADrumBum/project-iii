@@ -14,6 +14,14 @@
 
 Project III Description
 
+### Why Project III
+
+Project III brings value to the modern world of transportation by allowing users to track their carbon foot print they leave behind on thier daily commute. By making users consiously aware of their carbon footprint we can help make a difference in the world. We calculate the carboon footprint left behing during a user's commute and compare that to various other forms of public and alternative transportation options giving mesuarble charts and statistics on how they can improve our environment. Transportation continues to contribute a large percentage of U.S. emissions, there are many opportunities to deliver greenhouse gas reductions. Low-carbon fuels, new and improved vehicle technologies, strategies to reduce the number of vehicle miles traveled, and operating vehicles more efficiently are all approaches to reducing greenhouse gases from transportation.
+
+> "*Burning fossil fuels like gasoline and diesel releases carbon dioxide, a greenhouse gas, into the atmosphere. The buildup of carbon dioxide (CO2) and other greenhouse gases like methane (CH4), nitrous oxide (N2O), and hydrofluorocarbons (HFCs) is causing the Earth’s atmosphere to warm, resulting in changes to the climate we are already starting to see today. Greenhouse gas (GHG) emissions from transportation account for about 28 percent of total U.S. greenhouse gas emissions, making it the largest contributor of U.S. GHG emissions. Between 1990 and 2018, GHG emissions in the transportation sector increased more in absolute terms than any other sector.*"
+
+>© [E.P.A.](https://www.epa.gov/transportation-air-pollution-and-climate-change/carbon-pollution-transportation) - Carbon Pollution from Transportation
+
 # Technologies Used
 
 ![GitHub top language](https://img.shields.io/github/languages/top/WasteOfADrumBum/project-iii?color=green&logo=github&logoColor=green)
@@ -107,6 +115,37 @@ Project 3 Features
 | [Joshua M. Small](https://github.com/WasteOfADrumBum)                                     | [Max Gerringer](https://github.com/maxgerringer)                                       | [Jim Faulkner](https://github.com/jhf1203)                                        | [Mark Speer](https://github.com/mark-speer)                                          | [Arlene Rodriguez](https://github.com/arodrigu1)                                           |
 | <JMSmall89@gmail.com>                                                                     | <max.gerringer@gmail.com>                                                               | <jhf1203@gmail.com>                                                               | <mark.speer@yahoo.com>                                                                    | <arlene.rodriguez1@gmail.com>                                                      |
 | ![GitHub Followers](https://img.shields.io/github/followers/WasteOfADrumBum?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/maxgerringer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/jhf1203?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/mark-speer?label=Follow) | ![GitHub Followers](https://img.shields.io/github/followers/arodrigu1?label=Follow) |
+
+### Role Breakdown
+
+#### Front End Development 
+
+**Joshua**:
+- SCSS
+- SEO
+- UX/UI
+- Bootstrap
+- Component Content Layout
+
+**Max**:
+- UX/UI
+- Component Content Creation
+- Component Functionality with datasets
+
+#### Back End Development 
+
+**Jim**:
+- API Management
+
+**Mark**:
+- Database Management
+- Database Creation
+- MongoDB Atlas
+
+**Arlene**:
+- Database Management
+- Database Creation
+- MongoDB Atlas
 
 ## Test
 
