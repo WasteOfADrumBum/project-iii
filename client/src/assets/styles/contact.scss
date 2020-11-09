@@ -1,0 +1,19 @@
+.contact-container {
+    color: #000;
+    border-radius: 0 !important;
+    background-image: url("../images/contact-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    max-width: 100% !important;
+}
+
+.mirror {
+    display: inline-block;
+    -moz-transform: scale(-1, 1);
+    -webkit-transform: scale(-1, 1);
+    -o-transform: scale(-1, 1);
+    -ms-transform: scale(-1, 1);
+    transform: scale(-1, 1);
+}
