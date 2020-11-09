@@ -1,0 +1,45 @@
+Footer {
+    // background-color matches .navbar-light from bootstrap-4
+    background-color: #f8f9fa !important;
+
+    #copyright {
+        text-transform: uppercase;
+
+        .mirror {
+            display: inline-block;
+            -moz-transform: scale(-1, 1);
+            -webkit-transform: scale(-1, 1);
+            -o-transform: scale(-1, 1);
+            -ms-transform: scale(-1, 1);
+            transform: scale(-1, 1);
+        }
+    }
+
+    /* unvisited link */
+    a:link {
+        color: #666;
+        text-decoration: none;
+    }
+
+    /* visited link */
+    a:visited {
+        color: #666;
+        text-decoration: none;
+    }
+
+    /* mouse over link */
+    a:hover {
+        color:#000;
+        text-decoration: none;
+    }
+
+    /* selected link */
+    a:active {
+        color: #666;
+        text-decoration: none;
+    }
+
+    .copyright {
+        background-color: #edeff2 !important;
+    }
+}
