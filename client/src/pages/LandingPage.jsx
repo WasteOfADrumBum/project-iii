@@ -36,7 +36,6 @@ const LandingPage = () => {
             <p className="mt-5">
               <Button variant="primary">
                 <Link
-                  className="nav-link"
                   to="./login"
                   alt="login"
                   style={{ color: "white" }}
