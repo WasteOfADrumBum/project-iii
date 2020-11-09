@@ -1,0 +1,14 @@
+.image-container {
+    color: #000;
+    border-radius: 0 !important;
+    background-image: url("../images/login-bg.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: bottom;
+    height: 100vh;
+}
+.login-text {
+    background-color: rgba(255, 255, 255, .5);
+    border-radius: 2rem;
+}
