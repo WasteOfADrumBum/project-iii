@@ -15,7 +15,7 @@ const Vehicle = () => {
           <div className="col-md-4"/>
           <div className="col-md-8 p-5">
             <p>
-              Explination of how we can mose accuratly display the user's
+              Explanation of how we can mose accurately display the user's
               footprint impact by getting their vehicle information.
             </p>
           </div>
@@ -56,7 +56,7 @@ const Vehicle = () => {
                   <Form.Group as={Col} controlId="formGridTransmission">
                     <Form.Label>Transmission</Form.Label>
                     <Form.Control as="select">
-                      <option>Manuel</option>
+                      <option>Manual</option>
                       <option>Automatic</option>
                     </Form.Control>
                   </Form.Group>
