@@ -20,7 +20,7 @@ class AddressCapture extends Component {
       <AddressItem label="State" id="state" value={this.props.state} onChange={this.handleChange} placeholder="" />
       <AddressItem label="ZIP Code" id="zipCode" value={this.props.postalCode} onChange={this.handleChange} placeholder="" />
       {/* Do we want to have country as an option or is this app only for US residents at this time? */}
-      {/* <AddressItem label="Country" id="country" value={this.props.country} onChange={this.handleChange} placeholder="" /> */}
+      <AddressItem label="Country" id="country" value={this.props.country} onChange={this.handleChange} placeholder="" />
       </div></div>
     );
   }
