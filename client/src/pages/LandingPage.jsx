@@ -38,8 +38,7 @@ const LandingPage = () => {
                 <Link
                   to="./login"
                   alt="login"
-                  style={{ color: "white" }}
-                >
+                  style={{ color: "white" }}>
                   Get Started
                 </Link>
               </Button>
