@@ -14,7 +14,7 @@ const LetsGo = () => {
         <div className="row text-center p-5">
           <div className="col-md-12">
             <h1>Where are we going today?</h1>
-            <p>Select from on of your places, or enter a new address!</p>
+            <p>Select from one of your places, or enter a new address!</p>
           </div>
         </div>
         <div className="row text-center p-5 letsgo-form-container">
