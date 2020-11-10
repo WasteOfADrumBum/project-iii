@@ -30,7 +30,7 @@ class AddressForm extends Component {
     }
 
     const self = this;
-    axios.get('https://autocomplete.geocoder.api.here.com/6.2/suggest.json',
+    axios.get('https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json',
       {'params': {
         'apiKey': apiKey,
         'query': query,
