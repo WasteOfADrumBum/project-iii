@@ -56,7 +56,7 @@ const LetsGo = () => {
                   <option value="placeholder">Placeholder</option>
                 </select>
               </div>
-              <div className="col-md-12 pt-5">
+              <div className="col-md-12 pt-3">
                 <AddressForm />
               </div>
             </div>
