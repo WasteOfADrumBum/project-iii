@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import AddressItem from './AddressItem';
+import AddressItem from './addressItem';
 
 
 class AddressInput extends Component {
