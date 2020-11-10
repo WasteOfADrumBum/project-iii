@@ -4,8 +4,8 @@ class AddressItem extends Component {
   render() {
     return (
       <div className="row form-group justify-content-start">
-          <label className="col-sm-4 col-form-label">{this.props.label}</label>
-          <div className="col-xl-8">
+          <label className="col-sm-2 col-form-label">{this.props.label}</label>
+          <div className="col-xl-10">
               <input
                 type="text"
                 id={this.props.id}
