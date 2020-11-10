@@ -1,15 +1,21 @@
-.register-container {
+.address-container {
     color: #000;
     border-radius: 0 !important;
-    background-image: url("../images/register-bg.jpg");
+    background-image: url("../images/address-bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
     max-width: 100% !important;
     min-height: 100vh;
+
+    .form-group, .card {
+        background-color: transparent;
+        border: none;
+    }
 }
-.form-container {
-    background-color: rgba(255, 255, 255, .2) !important;
+
+.address-content-container {
+    background-color: rgba(255, 255, 255, .5) !important;
     border-radius: 2rem;
 }
