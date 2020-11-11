@@ -96,6 +96,22 @@ Project 3 Features
 
 <img src="https://via.placeholder.com/500x300" width="500" />
 
+### Design Layouts with Annotations describing all UI/UX components with all  relevant screen data
+
+<img src="client\public\assets\images\deliverables-01-02_5.png" width="500">
+
+<img src="client\public\assets\images\deliverables-01-02_0.png" width="500">
+
+<img src="client\public\assets\images\deliverables-01-02_1.png" width="500">
+
+<img src="client\public\assets\images\deliverables-01-02_2.png" width="500">
+
+<img src="client\public\assets\images\deliverables-01-02_3.png" width="500">
+
+<img src="client\public\assets\images\deliverables-01-02_4.png" width="500">
+
+<img src="client\public\assets\images\deliverables-01-02_3.png" width="500">
+
 ## Repository
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/WasteOfADrumBum/project-iii?logo=github)

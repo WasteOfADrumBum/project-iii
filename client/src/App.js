@@ -4,11 +4,11 @@ import LandingPage from "./pages/LandingPage";
 import Contact from "./pages/Contact";
 import Login from './pages/Login';
 import Vehicle from './pages/Vehicle';
-import AddressPage from './pages/Address';
 import Register from './pages/Register';
 import LetsGo from './pages/LetsGo';
 import MyPlaces from './pages/MyPlaces';
 import Profile from './pages/Profile';
+import Results from './pages/Results';
 
 class App extends React.Component {
   render() {
@@ -19,11 +19,11 @@ class App extends React.Component {
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
           <Route exact path="/vehicle" component={Vehicle} />
-          <Route exact path="/address" component={AddressPage} />
           <Route exact path="/letsgo" component={LetsGo} />
           <Route exact path="/myplaces" component={MyPlaces} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/contact" component={Contact} />
+          <Route exact path="/results" component={Results} />
         </Switch>
       </Router>
     );
