@@ -18,7 +18,7 @@ app.post("/auth", loginUser, function (req, res) {
   res.json({ token: req.token });
 });
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project_iii", {
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project3_db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
