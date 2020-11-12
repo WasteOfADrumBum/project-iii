@@ -19,6 +19,7 @@
   "homepage": "https://github.com/WasteOfADrumBum/project-iii#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "jsonwebtoken": "^8.5.1"
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.10.13"
   }
 }

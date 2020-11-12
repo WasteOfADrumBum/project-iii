@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -15,6 +16,13 @@ app.get("/auth", isAuth, function(req, res){
 app.post("/auth", loginUser, function (req, res) {
   console.log("In CALL");
   res.json({ token: req.token });
+});
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project3_db", {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+  useFindAndModify: false
 });
 
 app.listen(PORT, function () {
