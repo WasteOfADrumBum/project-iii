@@ -4,7 +4,7 @@ class AddressItem extends Component {
   render() {
     return (
       <div className="row form-group justify-content-start">
-          <label className="col-sm-2 col-form-label">{this.props.label}</label>
+          <label className="col-sm-2 col-form-label d-inline">{this.props.label}</label>
           <div className="col-xl-10">
               <input
                 type="text"
