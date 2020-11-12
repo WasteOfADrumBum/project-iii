@@ -34,6 +34,9 @@ const UserSchema = new Schema({
     },
 
     places: [{
+        name: {
+            type: String
+        },
         lat: {
             type: String
         },
