@@ -23,7 +23,7 @@ const LetsGo = () => {
             <div className="row">
               <div className="col-md-12">
                 <h2>
-                  <label for="from-location">From:</label>
+                  <label htmlFor="from-location">From:</label>
                 </h2>
               </div>
               <div className="col-md-12">
@@ -44,7 +44,7 @@ const LetsGo = () => {
             <div className="row">
               <div className="col-md-12">
                 <h2>
-                  <label for="to-location">To:</label>
+                  <label htmlFor="to-location">To:</label>
                 </h2>
               </div>
               <div className="col-md-12">
