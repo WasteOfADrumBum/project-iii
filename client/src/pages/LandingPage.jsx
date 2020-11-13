@@ -31,7 +31,7 @@ const LandingPage = () => {
           <div className="col-lg-4" />
           <div className="jumbo-text p-5 m-5 col-lg-4">
             <h2>Hello we are</h2>
-            <h1>Project III</h1>
+            <h1>Carbon FX</h1>
             <p className="mt-4">Start reducing your carbon footprint today</p>
             <p className="mt-5">
               <Button variant="primary">
