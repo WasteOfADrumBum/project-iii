@@ -34,7 +34,7 @@ const LoginPage = () => {
               <div className="col-md-12">
                 <h1>Account Login</h1>
               </div>
-              <div className="col-md-12 mt-2">
+              <div className="col-md-12 mt-2 mb-2">
                 <input
                   type="text"
                   style={{ width: "100%" }}

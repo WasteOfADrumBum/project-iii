@@ -8,9 +8,9 @@ const Footer = () => {
         <div className="row mb-3">
           <div className="col-md-2" />
           <div className="col-md-5">
-            <h5 className="title">Project III</h5>
+            <h5 className="title">Carbon FX</h5>
             <p>
-              Project III brings value to the modern world of transportation by
+              Carbon FX brings value to the modern world of transportation by
               allowing users to track their carbon foot print they leave behind
               on thier daily commute. By making users consiously aware of their
               carbon footprint we can help make a difference in the world.
@@ -22,7 +22,6 @@ const Footer = () => {
               <li className="list-unstyled">
                 Front End Developer:
                 <a href="https://github.com/WasteOfADrumBum">
-                  {" "}
                   Joshua M. Small
                 </a>
               </li>

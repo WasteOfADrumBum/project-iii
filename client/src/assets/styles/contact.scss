@@ -28,3 +28,11 @@
     border-radius: 2rem;
     color: #000 !important;
 }
+
+.border-radius-top {
+    border-radius: 2rem 2rem 0 0;
+}
+
+.border-radius-bottom{
+    border-radius: 0 0 2rem 2rem;
+}
