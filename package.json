@@ -4,8 +4,10 @@
   "description": "",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "start:dev": "cd client && npm start"
+    "start:dev": "cd client && npm start",
+    "client": "cd client && npm run start",
+    "start": "concurrently \"node server.js\" \"npm run client\"",
+    "dev": "concurrently \"nodemon server.js\" \"npm run client\""
   },
   "repository": {
     "type": "git",
@@ -18,6 +20,7 @@
   },
   "homepage": "https://github.com/WasteOfADrumBum/project-iii#readme",
   "dependencies": {
+    "concurrently": "^5.3.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.13"
