@@ -3,64 +3,66 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 // Below will be the schema for our Workout Object
-const VehicleSchema = new Schema({
+const VehicleSchema = new Schema(
+  {
     day: {
-        type: Date,
-        default: () => new Date()
+      type: Date,
+      default: () => new Date(),
     },
 
     make: {
-        type: String,
-        required: "Sorry, Make is required"
+      type: String,
+      required: "Sorry, Make is required",
     },
 
     model: {
-        type: String,
-        required: "Sorry, Model is required"
+      type: String,
+      required: "Sorry, Model is required",
     },
 
     year: {
-        type: String,
-        required: "Sorry, Year is required"
+      type: String,
+      required: "Sorry, Year is required",
     },
 
     type: {
-        type: String,
+      type: String,
     },
 
     drive: {
-        type: String,
+      type: String,
     },
 
-    trany: {
-        type: String,
+    transmission: {
+      type: String,
     },
 
     cylinders: {
-        type: String,
+      type: String,
     },
 
     displacement: {
-        type: String,
+      type: String,
     },
 
     fueltype: {
-        type: String,
+      type: String,
     },
 
     mpgcity: {
-        type: Number,
+      type: Number,
     },
 
     mpghwy: {
-        type: Number,
+      type: Number,
     },
-
-}, {
+  },
+  {
     toJSON: {
-        virtuals: true
-    }
-});
+      virtuals: true,
+    },
+  }
+);
 
 const Vehicle = mongoose.model("Vehicle", VehicleSchema);
 
