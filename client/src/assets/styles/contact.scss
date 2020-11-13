@@ -18,3 +18,13 @@
     -ms-transform: scale(-1, 1);
     transform: scale(-1, 1);
 }
+
+.contact-text-container {
+    background-color: rgba(255, 255, 255, .5) !important;
+}
+
+.carousel-caption {
+    background-color: rgba(255, 255, 255, .2) !important;
+    border-radius: 2rem;
+    color: #000 !important;
+}
