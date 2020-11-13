@@ -9,7 +9,7 @@ library.add(faLinkedin, faGithub);
 
 const data = [
   {
-    image: "assets/images/josh-200x200.jpg",
+    image: "assets/images/joshua-avatar.png",
     alt: "Joshua",
     caption: "Joshua M. Small",
     description: "Front End Developer",
@@ -17,7 +17,7 @@ const data = [
     linkedin: "https://www.linkedin.com/in/joshuamsmall",
   },
   {
-    image: "assets/images/max-200x200.jpg",
+    image: "assets/images/max-avatar.png",
     alt: "Max",
     caption: "Max Gerringer",
     description: "Front End Developer",
@@ -25,7 +25,7 @@ const data = [
     linkedin: "https://www.linkedin.com/in/max-gerringer-9415b284",
   },
   {
-    image: "assets/images/jim-200x200.jpg",
+    image: "assets/images/jim-avatar.png",
     alt: "Jim",
     caption: "Jim Faulkner",
     description: "Back End Developer",
@@ -33,7 +33,7 @@ const data = [
     linkedin: "https://www.linkedin.com/in/jim-faulkner-13476534",
   },
   {
-    image: "assets/images/mark-200x200.jpg",
+    image: "assets/images/mark-avatar.png",
     alt: "Mark",
     caption: "Mark Speer",
     description: "Back End Developer",
@@ -41,7 +41,7 @@ const data = [
     linkedin: "https://www.linkedin.com/in/mark-speer",
   },
   {
-    image: "assets/images/arlene-200x200.jpg",
+    image: "assets/images/arlene-avatar.png",
     alt: "Arlene",
     caption: "Arlene Rodriguez",
     description: "Back End Developer",
