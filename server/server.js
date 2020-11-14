@@ -25,7 +25,9 @@ mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/project3_db", {
   useFindAndModify: false
 });
 
-app.listen(PORT, function () {
+const index = require("./index")
+
+index.listen(PORT, function () {
   console.log("http://localhost:" + PORT);
 });
 
