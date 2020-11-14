@@ -35,7 +35,7 @@ const LetsGo = () => {
                   <option value="placeholder">Placeholder</option>
                 </select>
               </div>
-              <div className="col-md-12 pt-3">
+              <div className="col-md-12 pt-3 address-content-container">
                 <AddressAutocomplete />
               </div>
             </div>
@@ -56,7 +56,7 @@ const LetsGo = () => {
                   <option value="placeholder">Placeholder</option>
                 </select>
               </div>
-              <div className="col-md-12 pt-3">
+              <div className="col-md-12 pt-3 address-content-container">
               <AddressAutocomplete />
               </div>
             </div>
