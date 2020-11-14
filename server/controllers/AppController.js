@@ -1,7 +1,7 @@
 const User = require("../models/UserInfo");
 const Vehicle = require("../models/VehicleInfo")
 
-module.exports = function (db) {
+module.exports = function () {
   return {
 
     // User Methods
