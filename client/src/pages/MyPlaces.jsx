@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
-import AddressForm from "../components/address/addressForm";
+import PlacesAutoComplete from "../components/places/places"
 import "../assets/styles/myplaces.scss";
 
 // TODO: onClick(btn "+ Place") display <AddressForm/>
@@ -18,7 +18,7 @@ const MyPlaces = () => {
           </div>
         </div>
         <div className="p-5 m-5 address-content-container">
-          <AddressForm />
+          <PlacesAutoComplete />
         </div>
         <div className="row p-1 m-5 address-content-container">
           <div className="col-md-4 p-5">
