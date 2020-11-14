@@ -29,9 +29,12 @@ const UserSchema = new Schema({
     required: "Please enter a password",
   },
 
-  vehicles: {
-    id: [mongoose.ObjectIDs],
+  vehicles: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: VehicleInfo
   },
+  ],
 
   places: [
     {
