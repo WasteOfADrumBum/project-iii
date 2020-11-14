@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
-import PlacesAutoComplete from "../components/places/places"
+import AddressAutocomplete from "../components/address/AddressAutocomplete"
 import "../assets/styles/letsgo.scss";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
@@ -36,7 +36,7 @@ const LetsGo = () => {
                 </select>
               </div>
               <div className="col-md-12 pt-3">
-                <PlacesAutoComplete />
+                <AddressAutocomplete />
               </div>
             </div>
           </div>
@@ -57,7 +57,7 @@ const LetsGo = () => {
                 </select>
               </div>
               <div className="col-md-12 pt-3">
-              <PlacesAutoComplete />
+              <AddressAutocomplete />
               </div>
             </div>
           </div>
