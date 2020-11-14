@@ -2,9 +2,10 @@ import React from "react";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
-  getZipCode
+  getZipCode,
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import "../../assets/styles/addressautocomplete.scss";
 
 const AddressAutocomplete = () => {
   const {
@@ -28,7 +29,6 @@ const AddressAutocomplete = () => {
   };
 
   const handleSelect = ({ description }) => () => {
-    
     setValue(description, false);
     clearSuggestions();
 
@@ -45,12 +45,11 @@ const AddressAutocomplete = () => {
     getGeocode({ address: description })
       .then((results) => getZipCode(results[0], false))
       .then((zipCode) => {
-        console.log("ZipCode: ", zipCode)
-    })
+        console.log("ZipCode: ", zipCode);
+      })
       .catch((error) => {
-        console.log("Error: ", error)
+        console.log("Error: ", error);
       });
-    
   };
 
   const renderSuggestions = () =>
@@ -74,6 +73,7 @@ const AddressAutocomplete = () => {
         onChange={handleInput}
         disabled={!ready}
         placeholder="Begin typing an address"
+        autoComplete="new-password"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
