@@ -32,8 +32,8 @@ const UserSchema = new Schema({
   vehicles: [
     {
       type: Schema.Types.ObjectId,
-      ref: VehicleInfo
-  },
+      ref: VehicleInfo,
+    },
   ],
 
   places: [
