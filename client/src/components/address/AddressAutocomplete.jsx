@@ -5,6 +5,7 @@ import usePlacesAutocomplete, {
   getZipCode
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
+import "../../assets/styles/addressautocomplete.scss";
 
 const AddressAutocomplete = () => {
   const {
@@ -74,6 +75,7 @@ const AddressAutocomplete = () => {
         onChange={handleInput}
         disabled={!ready}
         placeholder="Begin typing an address"
+        autoComplete="new-password"
       />
       {/* We can use the "status" to decide whether we should display the dropdown or not */}
       {status === "OK" && <ul>{renderSuggestions()}</ul>}
