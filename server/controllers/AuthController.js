@@ -137,17 +137,17 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-function tokenFromHeader(req) {
-  if (
-    req.headers.authorization &&
-    req.headers.authorization.split(" ")[0] === "Bearer"
-  )
-    return req.headers.authorization.split(" ")[1] || false;
-};
-function isAuth(req, res, next) {
-  if (tokenFromHeader(req)) {
-    req.token = jwt.verify(tokenFromHeader(req), "fraggle_rock");
-    return next();
-  }
-  res.status(404).send("NO");
-}
+// function tokenFromHeader(req) {
+//   if (
+//     req.headers.authorization &&
+//     req.headers.authorization.split(" ")[0] === "Bearer"
+//   )
+//     return req.headers.authorization.split(" ")[1] || false;
+// };
+// function isAuth(req, res, next) {
+//   if (tokenFromHeader(req)) {
+//     req.token = jwt.verify(tokenFromHeader(req), "fraggle_rock");
+//     return next();
+//   }
+//   res.status(404).send("NO");
+// }
