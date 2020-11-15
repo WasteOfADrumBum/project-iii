@@ -3,6 +3,15 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
+dotenv.config();
+
+process.on('uncaughtException', err => {
+  console.log('UNCAUGHT EXCEPTION!!! shutting down...');
+  console.log(err.name, err.message);
+  process.exit(1);
+});
+
+const app = require('./app');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
@@ -26,6 +35,6 @@ mongoose
     console.log("DB connection Successful");
   });
 
-app.listen(PORT, function () {
+app.listen(PORT, () => {
   console.log("http://localhost:" + PORT);
 });
