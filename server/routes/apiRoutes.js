@@ -1,31 +1,31 @@
-const express = require("express");
 const router = require("express").Router();
-const AppController = require("../controllers/AppController")(db);
+const AppController = require("../controllers/AppController");
 const AuthController = require("../controllers/AuthController");
-const userController = require("../controllers/userController")
+const UserController = require("../controllers/UserController");
+
 const User = require("../models/UserInfo");
 
-router.post("/login", AuthController.loginUser);
+router.post("/login", AuthController.login);
 router.post("/signup", AuthController.signup);
 
 // Protect all routes after this middleware
 router.use(AuthController.protect);
 
 // DELETE Routes
-router.delete("/deleteMe", userController.deleteMe);
+router.delete("/deleteMe", UserController.deleteMe);
 
 // Only admin have permission to access for the below APIs
-router.use(authController.restrictTo("admin"));
+router.use(AuthController.restrictTo("admin"));
 
 //. Get All Users
-router.route("/").get(userController.getAllUsers);
+router.route("/").get(UserController.getAllUsers);
 
 // User ID Routes
 router
   .route("/:id")
-  .get(userController.getUser)
-  .patch(userController.updateUser)
-  .delete(userController.deleteUser);
+  .get(UserController.getUser)
+  .patch(UserController.updateUser)
+  .delete(UserController.deleteUser);
 
 // GET Routes
 router.get("/userInfo", AppController.findUser);

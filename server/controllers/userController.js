@@ -1,5 +1,5 @@
-const User = require("../models/userModel");
-const base = require("./baseController");
+const User = require("../models/UserInfo");
+const base = require("./BaseController");
 
 exports.deleteMe = async (req, res, next) => {
   try {

@@ -50,6 +50,13 @@ const Register = () => {
                 </Form.Group>
               </Form.Row>
 
+              <Form.Row>
+                <Form.Group as={Col} controlId="formGridConfirmPassword">
+                  <Form.Label>Confirm Password</Form.Label>
+                  <Form.Control type="password" placeholder="Confirm Password" />
+                </Form.Group>
+              </Form.Row>
+
               <Form.Group id="formGridCheckbox">
                 <Form.Check
                   type="checkbox"
