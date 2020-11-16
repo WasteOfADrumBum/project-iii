@@ -1,6 +1,6 @@
 const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
-const User = require("../models/userModel");
+const User = require("../models/UserInfo");
 const AppError = require("../utils/appError");
 
 const createToken = (id) => {
@@ -145,3 +145,59 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
+
+// app.get("/auth", isAuth, function(req, res){
+//   res.send(200)
+// })
+
+// app.post("/auth", loginUser, function (req, res) {
+// console.log("In CALL");
+// res.json({ token: req.token });
+// });
+
+// exports.loginUser = async (req, res, next) => {
+//   console.log("In MID");
+//   // search db for user with matching email
+//   // compare submitted password with saved password
+//   // if no matching send failure response
+//     try {
+//       const {
+//         email, password
+//       } = req.body;
+
+// try {
+//   if (req.body.email !== "bob") {
+//     throw "No user found";
+//   }
+//   if (req.body.password !== "dylan") {
+//     throw "Password incorrect";
+//   }
+
+//   req.token = jwt.sign(
+//     {
+//       email: req.body.email,
+//     },
+//     "fraggle_rock",
+//     { expiresIn: "1d" }
+//   );
+
+//   next();
+// } catch (error) {
+//   res.status(404).send(error.message);
+// }
+// };
+
+// function tokenFromHeader(req) {
+//   if (
+//     req.headers.authorization &&
+//     req.headers.authorization.split(" ")[0] === "Bearer"
+//   )
+//     return req.headers.authorization.split(" ")[1] || false;
+// };
+// function isAuth(req, res, next) {
+//   if (tokenFromHeader(req)) {
+//     req.token = jwt.verify(tokenFromHeader(req), "fraggle_rock");
+//     return next();
+//   }
+//   res.status(404).send("NO");
+// }

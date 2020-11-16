@@ -1,6 +1,6 @@
 const express = require("express");
-const app = express();
-const PORT = process.env.PORT || 3001;
+const app = require('./app');
+const PORT = process.env.PORT;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
@@ -11,18 +11,11 @@ process.on('uncaughtException', err => {
   process.exit(1);
 });
 
-const app = require('./app');
-
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-const database = process.env.DATABASE.replace(
-  "<PASSWORD>",
-  process.env.DATABASE_PASSWORD
-);
 
 mongoose
   .connect(process.env.MONGODB_URI || "mongodb://localhost/project3_db", {

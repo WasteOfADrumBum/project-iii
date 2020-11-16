@@ -6,14 +6,17 @@ import axios from "axios";
 import "../assets/styles/login.scss";
 
 const LoginPage = () => {
+  // Set email & password State to ""
   const [state, setState] = React.useState({
     email: "",
     password: "",
   });
 
+  // Hadle Change State
   const handleChange = ({ target: { name, value } }) =>
     setState({ ...state, [name]: value });
 
+  // Handle onClick /auth route
   const handleClick = async () => {
     try {
       const response = await axios.post("/auth", state);
