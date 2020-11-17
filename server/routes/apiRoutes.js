@@ -27,12 +27,14 @@ router
   .patch(UserController.updateUser)
   .delete(UserController.deleteUser);
 
+// ! Routes below are causing sever to fail
+
 // GET Routes
-router.get("/UserInfo", AppController.findUser);
-router.get("/VehicleInfo", AppController.findVehicle);
+// router.get("/UserInfo", AppController.findUser);
+// router.get("/VehicleInfo", AppController.findVehicle);
 
 // POST Routes
-router.post("/UserInfo", AppController.createUser);
+// router.post("/UserInfo", AppController.createUser);
 
 // Export router
 module.exports = router;
