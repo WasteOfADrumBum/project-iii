@@ -28,11 +28,11 @@ router
   .delete(UserController.deleteUser);
 
 // GET Routes
-router.get("/userInfo", AppController.findUser);
-router.get("/vehicleInfo", AppController.findVehicle);
+router.get("/UserInfo", AppController.findUser);
+router.get("/VehicleInfo", AppController.findVehicle);
 
 // POST Routes
-router.post("/userInfo", AppController.createUser);
+router.post("/UserInfo", AppController.createUser);
 
 // Export router
 module.exports = router;

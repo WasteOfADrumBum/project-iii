@@ -3,9 +3,8 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import "../assets/styles/register.scss";
 import { Form, Col, Button } from "react-bootstrap";
+import RandomQuote from "../components/quote/Quote"
 
-// TODO: Make factData.json to pull random environmental facts from
-// TODO: Replace [TEXT] with random data pulled from factData.json
 // TODO: Make text animated and appear after the user selects the signup button
 // TODO: Caputre form data and store to Database
 // TODO: navigate to ./vehicle after form submit
@@ -18,7 +17,7 @@ const Register = () => {
         <div className="row pt-5">
           <div className="col-md-4 p-5">
             <h1>Thank you for you contribution to a safer planet.</h1>
-            <p>[Fact from factData.json here]</p>
+            <RandomQuote/>
           </div>
           <div className="col-md-8 form-container p-5">
             <Form>
