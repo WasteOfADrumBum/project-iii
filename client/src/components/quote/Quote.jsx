@@ -1,55 +1,45 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { Component } from 'react'
+import QuoteAndAuthor from './QuoteAndAuthor';
+import quotes from './QuoteDB';
 
-const RandomQuote = () => {
-  const [loading, setLoading] = useState(true);
-  const [quote, setQuote] = useState("");
-  const [author, setAuthor] = useState("");
-  const [error, setError] = useState("");
+export default class RandomQuote extends Component {
 
-  const getQuote = () => {
-    //const url = `../../db/factData.json`;
-    const url = `https://gist.githubusercontent.com/camperbot/5a022b72e96c4c9585c32bf6a75f62d9/raw/e3c6895ce42069f0ee7e991229064f167fe8ccdc/quotes.json`;
+  //state
+  state = {
+    quote: quotes[0].quote,
+    author: quotes[0].author
+  }
 
-    axios
-      .get(url)
-      .then((res) => {
-        setLoading(false);
-        let data = res.data.quotes;
-        let quoteNumber = Math.floor(Math.random() * data.length);
-        let randomQuote = data[quoteNumber];
-        setError("");
-        setQuote(randomQuote["quote"]);
-        setAuthor(randomQuote["author"]);
-      })
-      .catch((err) => console.log(err));
-  };
+  //generate diffrent quote function
+  generateRandomQuote = (arr) => {
+    //get random numbers
+    let num = Math.floor(Math.random() * quotes.length)
 
-  useEffect(() => {
-    getQuote();
-  }, []);
+    let newQuote = quotes[num];
 
-  return (
-    <div className="container">
-      {loading ? (
-        <div className="progress">
-          <div className="indeterminate">Loading..</div>
-        </div>
-      ) : (
-        <div
-          className="card"
-          style={{ backgroundColor: "transparent", border: "none" }}
-        >
-          <div className="card-content">
-            <p>
-              "{quote}"- {author}
-            </p>
-          </div>
-        </div>
-      )}
-      {error ? error : null}
-    </div>
-  );
-};
+    //update state
+    this.setState({
+      quote: newQuote.quote,
+      author: newQuote.author
+    })
 
-export default RandomQuote;
+    this.shuffleQuotes(quotes)
+
+  }
+
+  //shuufle quotes function
+  shuffleQuotes = (arr) => {
+    return arr.sort(function () { return 0.5 - Math.random() });
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <QuoteAndAuthor
+          generateRandomQuote={this.generateRandomQuote}
+          quote={this.state}
+        />
+      </div>
+    )
+  }
+}

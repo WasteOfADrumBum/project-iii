@@ -14,12 +14,12 @@ const Register = () => {
     <>
       <NavBar />
       <div className="register-container p-5">
-        <div className="row pt-5">
+        <div className="row pt-5 form-container">
           <div className="col-md-4 p-5">
-            <h1>Thank you for you contribution to a safer planet.</h1>
+            <h1>Thank you for your contribution to a safer planet.</h1>
             <RandomQuote/>
           </div>
-          <div className="col-md-8 form-container p-5">
+          <div className="col-md-8  p-5">
             <Form>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridFirstName">
