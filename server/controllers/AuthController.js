@@ -4,13 +4,12 @@ const User = require("../models/UserInfo");
 const AppError = require("../utils/appError");
 
 const createToken = (id) => {
+  // ! .env file requires REACT_APP_ prefix 
+  // ! and must be located in the root directory
   return jwt.sign(
     {
       id,
     },
-    // ! Jim: This is the issue. .env file doesn't have a define JWT_SECRET or JWT_EXPIRES_IN
-    // ! This error logs (Error: secretOrPrivateKey must have a value)
-    // ! This causes a Uncaught Promise with the server responding with a 500 Internal Service Error
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRES_IN,

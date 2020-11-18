@@ -16,18 +16,19 @@ const LoginPage = () => {
   const handleChange = ({ target: { name, value } }) =>
     setState({ ...state, [name]: value });
 
-  // Handle onClick /auth route
+  // Handle onClick auth route
   const handleClick = async () => {
     try {
-      console.log("Login handleClick");
       const response = await axios.post("/api/v1/users/login", state);
-      console.log("handleClick", response);
       localStorage.setItem("__token__", response.data.token);
+      // TODO: Load /profile
     } catch (error) {
       console.log(error);
     }
   };
 
+  // Login.jsx functional and responding to seed data as of 11.18.2020
+  // DON'T Modify This Page!
   return (
     <>
       <NavBar />
