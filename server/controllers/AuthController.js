@@ -8,6 +8,9 @@ const createToken = (id) => {
     {
       id,
     },
+    // ! Jim: This is the issue. .env file doesn't have a define JWT_SECRET or JWT_EXPIRES_IN
+    // ! This error logs (Error: secretOrPrivateKey must have a value)
+    // ! This causes a Uncaught Promise with the server responding with a 500 Internal Service Error
     process.env.JWT_SECRET,
     {
       expiresIn: process.env.JWT_EXPIRES_IN,
@@ -18,7 +21,7 @@ const createToken = (id) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    console.log("Inside Login", email, password);
     // 1) check if email and password exist
     if (!email || !password) {
       return next(
@@ -57,6 +60,7 @@ exports.login = async (req, res, next) => {
       },
     });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
@@ -145,59 +149,3 @@ exports.restrictTo = (...roles) => {
     next();
   };
 };
-
-// app.get("/auth", isAuth, function(req, res){
-//   res.send(200)
-// })
-
-// app.post("/auth", loginUser, function (req, res) {
-// console.log("In CALL");
-// res.json({ token: req.token });
-// });
-
-// exports.loginUser = async (req, res, next) => {
-//   console.log("In MID");
-//   // search db for user with matching email
-//   // compare submitted password with saved password
-//   // if no matching send failure response
-//     try {
-//       const {
-//         email, password
-//       } = req.body;
-
-// try {
-//   if (req.body.email !== "bob") {
-//     throw "No user found";
-//   }
-//   if (req.body.password !== "dylan") {
-//     throw "Password incorrect";
-//   }
-
-//   req.token = jwt.sign(
-//     {
-//       email: req.body.email,
-//     },
-//     "fraggle_rock",
-//     { expiresIn: "1d" }
-//   );
-
-//   next();
-// } catch (error) {
-//   res.status(404).send(error.message);
-// }
-// };
-
-// function tokenFromHeader(req) {
-//   if (
-//     req.headers.authorization &&
-//     req.headers.authorization.split(" ")[0] === "Bearer"
-//   )
-//     return req.headers.authorization.split(" ")[1] || false;
-// };
-// function isAuth(req, res, next) {
-//   if (tokenFromHeader(req)) {
-//     req.token = jwt.verify(tokenFromHeader(req), "fraggle_rock");
-//     return next();
-//   }
-//   res.status(404).send("NO");
-// }

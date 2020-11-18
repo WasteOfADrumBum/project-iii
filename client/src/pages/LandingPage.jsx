@@ -11,7 +11,7 @@ const LandingPage = () => {
     const checkUser = async () => {
       try {
         const token = localStorage.getItem("__token__");
-        if(!token) throw new Error("No Token");
+        if (!token) throw new Error("No Token");
         const response = await axios.get("/auth", {
           headers: { Authorization: "Bearer " + token },
         });
@@ -35,10 +35,7 @@ const LandingPage = () => {
             <p className="mt-4">Start reducing your carbon footprint today</p>
             <p className="mt-5">
               <Button variant="primary">
-                <Link
-                  to="./login"
-                  alt="login"
-                  style={{ color: "white" }}>
+                <Link to="./login" alt="login" style={{ color: "white" }}>
                   Get Started
                 </Link>
               </Button>

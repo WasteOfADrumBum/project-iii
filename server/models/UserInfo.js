@@ -11,7 +11,7 @@ const UserSchema = new mongoose.Schema({
 
   lastName: {
     type: String,
-    required: [true, "Please fill your last name"],
+    required: "Please fill your last name",
   },
 
   email: {
@@ -29,7 +29,7 @@ const UserSchema = new mongoose.Schema({
   },
   passwordConfirm: {
     type: String,
-    required:  "Please fill your password confirm",
+    required: "Please fill your password confirm",
     validate: {
       validator: function (el) {
         // "this" works only on create and save
@@ -127,8 +127,7 @@ const UserSchema = new mongoose.Schema({
   ],
 });
 
-
-// Make First and Last name CamelCase 
+// Make First and Last name CamelCase
 UserSchema.methods.forceUpperFirst = function () {
   this.firstName = this.firstName.charAt(0).toUpperCase();
   return this.firstName;

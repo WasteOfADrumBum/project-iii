@@ -30,7 +30,6 @@ let userSeed = [
 db.UserInfo.deleteMany({})
   .then(() =>
     // db.UserInfo.collection.insertMany(userSeed)
-
     userSeed.filter(u => u.email).map(async (user) => await db.UserInfo.create(user))
   )
   .then(users => Promise.all(users))
