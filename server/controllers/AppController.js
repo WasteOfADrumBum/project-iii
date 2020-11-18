@@ -2,9 +2,7 @@ const User = require("../models/UserInfo");
 const Vehicle = require("../models/VehicleInfo");
 
 module.exports = {
-  
     // User Methods
-
     createUser: function (req, res) {
       User.create({})
         .then((newUser) => {
@@ -26,7 +24,6 @@ module.exports = {
     },
 
     // Vehicle Methods
-
     findVehicle: function (req, res) {
       Vehicle.find({
         where: {
