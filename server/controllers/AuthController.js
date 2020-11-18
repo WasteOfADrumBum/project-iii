@@ -18,7 +18,7 @@ const createToken = (id) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+    console.log("Inside Login", email, password);
     // 1) check if email and password exist
     if (!email || !password) {
       return next(
@@ -57,6 +57,7 @@ exports.login = async (req, res, next) => {
       },
     });
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };
