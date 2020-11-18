@@ -27,8 +27,6 @@ router
   .patch(UserController.updateUser)
   .delete(UserController.deleteUser);
 
-// ! Routes below are causing sever to fail
-
 // GET Routes
 router.get("/UserInfo", AppController.findUser);
 router.get("/VehicleInfo", AppController.findVehicle);
