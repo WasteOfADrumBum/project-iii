@@ -19,7 +19,9 @@ const LoginPage = () => {
   // Handle onClick /auth route
   const handleClick = async () => {
     try {
+      console.log("Login handleClick");
       const response = await axios.post("/api/v1/users/login", state);
+      console.log("handleClick", response);
       localStorage.setItem("__token__", response.data.token);
     } catch (error) {
       console.log(error);

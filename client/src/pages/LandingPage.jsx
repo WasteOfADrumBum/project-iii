@@ -12,7 +12,7 @@ const LandingPage = () => {
       try {
         const token = localStorage.getItem("__token__");
         if (!token) throw new Error("No Token");
-        const response = await axios.get("/auth", {
+        const response = await axios.get("/api/v1/users/login", {
           headers: { Authorization: "Bearer " + token },
         });
         console.log(response);
