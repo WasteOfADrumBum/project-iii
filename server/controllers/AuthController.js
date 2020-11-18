@@ -4,7 +4,7 @@ const User = require("../models/UserInfo");
 const AppError = require("../utils/appError");
 
 const createToken = (id) => {
-  // ! .env file requires REACT_APP_ prefix 
+  // ! .env file requires REACT_APP_ prefix
   // ! and must be located in the root directory
   return jwt.sign(
     {

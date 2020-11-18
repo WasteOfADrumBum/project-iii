@@ -17,13 +17,13 @@ const LandingPage = () => {
         // Throw Error is No Token
         if (!token) throw new Error("No Token");
         // Authorize token bearer
-        // ! Current issue: GET http://localhost:3000/api/v1/users 403 (Forbidden)
-        const response = await axios.get("/api/v1/users", {
+        // ! Current issue: line 26 catch (error) console.log(GET http://localhost:3000/api/v1/users 403 (Forbidden))
+        const response = await axios.get("/api/v1/users/protect", {
           headers: { Authorization: "Bearer " + token },
         });
         console.log("response:" + response);
       } catch (error) {
-        console.log(error);
+        console.log("checkUser catch " + error);
       }
     };
     checkUser();

@@ -2,11 +2,11 @@ const router = require("express").Router();
 const AppController = require("../controllers/AppController");
 const AuthController = require("../controllers/AuthController");
 const UserController = require("../controllers/UserController");
-
 const User = require("../models/UserInfo");
 
 router.post("/login", AuthController.login);
 router.post("/signup", AuthController.signup);
+router.get("/protect", AuthController.protect);
 
 // Protect all routes after this middleware
 router.use(AuthController.protect);
