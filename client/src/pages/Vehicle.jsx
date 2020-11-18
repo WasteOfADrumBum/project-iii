@@ -2,27 +2,44 @@ import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
-import "../assets/styles/vehicle.scss"
+import "../assets/styles/vehicle.scss";
 
-// TODO: Caputre form data and store to Database
+// TODO: Caputre form data and store to project3_db's users.vehicles
+// TODO: Make form a componenet and populate it with data from project3_db's VehicleInfo Collection
 
 const Vehicle = () => {
   return (
     <>
       <NavBar />
       <div className="vehicle-container p-5">
-        <div className="row">
-          <div className="col-md-4"/>
-          <div className="col-md-8 p-5">
-            <p>
-              Explanation of how we can mose accurately display the user's
-              footprint impact by getting their vehicle information.
-            </p>
+        <div className="vehicle-form-container">
+          <div className="row">
+            <div className="col-md-4" />
+            <div className="col-md-8 pt-5 pr-5 pl-5 text-center">
+              <span>
+                <b>
+                  To tally up your annual transportation footprint. We will need
+                  to consider your travel, including how far you travel in a
+                  personal vehicle. For your vehicle usage, if you travel more
+                  than 15,000 miles per year, it can make a huge difference in
+                  your carbon footprint. To calculate your footprint accurately,
+                  we'll need to know the make and model of your vehicle.
+                  Depending on the type of vehicle, transmission, fuel type, and
+                  cylinders you own will alter your score.
+                </b>
+              </span>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col-md-4 text-center"><h2>Tell me</h2><h1>how you get to work:</h1></div>
-          <div className="col-md-8 vehicle-form-container p-5">
+          <div className="row">
+            <div
+              className="col-md-4 text-center"
+              style={{ fontVariantCaps: "all-small-caps" }}
+            >
+              <h2>Tell me</h2>
+              <h1>how do you</h1>
+              <h1>get to work?</h1>
+            </div>
+            <div className="col-md-8 p-5">
               <Form>
                 <Form.Row>
                   <Form.Group as={Col} controlId="formGridMake">
@@ -61,11 +78,15 @@ const Vehicle = () => {
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
-
+                {/* 
+                // TODO: Make "next" button relocate to /letsgo
+                // TODO: Make "Skip" button relocate to /profile
+                */}
                 <Button variant="primary" type="submit">
                   Next
                 </Button>
               </Form>
+            </div>
           </div>
         </div>
       </div>
