@@ -1,8 +1,8 @@
 const User = require("../models/UserInfo");
 const Vehicle = require("../models/VehicleInfo");
 
-module.exports = function () {
-  return {
+module.exports = {
+  
     // User Methods
 
     createUser: function (req, res) {
@@ -45,4 +45,4 @@ module.exports = function () {
         });
     },
   };
-};
+
