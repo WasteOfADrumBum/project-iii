@@ -5,6 +5,8 @@ import Footer from "../components/footer/Footer";
 import axios from "axios";
 import "../assets/styles/login.scss";
 
+// ! console error: [DOM] Password field is not contained in a form: (More info: https://www.chromium.org/developers/design-documents/create-amazing-password-forms) 
+
 const LoginPage = () => {
   // Set email & password State to ""
   const [state, setState] = React.useState({
