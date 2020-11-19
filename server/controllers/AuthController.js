@@ -2,6 +2,7 @@ const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const User = require("../models/UserInfo");
 const AppError = require("../utils/appError");
+require('dotenv').config()
 
 const createToken = (id) => {
   // ! .env file requires REACT_APP_ prefix
@@ -30,6 +31,7 @@ exports.login = async (req, res, next) => {
         next
       );
     }
+    console.log("passed conditional")
 
     // 2) check if user exist and password is correct
     const user = await User.findOne({
@@ -47,6 +49,7 @@ exports.login = async (req, res, next) => {
 
     // 3) All correct, send jwt to client
     const token = createToken(user.id);
+    console.log("token created")
 
     // Remove the password from the output
     user.password = undefined;
@@ -91,6 +94,8 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.protect = async (req, res, next) => {
+  console.log("req", req.headers)
+
   try {
     // 1) check if the token is there
     let token;
@@ -100,11 +105,12 @@ exports.protect = async (req, res, next) => {
     ) {
       token = req.headers.authorization.split(" ")[1];
     }
+    console.log('TOKEN! we stripped of req', token)
     if (!token) {
       return next(
         new AppError(
           401,
-          "fail",
+          "fail from the protect fn",
           "You are not logged in! Please login in to continue"
         ),
         req,
@@ -112,12 +118,14 @@ exports.protect = async (req, res, next) => {
         next
       );
     }
+    console.log('process.env.JWT_SECRET', process.env.JWT_SECRET)
 
     // 2) Verify token
     const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
+    console.log("decode", decode)
     // 3) check if the user is exist (not deleted)
     const user = await User.findById(decode.id);
+    console.log('WE GOT USER off of the ID from decoded token', user)
     if (!user) {
       return next(
         new AppError(401, "fail", "This user is no longer exist"),
@@ -128,8 +136,10 @@ exports.protect = async (req, res, next) => {
     }
 
     req.user = user;
+    console.log("user")
     next();
   } catch (err) {
+    console.log("here is the err", err)
     next(err);
   }
 };
@@ -138,6 +148,7 @@ exports.protect = async (req, res, next) => {
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
+      console.log('ABOUT OT THROW RESTIRCT ERROR')
       return next(
         new AppError(403, "fail", "You are not allowed to do this action"),
         req,

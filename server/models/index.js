@@ -1,3 +1,5 @@
 module.exports = {
-    UserInfo: require('./UserInfo')
+    UserInfo: require('./UserInfo'),
+    VehicleInfo: require('./VehicleInfo')
+
 }
