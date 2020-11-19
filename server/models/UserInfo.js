@@ -162,5 +162,5 @@ UserSchema.methods.correctPassword = async function (
   return await bcrypt.compare(typedPassword, originalPassword);
 };
 
-const User = mongoose.model("User", UserSchema);
-module.exports = User;
+const UserInfo = mongoose.model("UserInfo", UserSchema, "UserInfo");
+module.exports = UserInfo;
