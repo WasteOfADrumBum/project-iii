@@ -55,7 +55,7 @@ exports.login = async (req, res, next) => {
 
     // Remove the password from the output
     user.password = undefined;
-    console.log("LOGIN | Remove the password from the output" + user.password);
+    console.log("LOGIN | Remove the password from the output", user.password);
 
     res.status(200).json({
       status: "success",
@@ -127,9 +127,9 @@ exports.protect = async (req, res, next) => {
     console.log(
       "PROTECT (decode) | Verify token: " +
         token +
-        "|| process.env.JWT_SECRET: " +
+        " || process.env.JWT_SECRET: " +
         process.env.JWT_SECRET +
-        "|| Decode token: ", 
+        " || Decode token: ", 
         decode
     );
 
