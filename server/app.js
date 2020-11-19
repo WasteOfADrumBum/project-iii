@@ -7,6 +7,8 @@ const hpp = require("hpp");
 const cors = require("cors");
 
 const apiRoutes = require("./routes/apiRoutes");
+const authRoutes = require("./routes/authRoutes");
+const adminRoutes = require("./routes/adminRoutes");
 const globalErrHandler = require("./controllers/errorController");
 const AppError = require("./utils/appError");
 const app = express();
@@ -42,7 +44,9 @@ app.use(xss());
 app.use(hpp());
 
 // Routes
+app.use(authRoutes);
 app.use("/api/v1/users", apiRoutes);
+app.use("/api/v1/admin", adminRoutes);
 
 // handle undefined Routes
 app.use("*", (req, res, next) => {

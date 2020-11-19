@@ -49,8 +49,21 @@ Project III brings value to the modern world of transportation by allowing users
 npm i
 ```
 
+VehcileInfo DB
+
+```
+mongoimport --type csv -d project3_db -c VehicleInfo --headerline --drop vehicle-data.csv
+```
+
+SeedDB (inside /server/seeders directory)
+
+```
+nodemon run SeedDB.js
+```
+
 ### Dependencies
 
+#### --- || Client || --- 
 ```
 "@fortawesome/fontawesome-svg-core": "^1.2.32",
 "@fortawesome/free-brands-svg-icons": "^5.15.1",
@@ -65,10 +78,12 @@ npm i
 "node-sass": "^4.14.1",
 "react": "^17.0.1",
 "react-bootstrap": "^1.4.0",
+"react-cool-onclickoutside": "^1.5.8",
 "react-dom": "^17.0.1",
 "react-fontawesome": "^1.7.1",
 "react-router-dom": "^5.2.0",
 "react-scripts": "4.0.0",
+"use-places-autocomplete": "^1.6.0",
 "web-vitals": "^0.2.4",
 "workbox-background-sync": "^5.1.3",
 "workbox-broadcast-update": "^5.1.3",
@@ -84,6 +99,26 @@ npm i
 "workbox-streams": "^5.1.3"
 ```
 
+#### --- || Root || ---  
+```
+"bcryptjs": "^2.4.3",
+"concurrently": "^5.3.0",
+"cors": "^2.8.5",
+"dotenv": "^8.2.0",
+"express": "^4.17.1",
+"express-mongo-sanitize": "^2.0.0",
+"express-rate-limit": "^5.1.3",
+"helmet": "^4.2.0",
+"hpp": "^0.2.3",
+"jsonwebtoken": "^8.5.1",
+"mongoose": "^5.10.13",
+"nodemon": "^2.0.6",
+"react-cool-onclickoutside": "^1.5.8",
+"use-places-autocomplete": "^1.6.0",
+"validator": "^12.0.0",
+"xss-clean": "^0.1.1"
+```
+
 ## Instructions
 
 Link to deployed [Heroku App](https://unc-team1-project3.herokuapp.com/).
@@ -96,7 +131,7 @@ Project 3 Features
 
 <img src="https://via.placeholder.com/500x300" width="500" />
 
-### Design Layouts with Annotations describing all UI/UX components with all  relevant screen data
+### Design Layouts with Annotations describing all UI/UX components with all relevant screen data
 
 <img src="client\public\assets\images\deliverables-01-02_5.png" width="500">
 

@@ -1,16 +1,9 @@
 const router = require("express").Router();
-const AppController = require("../controllers/AppController");
+const AdminController = require("../controllers/AdminController");
 const UserController = require("../controllers/UserController");
 
-// GET Routes: FIND
-router.get("/UserInfo", AppController.findUser);
-router.get("/VehicleInfo", AppController.findVehicle);
-
-// POST Routes: CREATE
-router.post("/UserInfo", AppController.createUser);
-
-// DELETE Routes
-router.delete("/deleteMe", UserController.deleteMe);
+// ↓↓↓ Only admin have permission to access for the below APIs ↓↓↓
+router.use(AdminController.restrictTo("admin"));
 
 //. Get All Users
 router.route("/").get(UserController.getAllUsers);

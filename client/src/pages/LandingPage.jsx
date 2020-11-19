@@ -17,7 +17,7 @@ const LandingPage = () => {
         // Throw Error if there is No Token
         if (!token) throw new Error("No Token");
         // Authorize token bearer
-        const response = await axios.get("/api/v1/users", {
+        const response = await axios.get("/", {
           headers: { Authorization: "Bearer " + token },
         });
         console.log("Authorized token bearer response:" + response);
@@ -27,6 +27,8 @@ const LandingPage = () => {
     };
     checkUser();
   }, []);
+
+  // ! Currently only authorizing Admin's and not user's
 
   return (
     <>

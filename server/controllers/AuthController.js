@@ -102,8 +102,6 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.protect = async (req, res, next) => {
-  console.log("PROTECT | req.headers: ", req.headers);
-
   try {
     // 1) check if the token is there
     let token;
@@ -132,9 +130,9 @@ exports.protect = async (req, res, next) => {
     console.log(
       "PROTECT (decode) | Verify token: " +
         token +
-        " || process.env.JWT_SECRET: " +
+        "\nprocess.env.JWT_SECRET: " +
         process.env.JWT_SECRET +
-        " || Decode token: ",
+        "\nDecode token (User ID, Issued At, Expires): ",
       decode
     );
 
@@ -151,7 +149,10 @@ exports.protect = async (req, res, next) => {
 
     req.user = user;
     console.log(
-      "PROTECT (user) | check if the user is exist (not deleted): " + user
+      "PROTECT (user) | check if the user is exist (not deleted): " +
+        user.firstName +
+        " " +
+        user.lastName
     );
     next();
   } catch (err) {
@@ -160,10 +161,12 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-// Authorization check if the user have rights to do this action (ADMIN)
+// Authorization check if the user have rights to do this action (ADMIN vs USER)
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
+    console.log("RestrictTo Req.User", req.user);
     if (!roles.includes(req.user.role)) {
+      console.log("User's Role:", req.user.role);
       console.log("RESTRICT | ABOUT OT THROW RESTIRCT ERROR");
       return next(
         new AppError(403, "fail", "You are not allowed to do this action"),
