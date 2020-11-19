@@ -2,11 +2,11 @@ const { promisify } = require("util");
 const jwt = require("jsonwebtoken");
 const User = require("../models/UserInfo");
 const AppError = require("../utils/appError");
-require('dotenv').config()
+require("dotenv").config();
 
 const createToken = (id) => {
   // ! .env file requires REACT_APP_ prefix
-  // ! and must be located in the root directory
+  // ! .env MUST be located in the root directory
   return jwt.sign(
     {
       id,
@@ -21,7 +21,6 @@ const createToken = (id) => {
 exports.login = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-    console.log("Inside Login", email, password);
     // 1) check if email and password exist
     if (!email || !password) {
       return next(
@@ -31,7 +30,9 @@ exports.login = async (req, res, next) => {
         next
       );
     }
-    console.log("passed conditional")
+    console.log(
+      "LOGIN | checked if email: " + email + " and password: " + password + " exist"
+    );
 
     // 2) check if user exist and password is correct
     const user = await User.findOne({
@@ -46,13 +47,15 @@ exports.login = async (req, res, next) => {
         next
       );
     }
+    console.log("LOGIN | checked if user exist and password is correct");
 
     // 3) All correct, send jwt to client
     const token = createToken(user.id);
-    console.log("token created")
+    console.log("LOGIN | All correct, send jwt to client: token created");
 
     // Remove the password from the output
     user.password = undefined;
+    console.log("LOGIN | Remove the password from the output", user.password);
 
     res.status(200).json({
       status: "success",
@@ -94,7 +97,7 @@ exports.signup = async (req, res, next) => {
 };
 
 exports.protect = async (req, res, next) => {
-  console.log("req", req.headers)
+  console.log("PROTECT | req.headers: ", req.headers);
 
   try {
     // 1) check if the token is there
@@ -105,7 +108,6 @@ exports.protect = async (req, res, next) => {
     ) {
       token = req.headers.authorization.split(" ")[1];
     }
-    console.log('TOKEN! we stripped of req', token)
     if (!token) {
       return next(
         new AppError(
@@ -118,14 +120,21 @@ exports.protect = async (req, res, next) => {
         next
       );
     }
-    console.log('process.env.JWT_SECRET', process.env.JWT_SECRET)
+    console.log("PROTECT (token) | check if the token is there: " + token);
 
     // 2) Verify token
     const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    console.log("decode", decode)
+    console.log(
+      "PROTECT (decode) | Verify token: " +
+        token +
+        " || process.env.JWT_SECRET: " +
+        process.env.JWT_SECRET +
+        " || Decode token: ", 
+        decode
+    );
+
     // 3) check if the user is exist (not deleted)
     const user = await User.findById(decode.id);
-    console.log('WE GOT USER off of the ID from decoded token', user)
     if (!user) {
       return next(
         new AppError(401, "fail", "This user is no longer exist"),
@@ -134,21 +143,24 @@ exports.protect = async (req, res, next) => {
         next
       );
     }
+    console.log(
+      "PROTECT (user) | check if the user is exist (not deleted)" + user
+    );
 
     req.user = user;
-    console.log("user")
+    console.log("user");
     next();
   } catch (err) {
-    console.log("here is the err", err)
+    console.log("here is the err", err);
     next(err);
   }
 };
 
-// Authorization check if the user have rights to do this action
+// Authorization check if the user have rights to do this action (ADMIN)
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      console.log('ABOUT OT THROW RESTIRCT ERROR')
+      console.log("ABOUT OT THROW RESTIRCT ERROR");
       return next(
         new AppError(403, "fail", "You are not allowed to do this action"),
         req,

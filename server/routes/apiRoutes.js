@@ -20,9 +20,6 @@ router.delete("/deleteMe", UserController.deleteMe);
 //. Get All Users
 router.route("/").get(UserController.getAllUsers);
 
-// User ID Routes
-
-
 // GET Routes
 router.get("/UserInfo", AppController.findUser);
 router.get("/vehicleInfo", AppController.findVehicle);
@@ -35,8 +32,6 @@ router
   .get(UserController.getUser)
   .patch(UserController.updateUser)
   .delete(UserController.deleteUser);
-
-
 
 // Export router
 module.exports = router;
