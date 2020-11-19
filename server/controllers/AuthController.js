@@ -31,7 +31,11 @@ exports.login = async (req, res, next) => {
       );
     }
     console.log(
-      "LOGIN | checked if email: " + email + " and password: " + password + " exist"
+      "LOGIN | checked if email: " +
+        email +
+        " and password: " +
+        password +
+        " exist"
     );
 
     // 2) check if user exist and password is correct
@@ -73,7 +77,8 @@ exports.login = async (req, res, next) => {
 exports.signup = async (req, res, next) => {
   try {
     const user = await User.create({
-      name: req.body.name,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
       email: req.body.email,
       password: req.body.password,
       passwordConfirm: req.body.passwordConfirm,
@@ -129,8 +134,8 @@ exports.protect = async (req, res, next) => {
         token +
         " || process.env.JWT_SECRET: " +
         process.env.JWT_SECRET +
-        " || Decode token: ", 
-        decode
+        " || Decode token: ",
+      decode
     );
 
     // 3) check if the user is exist (not deleted)
@@ -143,12 +148,11 @@ exports.protect = async (req, res, next) => {
         next
       );
     }
-    console.log(
-      "PROTECT (user) | check if the user is exist (not deleted)" + user
-    );
 
     req.user = user;
-    console.log("user");
+    console.log(
+      "PROTECT (user) | check if the user is exist (not deleted): " + user
+    );
     next();
   } catch (err) {
     console.log("here is the err", err);
@@ -160,7 +164,7 @@ exports.protect = async (req, res, next) => {
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      console.log("ABOUT OT THROW RESTIRCT ERROR");
+      console.log("RESTRICT | ABOUT OT THROW RESTIRCT ERROR");
       return next(
         new AppError(403, "fail", "You are not allowed to do this action"),
         req,

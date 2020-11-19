@@ -56,7 +56,18 @@ const UserSchema = new mongoose.Schema({
   vehicles: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "VehicleInfo",
+      // ref: "VehicleInfo",
+      make: {type: String},
+      model: {type: String},
+      year: {type: Number},
+      type: {type: String},
+      drive: {type: String},
+      transmission: {type: String},
+      cylinders: {type: Number},
+      displacement: {type: Number},
+      fueltype: {type: String},
+      mpgcity: {type: Number},
+      mpghwy: {type: Number},
     },
   ],
 
