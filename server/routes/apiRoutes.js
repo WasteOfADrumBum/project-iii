@@ -14,7 +14,7 @@ router.use(AuthController.protect);
 router.delete("/deleteMe", UserController.deleteMe);
 
 // Only admin have permission to access for the below APIs
-// router.use(AuthController.restrictTo("admin"));
+router.use(AuthController.restrictTo("admin"));
 
 //. Get All Users
 router.route("/").get(UserController.getAllUsers);
