@@ -69,7 +69,7 @@ exports.login = async (req, res, next) => {
       },
     });
   } catch (err) {
-    console.log(err);
+    console.log("LOGIN | Error: ", err);
     next(err);
   }
 };
@@ -84,10 +84,13 @@ exports.signup = async (req, res, next) => {
       passwordConfirm: req.body.passwordConfirm,
       role: req.body.role,
     });
+    console.log("SIGNUP | Created User:" + user);
 
     const token = createToken(user.id);
+    console.log("SIGNUP | Created token:" + token);
 
     user.password = undefined;
+    console.log("SIGNUP | Removed Password:", user.password);
 
     res.status(201).json({
       status: "success",
@@ -97,6 +100,7 @@ exports.signup = async (req, res, next) => {
       },
     });
   } catch (err) {
+    console.log("SIGNUP | Error: ", err);
     next(err);
   }
 };
@@ -130,9 +134,9 @@ exports.protect = async (req, res, next) => {
     console.log(
       "PROTECT (decode) | Verify token: " +
         token +
-        " || process.env.JWT_SECRET: " +
+        "\n process.env.JWT_SECRET: " +
         process.env.JWT_SECRET +
-        " || Decode token: ",
+        "\n Decode token: ",
       decode
     );
 
@@ -156,7 +160,7 @@ exports.protect = async (req, res, next) => {
     );
     next();
   } catch (err) {
-    console.log("here is the err", err);
+    console.log("Protect | Error: ", err);
     next(err);
   }
 };
