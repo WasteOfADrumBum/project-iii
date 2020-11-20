@@ -1,9 +1,8 @@
 const router = require("express").Router();
-const AdminController = require("../controllers/AdminController");
 const UserController = require("../controllers/UserController");
 
 // ↓↓↓ Only admin have permission to access for the below APIs ↓↓↓
-router.use(AdminController.restrictTo("admin"));
+router.use(AuthController.restrictTo("admin"));
 
 //. Get All Users
 router.route("/").get(UserController.getAllUsers);
