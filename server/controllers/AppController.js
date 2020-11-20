@@ -14,14 +14,13 @@ module.exports = {
     },
 
     findUser: function (req, res) {
-      res.send('test form find user!!')
-      // User.find()
-      //   .then((foundUser) => {
-      //     res.json(foundUser);
-      //   })
-      //   .catch((err) => {
-      //     res.json(err);
-      //   });
+      User.find()
+        .then((foundUser) => {
+          res.json(foundUser);
+        })
+        .catch((err) => {
+          res.json(err);
+        });
     },
 
     // Vehicle Methods
