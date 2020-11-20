@@ -27,9 +27,7 @@ const LandingPage = () => {
     };
     checkUser();
   }, []);
-
-  // ! Currently only authorizing Admin's and not user's
-
+  
   return (
     <>
       <NavBar />
