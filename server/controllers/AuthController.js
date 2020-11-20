@@ -130,9 +130,9 @@ exports.protect = async (req, res, next) => {
     console.log(
       "PROTECT (decode) | Verify token: " +
         token +
-        "\nprocess.env.JWT_SECRET: " +
+        " || process.env.JWT_SECRET: " +
         process.env.JWT_SECRET +
-        "\nDecode token (User ID, Issued At, Expires): ",
+        " || Decode token: ",
       decode
     );
 
@@ -161,12 +161,10 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-// Authorization check if the user have rights to do this action (ADMIN vs USER)
+// Authorization check if the user have rights to do this action (ADMIN)
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
-    console.log("RestrictTo Req.User", req.user);
     if (!roles.includes(req.user.role)) {
-      console.log("User's Role:", req.user.role);
       console.log("RESTRICT | ABOUT OT THROW RESTIRCT ERROR");
       return next(
         new AppError(403, "fail", "You are not allowed to do this action"),
