@@ -1,6 +1,7 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import LogoutLink from "../../components/logout/Logout"
 
 // TODO: Make Let's Go & Profile links only available when logged in. 
 // TODO: Replace Login/Register with Logout when signed in
@@ -17,6 +18,7 @@ const NavBar = () => {
           <Link className="nav-link" to="./contact" alt="contact">Contact</Link>
           <Link className="nav-link" to="./login" alt="login">Login</Link>
           <Link className="nav-link" to="./register" alt="register">Register</Link>
+          <LogoutLink/>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
