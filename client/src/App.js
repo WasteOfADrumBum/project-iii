@@ -7,7 +7,6 @@ import Vehicle from './pages/Vehicle';
 import Register from './pages/Register';
 import LetsGo from './pages/LetsGo';
 import Profile from './pages/Profile';
-import Results from './pages/Results';
 
 class App extends React.Component {
   render() {
@@ -21,7 +20,6 @@ class App extends React.Component {
           <Route exact path="/letsgo" component={LetsGo} />
           <Route exact path="/profile" component={Profile} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/results" component={Results} />
         </Switch>
       </Router>
     );

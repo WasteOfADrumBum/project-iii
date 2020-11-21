@@ -16,7 +16,7 @@ const LoginPage = () => {
   }
 
   // Set email & password State to ""
-  let [state, setState] = React.useState({
+  const [state, setState] = React.useState({
     email: "",
     password: "",
   });
@@ -32,7 +32,7 @@ const LoginPage = () => {
       const response = await axios.post("/api/v1/users/login", state);
       console.log("LOGIN | Response", response);
       localStorage.setItem("__token__", response.data.token);
-      // TODO: Load /profile
+      window.location.href = "./profile";
     } catch (error) {
       console.log(error);
     }
