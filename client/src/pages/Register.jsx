@@ -9,7 +9,6 @@ import { checkUser } from "../utils/UserVerify";
 
 // TODO: Make text animated and appear after the user selects the signup button
 // TODO: Caputre form data and store to Database
-// TODO: navigate to ./vehicle after form submit
 
 const Register = () => {
   React.useEffect(() => {
@@ -34,6 +33,7 @@ const Register = () => {
       const response = await Axios.post("/api/v1/users/signup", state);
       console.log("SIGNUP | Response", response);
       localStorage.setItem("__token__", response.data.token);
+      window.location.href = "./vehilce";
     } catch (err) {
       console.log(err);
     }
@@ -54,6 +54,7 @@ const Register = () => {
                 <Form.Group as={Col} controlId="formGridFirstName">
                   <Form.Label>First Name</Form.Label>
                   <Form.Control
+                    name="firstName"
                     type="text"
                     placeholder="Enter First Name"
                     onChange={handleChange}
@@ -65,6 +66,7 @@ const Register = () => {
                 <Form.Group as={Col} controlId="formGridLastName">
                   <Form.Label>Last Name</Form.Label>
                   <Form.Control
+                    name="lastName"
                     type="text"
                     placeholder="Enter Last Name"
                     onChange={handleChange}
@@ -76,6 +78,7 @@ const Register = () => {
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Email</Form.Label>
                   <Form.Control
+                    name="email"
                     type="email"
                     placeholder="Enter email"
                     onChange={handleChange}
@@ -88,6 +91,7 @@ const Register = () => {
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Password</Form.Label>
                   <Form.Control
+                    name="password"
                     type="password"
                     placeholder="Password"
                     onChange={handleChange}
@@ -100,6 +104,7 @@ const Register = () => {
                 <Form.Group as={Col} controlId="formGridConfirmPassword">
                   <Form.Label>Confirm Password</Form.Label>
                   <Form.Control
+                    name="passwordConfirm"
                     type="password"
                     placeholder="Confirm Password"
                     onChange={handleChange}
