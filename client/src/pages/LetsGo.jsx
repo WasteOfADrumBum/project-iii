@@ -9,7 +9,9 @@ import { checkUser } from "../utils/UserVerify";
 // ! <AddressForm/> needs to be independent when called again
 
 const LetsGo = () => {
-  checkUser();
+  React.useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <>

@@ -8,7 +8,9 @@ import "../assets/styles/profile.scss";
 import { checkUser } from "../utils/UserVerify";
 
 const Profile = () => {
-  checkUser()
+  React.useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <>

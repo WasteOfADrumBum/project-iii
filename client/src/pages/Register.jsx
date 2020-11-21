@@ -3,42 +3,41 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import "../assets/styles/register.scss";
 import { Form, Col, Button } from "react-bootstrap";
-import RandomQuote from "../components/quote/Quote"
+import RandomQuote from "../components/quote/Quote";
 import Axios from "axios";
 import { checkUser } from "../utils/UserVerify";
 
-
 // TODO: Make text animated and appear after the user selects the signup button
 // TODO: Caputre form data and store to Database
-// TODO: navigate to ./vehicle after form submit
-
 
 const Register = () => {
-  checkUser();
+  React.useEffect(() => {
+    checkUser();
+  }, []);
 
   const [state, setstate] = React.useState({
-      firstName: "",
-      lastName: "",
-      email: "",
-      password: "",
-      passwordConfirm: "",
-      role: ""
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    passwordConfirm: "",
+    role: "user",
   });
 
-  function handleChange ({ target: { name, value } }) {
+  function handleChange({ target: { name, value } }) {
     setstate({ ...state, [name]: value });
-  };
+  }
 
   const handleClick = async () => {
     try {
-      const response = await Axios.post("/api/v1/users/signup", state)
-      console.log("SIGNUP | Response", response)
+      const response = await Axios.post("/api/v1/users/signup", state);
+      console.log("SIGNUP | Response", response);
       localStorage.setItem("__token__", response.data.token);
+      window.location.href = "./vehilce";
+    } catch (err) {
+      console.log(err);
     }
-    catch(err) {
-      console.log(err)
-    }
-  }
+  };
 
   return (
     <>
@@ -47,42 +46,70 @@ const Register = () => {
         <div className="row pt-5 form-container">
           <div className="col-md-4 p-5">
             <h1>Thank you for your contribution to a safer planet.</h1>
-            <RandomQuote/>
+            <RandomQuote />
           </div>
           <div className="col-md-8  p-5">
             <Form>
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridFirstName">
                   <Form.Label>First Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter First Name" onChange={handleChange}/>
+                  <Form.Control
+                    name="firstName"
+                    type="text"
+                    placeholder="Enter First Name"
+                    onChange={handleChange}
+                  />
                 </Form.Group>
               </Form.Row>
 
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridLastName">
                   <Form.Label>Last Name</Form.Label>
-                  <Form.Control type="text" placeholder="Enter Last Name" onChange={handleChange}/>
+                  <Form.Control
+                    name="lastName"
+                    type="text"
+                    placeholder="Enter Last Name"
+                    onChange={handleChange}
+                  />
                 </Form.Group>
               </Form.Row>
 
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridEmail">
                   <Form.Label>Email</Form.Label>
-                  <Form.Control type="email" placeholder="Enter email" onChange={handleChange}/>
+                  <Form.Control
+                    name="email"
+                    type="email"
+                    placeholder="Enter email"
+                    onChange={handleChange}
+                    autoComplete="username"
+                  />
                 </Form.Group>
               </Form.Row>
 
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridPassword">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" placeholder="Password" onChange={handleChange}/>
+                  <Form.Control
+                    name="password"
+                    type="password"
+                    placeholder="Password"
+                    onChange={handleChange}
+                    autoComplete="new-password"
+                  />
                 </Form.Group>
               </Form.Row>
 
               <Form.Row>
                 <Form.Group as={Col} controlId="formGridConfirmPassword">
                   <Form.Label>Confirm Password</Form.Label>
-                  <Form.Control type="password" placeholder="Confirm Password" onChange={handleChange}/>
+                  <Form.Control
+                    name="passwordConfirm"
+                    type="password"
+                    placeholder="Confirm Password"
+                    onChange={handleChange}
+                    autoComplete="new-password"
+                  />
                 </Form.Group>
               </Form.Row>
 
@@ -93,7 +120,11 @@ const Register = () => {
                 />
               </Form.Group>
 
-              <Button variant="primary" type="submit" onClick={() => handleClick()}>
+              <Button
+                variant="primary"
+                type="submit"
+                onClick={() => handleClick()}
+              >
                 Sign Up
               </Button>
             </Form>
