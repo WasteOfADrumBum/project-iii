@@ -49,6 +49,13 @@ Project III brings value to the modern world of transportation by allowing users
 npm i
 ```
 
+Seed Robo3T (open terminal inside server/seeders/)
+
+```
+nodemon run seedDB.js
+mongoimport --type csv -d project3_db -c VehicleInfo --headerline --drop vehicle-data.csv
+```
+
 ### Dependencies
 
 ```
@@ -96,7 +103,7 @@ Project 3 Features
 
 <img src="https://via.placeholder.com/500x300" width="500" />
 
-### Design Layouts with Annotations describing all UI/UX components with all  relevant screen data
+### Design Layouts with Annotations describing all UI/UX components with all relevant screen data
 
 <img src="client\public\assets\images\deliverables-01-02_5.png" width="500">
 

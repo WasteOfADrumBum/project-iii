@@ -11,6 +11,10 @@ const LoginPage = () => {
     checkUser();
   }, []);
 
+  if (localStorage.getItem("__token__")) {
+    window.location.href = "./profile";
+  }
+
   // Set email & password State to ""
   const [state, setState] = React.useState({
     email: "",
@@ -23,10 +27,10 @@ const LoginPage = () => {
 
   // Handle onClick auth route
   const handleClick = async () => {
-    console.log(state)
+    console.log(state);
     try {
       const response = await axios.post("/api/v1/users/login", state);
-      console.log("LOGIN | Response", response)
+      console.log("LOGIN | Response", response);
       localStorage.setItem("__token__", response.data.token);
       // TODO: Load /profile
     } catch (error) {

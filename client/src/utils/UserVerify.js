@@ -4,7 +4,6 @@ export const checkUser = async () => {
   try {
     // Get Token
     const token = localStorage.getItem("__token__");
-    console.log("LandingPage __token__", token);
     // Throw Error if there is No Token
     if (!token) throw new Error("No Token");
     // Authorize token bearer

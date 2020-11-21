@@ -1,4 +1,5 @@
 const User = require("../models/UserInfo");
+const VehicleInfo = require("../models/VehicleInfo");
 const Vehicle = require("../models/VehicleInfo");
 
 module.exports = {
@@ -45,5 +46,4 @@ module.exports = {
           res.json(err);
         });
     },
-  };
-
+}
