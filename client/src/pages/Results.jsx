@@ -7,7 +7,9 @@ import { checkUser } from "../utils/UserVerify";
 // TODO: Caputre form data and store to Database
 
 const Results = () => {
-  checkUser();
+  React.useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <>
