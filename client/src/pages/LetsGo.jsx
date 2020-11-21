@@ -12,6 +12,10 @@ const LetsGo = () => {
     checkUser();
   }, []);
 
+  if (!localStorage.getItem("__token__")) {
+    window.location.href = "./login";
+  }
+
   return (
     <>
       <NavBar />
