@@ -30,7 +30,26 @@ let userSeed = [
       mpgcity: 18,
       mpghwy: 25,
     },
-    // TODO: +places
+    places: [
+      {
+        name: "Home",
+        lat: "35.7686092",
+        lon: "-78.6369899",
+        address: "803 S Blount St",
+        city: "Raleigh",
+        state: "NC",
+        zip: "27601",
+      },
+      {
+        name: "Work",
+        lat: "35.7731053",
+        lon: "-78.6411849",
+        address: "500 S Salisbury St",
+        city: "Raleigh",
+        state: "NC",
+        zip: "27601",
+      },
+    ],
     // TODO: +routes
   },
   {
@@ -56,7 +75,26 @@ let userSeed = [
       mpgcity: 14,
       mpghwy: 20,
     },
-    // TODO: +places
+    places: [
+      {
+        name: "Home",
+        lat: "35.7686092",
+        lon: "-78.6369899",
+        address: "803 S Blount St",
+        city: "Raleigh",
+        state: "NC",
+        zip: "27601",
+      },
+      {
+        name: "Work",
+        lat: "35.7731053",
+        lon: "-78.6411849",
+        address: "500 S Salisbury St",
+        city: "Raleigh",
+        state: "NC",
+        zip: "27601",
+      },
+    ],
     // TODO: +routes
   },
 ];
