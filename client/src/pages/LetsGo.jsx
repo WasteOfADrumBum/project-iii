@@ -1,7 +1,6 @@
 import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
-import AddressAutocomplete from "../components/address/AddressAutocomplete";
 import "../assets/styles/letsgo.scss";
 import { checkUser } from "../utils/UserVerify";
 
@@ -40,9 +39,6 @@ const LetsGo = () => {
                   <option value="placeholder">Placeholder</option>
                 </select>
               </div>
-              <div className="col-md-12 pt-3 address-content-container">
-                <AddressAutocomplete />
-              </div>
             </div>
           </div>
           <div className="col-md-6">
@@ -60,9 +56,6 @@ const LetsGo = () => {
                 >
                   <option value="placeholder">Placeholder</option>
                 </select>
-              </div>
-              <div className="col-md-12 pt-3 address-content-container">
-                <AddressAutocomplete />
               </div>
             </div>
           </div>
