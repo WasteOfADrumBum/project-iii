@@ -16,7 +16,7 @@ import { checkUser } from "../utils/UserVerify";
 const Register = () => {
   checkUser();
 
-  const [state, setstate] = React.useState({
+  let [state, setstate] = React.useState({
       firstName: "",
       lastName: "",
       email: "",
