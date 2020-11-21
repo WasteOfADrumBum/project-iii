@@ -32,7 +32,7 @@ const LoginPage = () => {
       const response = await axios.post("/api/v1/users/login", state);
       console.log("LOGIN | Response", response);
       localStorage.setItem("__token__", response.data.token);
-      // TODO: Load /profile
+      window.location.href = "./profile";
     } catch (error) {
       console.log(error);
     }
