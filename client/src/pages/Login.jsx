@@ -10,7 +10,7 @@ const LoginPage = () => {
   checkUser();
 
   // Set email & password State to ""
-  const [state, setState] = React.useState({
+  let [state, setState] = React.useState({
     email: "",
     password: "",
   });
