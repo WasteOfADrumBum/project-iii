@@ -16,7 +16,7 @@ const LoginPage = () => {
   }
 
   // Set email & password State to ""
-  let [state, setState] = React.useState({
+  const [state, setState] = React.useState({
     email: "",
     password: "",
   });
