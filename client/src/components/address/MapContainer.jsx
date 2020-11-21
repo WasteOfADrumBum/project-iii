@@ -1,6 +1,5 @@
 import React from "react";
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from "google-maps-react";
-import axios from "axios";
 const GOOGLE_MAPS_API_KEY = "secret key location"
 
 const MapContainer = (props) => {
