@@ -4,29 +4,32 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import Button from "react-bootstrap/Button";
 import "../assets/styles/landingpage.scss";
-import axios from "axios";
+import { checkUser } from "../utils/UserVerify";
 
 const LandingPage = () => {
-  React.useEffect(() => {
-    // Check logged in User
-    const checkUser = async () => {
-      try {
-        // Get Token
-        const token = localStorage.getItem("__token__");
-        console.log("LandingPage __token__", token);
-        // Throw Error if there is No Token
-        if (!token) throw new Error("No Token");
-        // Authorize token bearer
-        const response = await axios.get("/api/v1/users", {
-          headers: { Authorization: "Bearer " + token },
-        });
-        console.log("Authorized token bearer response:" + response);
-      } catch (error) {
-        console.log("checkUser catch " + error);
-      }
-    };
-    checkUser();
-  }, []);
+  // ! ↓↓↓ Moved to function in Client Utils ↓↓↓
+  // ! DO NOT REMOVE THIS CODE FROM HERE
+  // React.useEffect(() => {
+  //   // Check logged in User
+  //   const checkUser = async () => {
+  //     try {
+  //       // Get Token
+  //       const token = localStorage.getItem("__token__");
+  //       console.log("LandingPage __token__", token);
+  //       // Throw Error if there is No Token
+  //       if (!token) throw new Error("No Token");
+  //       // Authorize token bearer
+  //       const response = await axios.get("/api/v1/users", {
+  //         headers: { Authorization: "Bearer " + token },
+  //       });
+  //       console.log("Authorized token bearer response:" + response);
+  //     } catch (error) {
+  //       console.log("checkUser catch " + error);
+  //     }
+  //   };
+  //   checkUser();
+  // }, []);
+  checkUser()
 
   return (
     <>

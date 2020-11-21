@@ -4,8 +4,11 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
 import "../assets/styles/login.scss";
+import { checkUser } from "../utils/UserVerify";
 
 const LoginPage = () => {
+  checkUser();
+
   // Set email & password State to ""
   const [state, setState] = React.useState({
     email: "",
@@ -21,7 +24,7 @@ const LoginPage = () => {
     console.log(state)
     try {
       const response = await axios.post("/api/v1/users/login", state);
-      console.log("response", response)
+      console.log("LOGIN | Response", response)
       localStorage.setItem("__token__", response.data.token);
       // TODO: Load /profile
     } catch (error) {

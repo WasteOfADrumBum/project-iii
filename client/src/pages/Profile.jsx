@@ -5,8 +5,11 @@ import ColumnChart from "../components/charts/ColumnChart";
 import DoughnutChart from "../components/charts/DoughnutChart";
 import AddressModal from "../components/modal/Modal"
 import "../assets/styles/profile.scss";
+import { checkUser } from "../utils/UserVerify";
 
 const Profile = () => {
+  checkUser()
+
   return (
     <>
       <NavBar />

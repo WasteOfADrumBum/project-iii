@@ -4,8 +4,9 @@ import Footer from "../components/footer/Footer";
 import "../assets/styles/register.scss";
 import { Form, Col, Button } from "react-bootstrap";
 import RandomQuote from "../components/quote/Quote"
-import routeController from "../utils/routeController"
 import Axios from "axios";
+import { checkUser } from "../utils/UserVerify";
+
 
 // TODO: Make text animated and appear after the user selects the signup button
 // TODO: Caputre form data and store to Database
@@ -13,8 +14,9 @@ import Axios from "axios";
 
 
 const Register = () => {
+  checkUser();
 
-  const [inputVal, setInputVal] = React.useState({
+  const [state, setstate] = React.useState({
       firstName: "",
       lastName: "",
       email: "",
@@ -24,13 +26,14 @@ const Register = () => {
   });
 
   function handleChange ({ target: { name, value } }) {
-    setInputVal({ ...inputVal, [name]: value });
+    setstate({ ...state, [name]: value });
   };
 
   const handleClick = async () => {
     try {
-      const response = await Axios.post("/api/v1/users/signup", inputVal)
-      console.log(response)
+      const response = await Axios.post("/api/v1/users/signup", state)
+      console.log("SIGNUP | Response", response)
+      localStorage.setItem("__token__", response.data.token);
     }
     catch(err) {
       console.log(err)

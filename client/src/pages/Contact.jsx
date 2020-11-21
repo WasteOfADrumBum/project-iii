@@ -3,8 +3,11 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import DataCarousel from "../components/carousel/Carousel";
 import "../assets/styles/contact.scss";
+import { checkUser } from "../utils/UserVerify";
 
 const LandingPage = () => {
+  checkUser();
+
   return (
     <>
       <NavBar />

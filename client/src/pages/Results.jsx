@@ -2,10 +2,13 @@ import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import "../assets/styles/results.scss";
+import { checkUser } from "../utils/UserVerify";
 
 // TODO: Caputre form data and store to Database
 
 const Results = () => {
+  checkUser();
+
   return (
     <>
       <NavBar />
