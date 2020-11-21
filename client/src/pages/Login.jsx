@@ -7,7 +7,9 @@ import "../assets/styles/login.scss";
 import { checkUser } from "../utils/UserVerify";
 
 const LoginPage = () => {
-  checkUser();
+  React.useEffect(() => {
+    checkUser();
+  }, []);
 
   // Set email & password State to ""
   let [state, setState] = React.useState({

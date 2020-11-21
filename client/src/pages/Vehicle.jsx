@@ -9,7 +9,9 @@ import { checkUser } from "../utils/UserVerify";
 // TODO: Make form a componenet and populate it with data from project3_db's VehicleInfo Collection
 
 const Vehicle = () => {
-  checkUser();
+  React.useEffect(() => {
+    checkUser();
+  }, []);
 
   return (
     <>

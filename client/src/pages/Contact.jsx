@@ -6,8 +6,10 @@ import "../assets/styles/contact.scss";
 import { checkUser } from "../utils/UserVerify";
 
 const LandingPage = () => {
-  checkUser();
-
+  React.useEffect(() => {
+    checkUser();
+  }, []);
+  
   return (
     <>
       <NavBar />
