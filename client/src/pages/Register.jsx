@@ -15,6 +15,10 @@ const Register = () => {
     checkUser();
   }, []);
 
+  if (localStorage.getItem("__token__")) {
+    window.location.href = "./profile";
+  }
+
   const [state, setstate] = React.useState({
     firstName: "",
     lastName: "",

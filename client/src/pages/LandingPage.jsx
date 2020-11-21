@@ -30,6 +30,10 @@ const LandingPage = () => {
     checkUser();
   }, []);
 
+  if (localStorage.getItem("__token__")) {
+    window.location.href = "./profile";
+  }
+
   return (
     <>
       <NavBar />
