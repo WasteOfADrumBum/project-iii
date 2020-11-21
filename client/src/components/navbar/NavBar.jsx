@@ -7,18 +7,31 @@ import LogoutLink from "../../components/logout/Logout"
 // TODO: Replace Login/Register with Logout when signed in
 
 const NavBar = () => {
+  if (localStorage.getItem("__token__")) {
+    return (
+      <Navbar bg="light" expand="lg">
+        <Navbar.Brand href="./">Carbon FX</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto">
+            <Link className="nav-link" to="./letsgo" alt="home">Let's Go</Link> 
+            <Link className="nav-link" to="./profile" alt="home">Profile</Link>
+            <Link className="nav-link" to="./contact" alt="contact">Contact</Link>
+            <LogoutLink/>
+          </Nav>
+        </Navbar.Collapse>
+      </Navbar>
+    );
+  }
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="./">Carbon FX</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Link className="nav-link" to="./letsgo" alt="home">Let's Go</Link> 
-          <Link className="nav-link" to="./profile" alt="home">Profile</Link>
-          <Link className="nav-link" to="./contact" alt="contact">Contact</Link>
           <Link className="nav-link" to="./login" alt="login">Login</Link>
           <Link className="nav-link" to="./register" alt="register">Register</Link>
-          <LogoutLink/>
+          <Link className="nav-link" to="./contact" alt="contact">Contact</Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
