@@ -3,11 +3,14 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
 import "../assets/styles/vehicle.scss";
+import { checkUser } from "../utils/UserVerify";
 
 // TODO: Caputre form data and store to project3_db's users.vehicles
 // TODO: Make form a componenet and populate it with data from project3_db's VehicleInfo Collection
 
 const Vehicle = () => {
+  checkUser();
+
   return (
     <>
       <NavBar />

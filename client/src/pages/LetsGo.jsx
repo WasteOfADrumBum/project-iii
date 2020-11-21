@@ -1,13 +1,16 @@
 import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
-import AddressAutocomplete from "../components/address/AddressAutocomplete"
+import AddressAutocomplete from "../components/address/AddressAutocomplete";
 import "../assets/styles/letsgo.scss";
+import { checkUser } from "../utils/UserVerify";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
 // ! <AddressForm/> needs to be independent when called again
 
 const LetsGo = () => {
+  checkUser();
+
   return (
     <>
       <NavBar />
@@ -57,18 +60,18 @@ const LetsGo = () => {
                 </select>
               </div>
               <div className="col-md-12 pt-3 address-content-container">
-              <AddressAutocomplete />
+                <AddressAutocomplete />
               </div>
             </div>
           </div>
         </div>
         <div className="row text-center">
-            <div className="col-md-12">
-              <button className="btn-success mt-5 pt-2 pb-2 pr-4 pl-4">
-                Let's Go!
-              </button>
-            </div>
+          <div className="col-md-12">
+            <button className="btn-success mt-5 pt-2 pb-2 pr-4 pl-4">
+              Let's Go!
+            </button>
           </div>
+        </div>
       </div>
       <Footer />
     </>
