@@ -28,7 +28,6 @@ const LoginPage = () => {
 
   // Handle onClick auth route
   const handleClick = async () => {
-    console.log(state);
     try {
       const response = await axios.post("/api/v1/users/login", state);
       console.log("LOGIN | Response", response);
@@ -58,8 +57,8 @@ const LoginPage = () => {
                     <Form.Group as={Col} controlId="formGridEmail">
                       <Form.Control
                         name="email"
-                        type="text"
-                        placeholder="Email"
+                        type="email"
+                        placeholder="Enter email"
                         onChange={handleChange}
                         autoComplete="username"
                       />
@@ -73,7 +72,7 @@ const LoginPage = () => {
                         type="password"
                         placeholder="Password"
                         onChange={handleChange}
-                        autoComplete="current-password"
+                        autoComplete="new-password"
                       />
                     </Form.Group>
                   </Form.Row>
