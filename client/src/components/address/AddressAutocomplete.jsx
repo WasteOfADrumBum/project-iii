@@ -52,6 +52,25 @@ const AddressAutocomplete = () => {
       });
   };
 
+<<<<<<< Updated upstream
+=======
+  /* callback to help provide address data to AddressModal component  */
+  //shouldRunGetAddressDataCallback is set to true in AddressModal component , if shouldRunGetAddressDataCallback is absent/falsy the getAddressData Callback won't run. Just a way to prevent unpredictable errors in other parent components that render AddressAutocomplete but do not need the getAddressData callback function to run.
+  if(shouldRunGetAddressDataCallback){
+    let splittedAddress = addressValue.split(", ")
+    getAddressData({
+      name : "Home",
+      lat : coordinates.lat,
+      lon : coordinates.lng,
+      zip : zipCode,
+      street : splittedAddress[0],
+      city : splittedAddress[1],
+      state : splittedAddress[2]
+    })
+  }
+  /* ----------- */
+
+>>>>>>> Stashed changes
   const renderSuggestions = () =>
     data.map((suggestion) => {
       const {
