@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -6,16 +6,15 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import "../../assets/styles/addressautocomplete.scss";
-
-const AddressAutocomplete = ({getAddressData,shouldRunGetAddressDataCallback}) => {
-
+const AddressAutocomplete = ({
+  getAddressData,
+  shouldRunGetAddressDataCallback,
+}) => {
   /* States below will carry address information */
-  const [coordinates, setCoordinates] = useState({})
-  const [addressValue, setAddressValue] = useState("")
-  const [zipCode, setZipCode] = useState("")
+  const [coordinates, setCoordinates] = useState({});
+  const [addressValue, setAddressValue] = useState("");
+  const [zipCode, setZipCode] = useState("");
   /* --------- */
-
-  
   const {
     ready,
     value,
@@ -31,84 +30,63 @@ const AddressAutocomplete = ({getAddressData,shouldRunGetAddressDataCallback}) =
   const ref = useOnclickOutside(() => {
     clearSuggestions();
   });
-
   const handleInput = (e) => {
     setValue(e.target.value);
   };
-
   const handleSelect = ({ description }) => () => {
     setValue(description, false);
     clearSuggestions();
-
-    setAddressValue(description)
-
+    setAddressValue(description);
     // Get latitude, longitude, and ZipCode
     getGeocode({ address: description })
       .then((results) => getLatLng(results[0]))
       .then(({ lat, lng }) => {
         console.log("Coordinates: ", { lat, lng });
         setCoordinates({
-          lat : lat,
-          lng : lng
-        })
+          lat: lat,
+          lng: lng,
+        });
       })
       .catch((error) => {
         console.log("Error: ", error);
       });
-
     getGeocode({ address: description })
       .then((results) => getZipCode(results[0], false))
       .then((zipCode) => {
         console.log("ZipCode: ", zipCode);
-        setZipCode(zipCode)
+        setZipCode(zipCode);
       })
       .catch((error) => {
         console.log("Error: ", error);
       });
   };
-
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 77e963eb0ec774276416d9893d3bc5ae5398b02b
   /* callback to help provide address data to AddressModal component  */
   //shouldRunGetAddressDataCallback is set to true in AddressModal component , if shouldRunGetAddressDataCallback is absent/falsy the getAddressData Callback won't run. Just a way to prevent unpredictable errors in other parent components that render AddressAutocomplete but do not need the getAddressData callback function to run.
-  if(shouldRunGetAddressDataCallback){
-    let splittedAddress = addressValue.split(", ")
+  if (shouldRunGetAddressDataCallback) {
+    let splittedAddress = addressValue.split(", ");
     getAddressData({
-<<<<<<< HEAD
-      name : "Home",
-=======
->>>>>>> 77e963eb0ec774276416d9893d3bc5ae5398b02b
-      lat : coordinates.lat,
-      lon : coordinates.lng,
-      zip : zipCode,
-      street : splittedAddress[0],
-      city : splittedAddress[1],
-      state : splittedAddress[2]
-    })
+      name: "Home",
+      lat: coordinates.lat,
+      lon: coordinates.lng,
+      zip: zipCode,
+      street: splittedAddress[0],
+      city: splittedAddress[1],
+      state: splittedAddress[2],
+    });
   }
   /* ----------- */
-
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> 77e963eb0ec774276416d9893d3bc5ae5398b02b
   const renderSuggestions = () =>
     data.map((suggestion) => {
       const {
         place_id,
         structured_formatting: { main_text, secondary_text },
       } = suggestion;
-
       return (
         <li key={place_id} onClick={handleSelect(suggestion)}>
           <strong>{main_text}</strong> <small>{secondary_text}</small>
         </li>
       );
     });
-
   return (
     <div ref={ref}>
       <input
@@ -123,5 +101,4 @@ const AddressAutocomplete = ({getAddressData,shouldRunGetAddressDataCallback}) =
     </div>
   );
 };
-
 export default AddressAutocomplete;

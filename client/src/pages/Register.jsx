@@ -37,7 +37,7 @@ const Register = () => {
       const response = await Axios.post("/api/v1/users/signup", state);
       console.log("SIGNUP | Response", response);
       localStorage.setItem("__token__", response.data.token);
-      window.location.href = "./vehilce";
+      window.location.href = "./vehicle";
     } catch (err) {
       console.log(err);
     }
