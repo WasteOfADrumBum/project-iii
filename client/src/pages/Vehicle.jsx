@@ -5,6 +5,7 @@ import { Form, Col, Button } from "react-bootstrap";
 import "../assets/styles/vehicle.scss";
 import { useUser } from "../utils/UserVerify";
 import { useHistory } from "react-router-dom";
+import Makes from "../utils/makes";
 
 // TODO: Caputre form data and store to project3_db's users.vehicles or from client/utils/vehice.json
 // TODO: Make form a componenet and populate it with data from project3_db's VehicleInfo Collection
@@ -12,6 +13,14 @@ import { useHistory } from "react-router-dom";
 const Vehicle = () => {
   const history = useHistory();
   const user = useUser();
+
+
+  const yearArr = []
+
+  for (let i = 1984; i < 2021; i++) {
+    yearArr.push([i])
+  }
+  console.log(yearArr)
 
   return (
     <>
@@ -47,20 +56,27 @@ const Vehicle = () => {
             <div className="col-md-8 p-5">
               <Form>
                 <Form.Row>
+
+                <Form.Group as={Col} controlId="formGridYear">
+                    <Form.Label>Year</Form.Label>
+                    <Form.Control as="select" placeholder="1984">
+                    {yearArr.map((year) => <option key={year}>{year}</option>)}
+
+                    </Form.Control>
+                  </Form.Group>
+                  
                   <Form.Group as={Col} controlId="formGridMake">
                     <Form.Label>Make</Form.Label>
-                    <Form.Control type="text" placeholder="Chevrolet" />
+                    <Form.Control as="select" placeholder="Chevrolet">
+                      {Makes.map((make) => <option key={make}>{make}</option>)}
+                    </Form.Control>
                   </Form.Group>
 
                   <Form.Group as={Col} controlId="formGridModel">
                     <Form.Label>Model</Form.Label>
-                    <Form.Control type="text" placeholder="Corvette" />
+                    <Form.Control as="select" placeholder="Corvette" />
                   </Form.Group>
 
-                  <Form.Group as={Col} controlId="formGridYear">
-                    <Form.Label>Year</Form.Label>
-                    <Form.Control type="year" placeholder="1964" />
-                  </Form.Group>
                 </Form.Row>
 
                 <Form.Row>
