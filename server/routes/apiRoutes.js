@@ -13,6 +13,7 @@ router.use(AuthController.protect);
 // GET Routes: FIND
 router.get("/UserInfo", AppController.findUser);
 router.get("/VehicleInfo", AppController.findVehicle);
+router.get("/jwt", AppController.findByJwt);
 
 // POST Routes: CREATE
 router.post("/UserInfo", AppController.createUser);

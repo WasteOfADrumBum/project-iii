@@ -3,19 +3,15 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
 import "../assets/styles/vehicle.scss";
-import { checkUser } from "../utils/UserVerify";
+import { useUser } from "../utils/UserVerify";
+import { useHistory } from "react-router-dom";
 
-// TODO: Caputre form data and store to project3_db's users.vehicles
+// TODO: Caputre form data and store to project3_db's users.vehicles or from client/utils/vehice.json
 // TODO: Make form a componenet and populate it with data from project3_db's VehicleInfo Collection
 
 const Vehicle = () => {
-  React.useEffect(() => {
-    checkUser();
-  }, []);
-
-  if (!localStorage.getItem("__token__")) {
-    window.location.href = "./login";
-  }
+  const history = useHistory();
+  const user = useUser();
 
   return (
     <>

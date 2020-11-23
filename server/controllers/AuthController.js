@@ -145,7 +145,7 @@ exports.protect = async (req, res, next) => {
     }
 
     req.user = user;
-    console.log("PROTECT (user) | Checked User is Valid");
+    console.log("PROTECT (user) | Checked User is Valid", user.firstName);
     next();
   } catch (err) {
     console.log("Protect | Error: ", err);
