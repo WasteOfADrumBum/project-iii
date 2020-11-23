@@ -4,20 +4,14 @@ import Footer from "../components/footer/Footer";
 import ColumnChart from "../components/charts/ColumnChart";
 import DoughnutChart from "../components/charts/DoughnutChart";
 import AddressModal from "../components/modal/Modal";
-import { userDataMount } from "../utils/UserDataMount";
 import { Button } from "react-bootstrap";
 import "../assets/styles/profile.scss";
-import { checkUser } from "../utils/UserVerify";
+import { useUser } from "../utils/UserVerify";
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
-  React.useEffect(() => {
-    checkUser();
-    userDataMount();
-  }, []);
-
-  if (!localStorage.getItem("__token__")) {
-    window.location.href = "./login";
-  }
+  const history = useHistory();
+  const user = useUser();
 
   return (
     <>
@@ -36,7 +30,9 @@ const Profile = () => {
             />
           </div>
           <div className="col-md-9 pt-5 text-left ">
-            <h1>user.firstName user.lastName's Profile</h1>
+            <h1>
+              {user.firstName} {user.lastName}'s Profile
+            </h1>
             <div className="row">
               <div className="col-md-12">Profile Info</div>
             </div>
@@ -47,10 +43,7 @@ const Profile = () => {
                   <Button
                     variant="success"
                     type="button"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      window.location.href = "./vehicle";
-                    }}
+                    onClick={() => history.push("/vehicle")}
                   >
                     +
                   </Button>

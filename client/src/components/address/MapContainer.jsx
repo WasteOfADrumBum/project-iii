@@ -5,6 +5,10 @@ import {
   GoogleMap,
   DirectionsRenderer
 } from "react-google-maps";
+
+// TODO: Replace origion and destination with lat and lgn from Adderess Auto Complete values
+// TODO: Replace travelMode: google.maps.TravelMode.DRIVING with mode of transportation from Accordion
+
 class Map extends Component {
   state = {
     directions: null

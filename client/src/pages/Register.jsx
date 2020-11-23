@@ -11,14 +11,6 @@ import { checkUser } from "../utils/UserVerify";
 // TODO: Caputre form data and store to Database
 
 const Register = () => {
-  React.useEffect(() => {
-    checkUser();
-  }, []);
-
-  if (localStorage.getItem("__token__")) {
-    window.location.href = "./profile";
-  }
-
   const [state, setstate] = React.useState({
     firstName: "",
     lastName: "",

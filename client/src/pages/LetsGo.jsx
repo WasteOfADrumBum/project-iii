@@ -4,21 +4,17 @@ import Footer from "../components/footer/Footer";
 import AddressAutocomplete from "../components/address/AddressAutocomplete";
 import AccordionComp from "../components/accordion/Accordion";
 import "../assets/styles/letsgo.scss";
-import { checkUser } from "../utils/UserVerify";
 import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
+import { useUser } from "../utils/UserVerify";
+import { useHistory } from "react-router-dom";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
-// ! <AddressForm/> needs to be independent when called again
+// TODO: onClick() Let's Go! btn send address information to map and map to accordion
 
 const LetsGo = () => {
-  React.useEffect(() => {
-    checkUser();
-  }, []);
-
-  if (!localStorage.getItem("__token__")) {
-    window.location.href = "./login";
-  }
+  const history = useHistory();
+  const user = useUser();
 
   const MapLoader = withScriptjs(Map);
 
@@ -79,7 +75,7 @@ const LetsGo = () => {
           </div>
           <div className="row text-center">
             <div className="col-md-12">
-              <button className="btn-success mt-5 pt-2 pb-2 pr-4 pl-4">
+              <button className="btn-success mt-2 mb-5 pt-2 pb-2 pr-4 pl-4">
                 Let's Go!
               </button>
             </div>
