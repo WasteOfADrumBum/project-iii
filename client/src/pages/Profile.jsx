@@ -8,6 +8,7 @@ import { Button } from "react-bootstrap";
 import "../assets/styles/profile.scss";
 import { useUser } from "../utils/UserVerify";
 import { useHistory } from "react-router-dom";
+import VehilceLoop from "../components/loops/VehicleLoop"
 
 const Profile = () => {
   const history = useHistory();
@@ -19,11 +20,10 @@ const Profile = () => {
       <div className="profile-container p-5">
         <div className="row profile-content-container">
           <div className="col-md-3 text-center p-4 m-auto">
-            <img
+            <img className="img-fluid"
               src="../assets/images/placeholder-profile-sq.jpg"
               alt="Profile"
               style={{
-                width: "15rem",
                 borderRadius: "100px",
                 border: ".5rem solid  rgba(255, 255, 255, .5)",
               }}
@@ -50,6 +50,9 @@ const Profile = () => {
                 </h3>
               </div>
             </div>
+            {/* 
+            // TODO: Make this into a loop ↓↓↓
+            */}
             <div className="row pt-2 pb-3">
               <div className="col-md-12 location-list">
                 <button className="btn-warning mr-2 d-inline">Δ</button>
@@ -57,6 +60,7 @@ const Profile = () => {
                 <p className="mr-2 d-inline">
                   <b>vehicle.year vehicle.make vehicle.model </b>
                 </p>
+                <VehilceLoop/>
               </div>
             </div>
             <div className="row">
