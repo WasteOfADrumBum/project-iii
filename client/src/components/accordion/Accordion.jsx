@@ -80,25 +80,98 @@ export default function CustomizedAccordions() {
         <AccordionSummary aria-controls="panel2d-content" id="panel2d-header">
           <Typography>Public Tranportation</Typography>
         </AccordionSummary>
-        
-        {/* Pass axios for public transit */}
-        <AccordionText />
+        <AccordionDetails>
+          <Typography>
+          <div className="row justify-content-center">
+            Your carbon footprint for this trip is 
+            </div>
+            <div className="row justify-content-center">
+            THIS PLACEHOLDER VALUE
+            </div>
+            <div className="row justify-content-center">
+            That's a PLACEHOLDER PERCENT reduction from just driving      
+            </div>
+            {/* line separator here */}
+            <div className="row justify-content-center">
+            Your total commute time for this trip is 
+            </div>
+            <div className="row justify-content-center">
+            THIS PLACEHOLDER VALUE
+            </div>
+            <div className="row justify-content-center">
+            That's PLACEHOLDER MINUTES longer/shorter than just driving
+            </div>
+          </Typography>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" className="btn btn-link">Let's Do It!</button>
+            <button type="button" className="btn btn-link">I'll drive, thanks</button>
+          </div>
+        </AccordionDetails>
       </Accordion>
       <Accordion square expanded={expanded === 'panel3'} onChange={handleChange('panel3')}>
         <AccordionSummary aria-controls="panel3d-content" id="panel3d-header">
           <Typography>Bicycle</Typography>
         </AccordionSummary>
-
-        {/* Pass axios for bicycle */}
-        <AccordionText />
+        <AccordionDetails>
+          <Typography>
+          <div className="row justify-content-center">
+            Your carbon footprint for this trip is 
+            </div>
+            <div className="row justify-content-center">
+            THIS PLACEHOLDER VALUE
+            </div>
+            <div className="row justify-content-center">
+            That's a PLACEHOLDER PERCENT reduction from just driving      
+            </div>
+            {/* line separator here */}
+            <div className="row justify-content-center">
+            Your total commute time for this trip is 
+            </div>
+            <div className="row justify-content-center">
+            THIS PLACEHOLDER VALUE
+            </div>
+            <div className="row justify-content-center">
+            That's PLACEHOLDER MINUTES longer/shorter than just driving
+            </div>
+          </Typography>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" className="btn btn-link">Let's Do It!</button>
+            <button type="button" className="btn btn-link">I'll drive, thanks</button>
+          </div>
+        </AccordionDetails>
       </Accordion>
       <Accordion square expanded={expanded === 'panel4'} onChange={handleChange('panel4')}>
         <AccordionSummary aria-controls="panel4d-content" id="panel4d-header">
           <Typography>Walking</Typography>
         </AccordionSummary>
 
-        {/* Pass axios for public transit */}
-        <AccordionText />
+        <AccordionDetails>
+          <Typography>
+          <div className="row justify-content-center">
+            Your carbon footprint for this trip is 
+            </div>
+            <div className="row justify-content-center">
+            THIS PLACEHOLDER VALUE
+            </div>
+            <div className="row justify-content-center">
+            That's a PLACEHOLDER PERCENT reduction from just driving      
+            </div>
+            {/* line separator here */}
+            <div className="row justify-content-center">
+            Your total commute time for this trip is 
+            </div>
+            <div className="row justify-content-center">
+            THIS PLACEHOLDER VALUE
+            </div>
+            <div className="row justify-content-center">
+            That's PLACEHOLDER MINUTES longer/shorter than just driving
+            </div>
+          </Typography>
+          <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" className="btn btn-link">Let's Do It!</button>
+            <button type="button" className="btn btn-link">I'll drive, thanks</button>
+          </div>
+        </AccordionDetails>
       </Accordion>
     </div>
   );
