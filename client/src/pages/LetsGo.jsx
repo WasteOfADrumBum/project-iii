@@ -2,7 +2,7 @@ import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import AddressAutocomplete from "../components/address/AddressAutocomplete";
-import Accordion from "../components/accordion/Accordion";
+import AccordionComp from "../components/accordion/Accordion";
 import "../assets/styles/letsgo.scss";
 import { checkUser } from "../utils/UserVerify";
 import Map from "../components/address/MapContainer";
@@ -85,14 +85,14 @@ const LetsGo = () => {
             </div>
           </div>
           <div className="row text-center m-3">
-            <div className="col-md-4">
+            <div className="col-md-6 mb-5">
               <MapLoader
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiG1j9c6Y1v76qmSWne_tAc_5TRiDQlLg"
                 loadingElement={<div style={{ height: `100%` }} />}
               />
             </div>
-            <div className="col-md-8 mb-5">
-              <Accordion />
+            <div className="col-md-6 mb-5">
+              <AccordionComp />
             </div>
           </div>
         </div>
