@@ -1,4 +1,4 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import usePlacesAutocomplete, {
   getGeocode,
   getLatLng,
@@ -6,11 +6,14 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import "../../assets/styles/addressautocomplete.scss";
-const AddressAutocomplete = ({getAddressData,shouldRunGetAddressDataCallback}) => {
+const AddressAutocomplete = ({
+  getAddressData,
+  shouldRunGetAddressDataCallback,
+}) => {
   /* States below will carry address information */
-  const [coordinates, setCoordinates] = useState({})
-  const [addressValue, setAddressValue] = useState("")
-  const [zipCode, setZipCode] = useState("")
+  const [coordinates, setCoordinates] = useState({});
+  const [addressValue, setAddressValue] = useState("");
+  const [zipCode, setZipCode] = useState("");
   /* --------- */
   const {
     ready,
@@ -33,16 +36,16 @@ const AddressAutocomplete = ({getAddressData,shouldRunGetAddressDataCallback}) =
   const handleSelect = ({ description }) => () => {
     setValue(description, false);
     clearSuggestions();
-    setAddressValue(description)
+    setAddressValue(description);
     // Get latitude, longitude, and ZipCode
     getGeocode({ address: description })
       .then((results) => getLatLng(results[0]))
       .then(({ lat, lng }) => {
         console.log("Coordinates: ", { lat, lng });
         setCoordinates({
-          lat : lat,
-          lng : lng
-        })
+          lat: lat,
+          lng: lng,
+        });
       })
       .catch((error) => {
         console.log("Error: ", error);
@@ -51,7 +54,7 @@ const AddressAutocomplete = ({getAddressData,shouldRunGetAddressDataCallback}) =
       .then((results) => getZipCode(results[0], false))
       .then((zipCode) => {
         console.log("ZipCode: ", zipCode);
-        setZipCode(zipCode)
+        setZipCode(zipCode);
       })
       .catch((error) => {
         console.log("Error: ", error);
@@ -59,17 +62,17 @@ const AddressAutocomplete = ({getAddressData,shouldRunGetAddressDataCallback}) =
   };
   /* callback to help provide address data to AddressModal component  */
   //shouldRunGetAddressDataCallback is set to true in AddressModal component , if shouldRunGetAddressDataCallback is absent/falsy the getAddressData Callback won't run. Just a way to prevent unpredictable errors in other parent components that render AddressAutocomplete but do not need the getAddressData callback function to run.
-  if(shouldRunGetAddressDataCallback){
-    let splittedAddress = addressValue.split(", ")
+  if (shouldRunGetAddressDataCallback) {
+    let splittedAddress = addressValue.split(", ");
     getAddressData({
-      name : "Home",
-      lat : coordinates.lat,
-      lon : coordinates.lng,
-      zip : zipCode,
-      street : splittedAddress[0],
-      city : splittedAddress[1],
-      state : splittedAddress[2]
-    })
+      name: "Home",
+      lat: coordinates.lat,
+      lon: coordinates.lng,
+      zip: zipCode,
+      street: splittedAddress[0],
+      city: splittedAddress[1],
+      state: splittedAddress[2],
+    });
   }
   /* ----------- */
   const renderSuggestions = () =>

@@ -1,49 +1,60 @@
-import React from "react";
-import {Map, InfoWindow, Marker, GoogleApiWrapper} from "google-maps-react";
-import axios from "axios";
-const GOOGLE_MAPS_API_KEY = "secret key location"
+/*global google*/
+import React, { Component } from "react";
+import {
+  withGoogleMap,
+  GoogleMap,
+  DirectionsRenderer
+} from "react-google-maps";
+class Map extends Component {
+  state = {
+    directions: null
+  };
 
-const MapContainer = (props) => {
-  let [state, setstate] = React.useState({
-    // stateful props
-  })
-  
-  const {places, latitude, longitude, google} = this.props;
-  return ( 
-    <Map google = {google}
-      initialCenter = {{
-        lat: Number(latitude),
-        lng: Number(longitude),
-      }}
-      onClick = {this.maplicked}
-      zoom={10}>
+  componentDidMount() {
+    const directionsService = new google.maps.DirectionsService();
 
+    const origin = { lat: 40.756795, lng: -73.954298 };
+    const destination = { lat: 41.756795, lng: -78.954298 };
+
+    directionsService.route(
       {
-        places.length ? places.map(place => {
-          return(
-            <Marker key={place.id}
-              name={place.location.name}
-              onClick={this.MarkerClick}
-              postition={{lat: place.location.latitude, lng: place.location.longitude}} />
-          )
-        })
-         : null
+        origin: origin,
+        destination: destination,
+        travelMode: google.maps.TravelMode.DRIVING
+      },
+      (result, status) => {
+        if (status === google.maps.DirectionsStatus.OK) {
+          this.setState({
+            directions: result
+          });
+        } else {
+          console.error(`error fetching directions ${result}`);
+        }
       }
+    );
+  }
 
-    <InfoWindow
-      marker={this.state.activeMarker}
-      visible={this.state.showInfoWindow}>
-        <div>
-          <a href=""><h3>{this.state.selectedPlace.name}</h3></a>
-        </div>
+  render() {
+    const GoogleMapExample = withGoogleMap(props => (
+      <GoogleMap
+        defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
+        defaultZoom={13}
+      >
+        <DirectionsRenderer
+          directions={this.state.directions}
+        />
+      </GoogleMap>
+    ));
 
-    </InfoWindow>
-
-    </Map>
-  )
-  
+    return (
+      <div>
+        <GoogleMapExample
+          containerElement={<div style={{ height: `500px`, width: "500px" }} />}
+          mapElement={<div style={{ height: `100%` }} />}
+        />
+      </div>
+    );
+  }
 }
 
-
-
-export default GoogleApiWrapper({apiKey: (GOOGLE_MAPS_API_KEY)})(MapContainer)
+export default Map;

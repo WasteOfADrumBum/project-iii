@@ -5,6 +5,7 @@ import Footer from "../components/footer/Footer";
 import axios from "axios";
 import "../assets/styles/login.scss";
 import { checkUser } from "../utils/UserVerify";
+import { Form, Col, Button } from "react-bootstrap";
 
 const LoginPage = () => {
   React.useEffect(() => {
@@ -27,7 +28,6 @@ const LoginPage = () => {
 
   // Handle onClick auth route
   const handleClick = async () => {
-    console.log(state);
     try {
       const response = await axios.post("/api/v1/users/login", state);
       console.log("LOGIN | Response", response);
@@ -52,33 +52,42 @@ const LoginPage = () => {
                 <h1>Account Login</h1>
               </div>
               <div className="col-md-12 mt-2 mb-2">
-                <input
-                  type="text"
-                  style={{ width: "100%" }}
-                  onChange={handleChange}
-                  name="email"
-                  placeholder="User name"
-                  autoComplete="username"
-                />
-              </div>
-              <div className="col-md-12">
-                <input
-                  type="password"
-                  style={{ width: "100%" }}
-                  onChange={handleChange}
-                  name="password"
-                  placeholder="Password"
-                  autoComplete="urrent-password"
-                />
+                <Form>
+                  <Form.Row>
+                    <Form.Group as={Col} controlId="formGridEmail">
+                      <Form.Control
+                        name="email"
+                        type="email"
+                        placeholder="Enter email"
+                        onChange={handleChange}
+                        autoComplete="username"
+                      />
+                    </Form.Group>
+                  </Form.Row>
+
+                  <Form.Row>
+                    <Form.Group as={Col} controlId="formGridPassword">
+                      <Form.Control
+                        name="password"
+                        type="password"
+                        placeholder="Password"
+                        onChange={handleChange}
+                        autoComplete="new-password"
+                      />
+                    </Form.Group>
+                  </Form.Row>
+
+                  <Button
+                    variant="success"
+                    type="submit"
+                    style={{ width: "100%" }}
+                    onClick={() => handleClick()}
+                  >
+                    Login
+                  </Button>
+                </Form>
               </div>
             </div>
-            <button
-              className="btn-success"
-              style={{ width: "100%" }}
-              onClick={handleClick}
-            >
-              Login
-            </button>
             <p className="mt-5">
               <Link to="./register" alt="register" style={{ color: "black" }}>
                 Register

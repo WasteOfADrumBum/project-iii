@@ -2,9 +2,11 @@ import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import AddressAutocomplete from "../components/address/AddressAutocomplete";
-import Accordion from "../components/accordion/Accordion"
+import Accordion from "../components/accordion/Accordion";
 import "../assets/styles/letsgo.scss";
 import { checkUser } from "../utils/UserVerify";
+import Map from "../components/address/MapContainer";
+import { withScriptjs } from "react-google-maps";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
 // ! <AddressForm/> needs to be independent when called again
@@ -17,6 +19,8 @@ const LetsGo = () => {
   if (!localStorage.getItem("__token__")) {
     window.location.href = "./login";
   }
+
+  const MapLoader = withScriptjs(Map);
 
   return (
     <>
@@ -82,10 +86,13 @@ const LetsGo = () => {
           </div>
           <div className="row text-center m-3">
             <div className="col-md-4">
-              <span>[Map Here]</span>
+              <MapLoader
+                googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiG1j9c6Y1v76qmSWne_tAc_5TRiDQlLg"
+                loadingElement={<div style={{ height: `100%` }} />}
+              />
             </div>
             <div className="col-md-8 mb-5">
-              <Accordion/>
+              <Accordion />
             </div>
           </div>
         </div>

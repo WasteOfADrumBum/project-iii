@@ -35,7 +35,7 @@ exports.login = async (req, res, next) => {
         email +
         " and password: " +
         password +
-        " exist"
+        " are valid."
     );
 
     // 2) check if user exist and password is correct
@@ -51,15 +51,15 @@ exports.login = async (req, res, next) => {
         next
       );
     }
-    console.log("LOGIN | checked if user exist and password is correct");
+    console.log("LOGIN | User Exist & Password's Correct");
 
     // 3) All correct, send jwt to client
     const token = createToken(user.id);
-    console.log("LOGIN | All correct, send jwt to client: token created");
+    console.log("LOGIN | JWT → Client: Token Created");
 
     // Remove the password from the output
     user.password = undefined;
-    console.log("LOGIN | Remove the password from the output", user.password);
+    console.log("LOGIN | Password Removed From Output");
 
     res.status(200).json({
       status: "success",
@@ -84,13 +84,13 @@ exports.signup = async (req, res, next) => {
       passwordConfirm: req.body.passwordConfirm,
       role: req.body.role,
     });
-    console.log("SIGNUP | Created User:" + user);
+    console.log("SIGNUP | Created User ", user.firstName, user.lastName);
 
     const token = createToken(user.id);
-    console.log("SIGNUP | Created token:" + token);
+    console.log("SIGNUP | Token Created");
 
     user.password = undefined;
-    console.log("SIGNUP | Removed Password:", user.password);
+    console.log("SIGNUP | Password Removed From Output");
 
     res.status(201).json({
       status: "success",
@@ -127,18 +127,11 @@ exports.protect = async (req, res, next) => {
         next
       );
     }
-    console.log("PROTECT (token) | check if the token is there: " + token);
+    console.log("PROTECT (token) | Checked For Token");
 
     // 2) Verify token
     const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-    console.log(
-      "PROTECT (decode) | Verify token: " +
-        token +
-        "\n process.env.JWT_SECRET: " +
-        process.env.JWT_SECRET +
-        "\n Decode token: ",
-      decode
-    );
+    console.log("PROTECT (decode) | Verified Token");
 
     // 3) check if the user is exist (not deleted)
     const user = await User.findById(decode.id);
@@ -152,12 +145,7 @@ exports.protect = async (req, res, next) => {
     }
 
     req.user = user;
-    console.log(
-      "PROTECT (user) | check if the user is exist (not deleted): " +
-        user.firstName +
-        " " +
-        user.lastName
-    );
+    console.log("PROTECT (user) | Checked User is Valid");
     next();
   } catch (err) {
     console.log("Protect | Error: ", err);
@@ -169,7 +157,7 @@ exports.protect = async (req, res, next) => {
 exports.restrictTo = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
-      console.log("RESTRICT | ABOUT OT THROW RESTIRCT ERROR");
+      console.log("RESTRICT | User Doesn't Not Have Access!");
       return next(
         new AppError(403, "fail", "You are not allowed to do this action"),
         req,
