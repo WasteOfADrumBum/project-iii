@@ -85,13 +85,13 @@ const LetsGo = () => {
             </div>
           </div>
           <div className="row text-center m-3">
-            <div className="col-md-4 mb-5">
+            <div className="col-md-6 mb-5">
               <MapLoader
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiG1j9c6Y1v76qmSWne_tAc_5TRiDQlLg"
                 loadingElement={<div style={{ height: `100%` }} />}
               />
             </div>
-            <div className="col-md-8 mb-5">
+            <div className="col-md-6 mb-5">
               <AccordionComp />
             </div>
           </div>
