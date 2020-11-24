@@ -9,6 +9,7 @@ import { useUser } from "../../utils/UserVerify";
 
 const AddressModal = () => {
   const user = useUser();
+  console.log("Current User: ", user.firstName, " ID: ", user._id);
   //front end code to grab address split address
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
