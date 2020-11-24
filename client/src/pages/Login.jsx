@@ -5,8 +5,12 @@ import Footer from "../components/footer/Footer";
 import axios from "axios";
 import "../assets/styles/login.scss";
 import { Form, Col, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
+
 
 const LoginPage = () => {
+  const history = useHistory();
+
   // Set email & password State to ""
   const [state, setState] = React.useState({
     email: "",
@@ -23,7 +27,7 @@ const LoginPage = () => {
       const response = await axios.post("/api/v1/users/login", state);
       console.log("LOGIN | Response", response);
       localStorage.setItem("__token__", response.data.token);
-      window.location.href = "./profile";
+      history.push("/profile");
     } catch (error) {
       console.log(error);
     }

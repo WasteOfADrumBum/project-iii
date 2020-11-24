@@ -3,8 +3,12 @@ import AddressAutocomplete from "../address/AddressAutocomplete";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import "../../assets/styles/modal.scss";
+import { useUser } from "../../utils/UserVerify";
+
+// ! PATCH 401 Error
 
 const AddressModal = () => {
+  const user = useUser();
   //front end code to grab address split address
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -28,7 +32,7 @@ const AddressModal = () => {
     if (addressInfo) {
       console.log(addressInfo); //console logs the addressInfo object which contains the data to be sent to the database
       try {
-        let userId = ""; //TODO - REPLACE "" WITH STATE/VARIABLE THAT WILL CARRY USERID AFTER PROFILE IS LOADED
+        let userId = user._id; //TODO - REPLACE "" WITH STATE/VARIABLE THAT WILL CARRY USERID AFTER PROFILE IS LOADED
         const response = await axios.patch(
           `/api/v1/users/updatePlaces/${userId}`,
           addressInfo

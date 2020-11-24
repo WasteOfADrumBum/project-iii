@@ -6,6 +6,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import "../../assets/styles/addressautocomplete.scss";
+
 const AddressAutocomplete = ({
   getAddressData,
   shouldRunGetAddressDataCallback,

@@ -1,21 +1,35 @@
 import React from "react";
 import { useUser } from "../../utils/UserVerify";
-import Makes from "../../utils/makes"
+
+// ! Bug: user is undefined at first then it loops 2 more times where it is defined 
+// ! The initial undefined array throws an error for the vDB.length 
 
 const VehicleLoop = () => {
   const user = useUser();
 
-  console.log("user.vehicles" ,user.vehicles);
-  console.log("makesssss", Makes)
+  console.log("user.firstName", user.firstName);
+  console.log("user.vehicles", user.vehicles);
 
-  const makesList = Makes.map((make) => <option key={make}>make</option>)
-  console.log(makesList)
+  // const vDB = user.vehicles;
+  const Vehicles = user.vehicles
 
-  const reptiles = ["alligator", "snake", "lizard"];
+  // const vehicleArr = [];
+  // for (let i = 0; i < vDB.length; i++) {
+  //   // console.log(vehicleArr.indexOf(vDB[i].vehicle));
+  //   if (vehicleArr.indexOf(vDB[i].vehicle === -1)) {
+  //     vehicleArr.push(vDB[i].vehicle);
+  //   }
+  // }
 
-  const reptilesMap = reptiles.map((reptile) => <li key={reptile}>{reptile}</li>)
-  console.log("reptiles", reptilesMap)
-  return reptiles.map((reptile) => <li key={reptile}>{reptile}</li>);
+  // const Vehicles = Array.from(new Set(vehicleArr));
+
+  return (
+    <>
+      {/* {Vehicles.map((vehicle) => (
+        <option key={vehicle}>{vehicle}</option>
+      ))} */}
+    </>
+  );
 };
 
 export default VehicleLoop;
