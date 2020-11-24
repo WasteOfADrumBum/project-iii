@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
-import { useHistory } from 'react-router-dom'
-export const checkUser = () => console.log("Migrate to Hook!")
+import { useHistory } from "react-router-dom";
+export const checkUser = () => console.log("Migrate to Hook!");
 export const useUser = () => {
   const history = useHistory();
-  const [user, setUser] = React.useState({})
+  const [user, setUser] = React.useState({});
   React.useEffect(() => {
     try {
       const getUSER = async () => {
@@ -16,14 +16,14 @@ export const useUser = () => {
         const response = await axios.get("/api/v1/users/jwt", {
           headers: { Authorization: "Bearer " + token },
         });
-        if (response.status !== 200) throw new Error("Invalid Token")
+        if (response.status !== 200) throw new Error("Invalid Token");
         setUser(response.data);
-      }
-      getUSER()
+      };
+      getUSER();
     } catch (error) {
       console.log("checkUser catch " + error);
-      history.push("/login")
+      history.push("/login");
     }
-  }, [history])
+  }, [history]);
   return user;
 };
