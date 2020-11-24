@@ -82,6 +82,9 @@ const UserSchema = new mongoose.Schema({
       lon: {
         type: String,
       },
+      street: {
+        type: String,
+      },
       city: {
         type: String,
       },
