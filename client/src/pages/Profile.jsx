@@ -9,10 +9,18 @@ import "../assets/styles/profile.scss";
 import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import VehilceLoop from "../components/loops/VehicleLoop"
+import PlacesLoop from "../components/loops/PlacesLoop"
+
 
 const Profile = () => {
   const {firstName, lastName} = React.useContext(CurrentUserContext);
+  
+  // const {refreshToken} = React.useContext(CurrentUserContext);
   const history = useHistory();
+
+  // React.useEffect(()=>{
+  //   refreshToken();
+  // },[refreshToken]);
 
   console.log("PROFILE | User Info: ", firstName, lastName)
 
@@ -83,6 +91,7 @@ const Profile = () => {
                 <p className="d-inline">
                   places.street places.city places.state places.zip
                 </p>
+                <PlacesLoop/>
               </div>
             </div>
           </div>
