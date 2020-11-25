@@ -18,6 +18,13 @@ const LetsGo = () => {
 
   const MapLoader = withScriptjs(Map);
 
+  const [state, setState] = React.useState({
+    latFrom: "",
+    lonFrom: "",
+    latTo: "",
+    lonTo: ""
+  });
+
   let addressInfoTo;
   const getAddressDataTo = (addressData) => {
     if (
@@ -49,8 +56,12 @@ const LetsGo = () => {
   const handleButtonClick = async () => {
     if(addressInfoFrom && addressInfoTo) {
       console.log(addressInfoFrom, addressInfoTo)
-    }
+    };
+    handleChange();
   };
+
+  const handleChange = ({ target: { name, value } }) =>
+  setState({ ...state, [name]: value });
 
   return (
     <>
