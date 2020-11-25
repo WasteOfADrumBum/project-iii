@@ -1,7 +1,9 @@
 import React from "react";
 import { Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import LogoutLink from "../../components/logout/Logout"
+import LogoutLink from "../../components/logout/Logout";
+import "../../assets/styles/navbar.scss"; 
+import BrandName from "../brand/Brand"
 
 // TODO: Make Let's Go & Profile links only available when logged in. 
 // TODO: Replace Login/Register with Logout when signed in
@@ -10,7 +12,7 @@ const NavBar = () => {
   if (localStorage.getItem("__token__")) {
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand ><Link to="/">Carbon FX</Link></Navbar.Brand>
+        <Navbar.Brand ><Link to="/"><BrandName/></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">

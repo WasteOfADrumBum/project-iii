@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.scss";
+import BrandName from "../brand/Brand"
 
 const Footer = () => {
   return (
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="row mb-3">
           <div className="col-md-2" />
           <div className="col-md-5">
-            <h5 className="title">Carbon FX</h5>
+            <h5 className="title"><BrandName/></h5>
             <p>
               Carbon FX brings value to the modern world of transportation by
               allowing users to track their carbon foot print they leave behind
@@ -18,30 +19,28 @@ const Footer = () => {
           </div>
           <div className="col-md-5">
             <h5 className="title">Developers</h5>
-            <ul>
-              <li className="list-unstyled">
-                Front End Developer:
-                <a href="https://github.com/WasteOfADrumBum">
-                  Joshua M. Small
-                </a>
-              </li>
-              <li className="list-unstyled">
+            <div>
+              <div className="list-unstyled">
+                Full Stack Developer:
+                <a href="https://github.com/WasteOfADrumBum"> Joshua M. Small</a>
+              </div>
+              <div className="list-unstyled">
                 Front End Developer:
                 <a href="https://github.com/maxgerringer"> Max R. Gerringer</a>
-              </li>
-              <li className="list-unstyled">
+              </div>
+              <div className="list-unstyled">
                 Back End Developer:
                 <a href="https://github.com/jhf1203"> Jim Faulkner</a>
-              </li>
-              <li className="list-unstyled">
+              </div>
+              <div className="list-unstyled">
                 Back End Developer:
                 <a href="https://github.com/mark-speer"> Mark Speer</a>
-              </li>
-              <li className="list-unstyled">
+              </div>
+              <div className="list-unstyled">
                 Back End Developer:
                 <a href="https://github.com/arodrigu1"> Arlene Rodriguez</a>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
           <div className="col-md-2" />
         </div>
