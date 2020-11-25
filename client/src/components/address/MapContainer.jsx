@@ -17,9 +17,9 @@ class Map extends Component {
   componentDidMount() {
     const directionsService = new google.maps.DirectionsService();
 
-    const origin = { lat: 40.756795, lng: -73.954298 };
-    const destination = { lat: 41.756795, lng: -78.954298 };
-
+    const origin = { lat: 35.7686092, lng: -78.6369899 };
+    const destination = { lat: 35.7731053, lng: -78.6411849 };
+ 
     directionsService.route(
       {
         origin: origin,

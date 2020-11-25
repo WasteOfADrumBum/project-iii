@@ -3,7 +3,7 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
 import "../assets/styles/vehicle.scss";
-import { useUser } from "../utils/UserVerify";
+import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import Makes from "../utils/makes";
 import Models from "../utils/model";
@@ -22,7 +22,7 @@ import axios from "axios";
 // ! ↑↑↑ current form does not match array for correct output
 const Vehicle = () => {
   const history = useHistory();
-  const user = useUser();
+  const {user} = React.useContext(CurrentUserContext);
 
   // Set State to ""
   const [state, setState] = React.useState({

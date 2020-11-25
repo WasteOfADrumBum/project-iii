@@ -5,12 +5,13 @@ import "../assets/styles/register.scss";
 import { Form, Col, Button } from "react-bootstrap";
 import RandomQuote from "../components/quote/Quote";
 import Axios from "axios";
-import { checkUser } from "../utils/UserVerify";
+import { useHistory } from "react-router-dom";
 
 // TODO: Make text animated and appear after the user selects the signup button
 // TODO: Caputre form data and store to Database
 
 const Register = () => {
+  const history = useHistory();
   const [state, setstate] = React.useState({
     firstName: "",
     lastName: "",
@@ -29,7 +30,7 @@ const Register = () => {
       const response = await Axios.post("/api/v1/users/signup", state);
       console.log("SIGNUP | Response", response);
       localStorage.setItem("__token__", response.data.token);
-      window.location.href = "./vehicle";
+      history.push("/vehicle");
     } catch (err) {
       console.log(err);
     }
