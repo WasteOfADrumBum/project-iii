@@ -5,10 +5,6 @@ import { Form, Col, Button } from "react-bootstrap";
 import "../assets/styles/vehicle.scss";
 import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
-import Makes from "../utils/makes";
-import Models from "../utils/model";
-import Transmissions from "../utils/transmission";
-import Cylinders from "../utils/cylinders";
 import Years from "../utils/year";
 import vehicles from "../utils/vehicle.json"
 import axios from "axios";
