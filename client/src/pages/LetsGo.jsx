@@ -6,7 +6,7 @@ import AccordionComp from "../components/accordion/Accordion";
 import "../assets/styles/letsgo.scss";
 import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
-import { useUser } from "../utils/UserVerify";
+import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
@@ -14,7 +14,7 @@ import { useHistory } from "react-router-dom";
 
 const LetsGo = () => {
   const history = useHistory();
-  const user = useUser();
+  const {firstName} = React.useContext(CurrentUserContext);
 
   const MapLoader = withScriptjs(Map);
 
@@ -25,7 +25,7 @@ const LetsGo = () => {
         <div className="letsgo-form-container">
           <div className="row text-center p-5">
             <div className="col-md-12">
-              <h1>Where are we going today {user.firstName}?</h1>
+              <h1>Where are we going today {firstName}?</h1>
               <p>Select from one of your places, or enter a new address!</p>
             </div>
           </div>

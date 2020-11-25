@@ -1,35 +1,17 @@
 import React from "react";
-import { useUser } from "../../utils/UserVerify";
-
-// ! Bug: user is undefined at first then it loops 2 more times where it is defined 
-// ! The initial undefined array throws an error for the vDB.length 
+import { CurrentUserContext } from "../../utils/UserContext";
 
 const VehicleLoop = () => {
-  const user = useUser();
+  const {vehicles} = React.useContext(CurrentUserContext);
+  console.log(vehicles);
 
-  console.log("user.firstName", user.firstName);
-  console.log("user.vehicles", user.vehicles);
-
-  // const vDB = user.vehicles;
-  const Vehicles = user.vehicles
-
-  // const vehicleArr = [];
-  // for (let i = 0; i < vDB.length; i++) {
-  //   // console.log(vehicleArr.indexOf(vDB[i].vehicle));
-  //   if (vehicleArr.indexOf(vDB[i].vehicle === -1)) {
-  //     vehicleArr.push(vDB[i].vehicle);
-  //   }
-  // }
-
-  // const Vehicles = Array.from(new Set(vehicleArr));
-
-  return (
-    <>
-      {/* {Vehicles.map((vehicle) => (
-        <option key={vehicle}>{vehicle}</option>
-      ))} */}
-    </>
-  );
-};
+    return (
+      <div style={{maxHeight: "200px", overflowY: "auto"}}>
+        {vehicles.map((item) => (
+          <div key={item.make}>{item.model}</div>
+        ))}
+      </div>
+    );
+  }
 
 export default VehicleLoop;

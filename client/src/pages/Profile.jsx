@@ -6,13 +6,15 @@ import DoughnutChart from "../components/charts/DoughnutChart";
 import AddressModal from "../components/modal/Modal";
 import { Button } from "react-bootstrap";
 import "../assets/styles/profile.scss";
-import { useUser } from "../utils/UserVerify";
+import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import VehilceLoop from "../components/loops/VehicleLoop"
 
 const Profile = () => {
+  const {firstName, lastName} = React.useContext(CurrentUserContext);
   const history = useHistory();
-  const user = useUser();
+
+  console.log("PROFILE | User Info: ", firstName, lastName)
 
   return (
     <>
@@ -31,7 +33,7 @@ const Profile = () => {
           </div>
           <div className="col-md-9 pt-5 text-left ">
             <h1>
-              {user.firstName} {user.lastName}'s Profile
+              {firstName} {lastName}'s Profile
             </h1>
             <div className="row">
               <div className="col-md-12">Profile Info</div>

@@ -2,9 +2,10 @@ import React from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
 export const checkUser = () => console.log("Migrate to Hook!");
-export const useUser = () => {
+export const CurrentUserContext = React.createContext();
+export const CurrentUserProvider = ({children}) => {
   const history = useHistory();
-  const [user, setUser] = React.useState({});
+  const [user, setUser] = React.useState(null);
   React.useEffect(() => {
     try {
       const getUSER = async () => {
@@ -25,5 +26,11 @@ export const useUser = () => {
       history.push("/login");
     }
   }, [history]);
-  return user;
+  console.log("Context", user)
+  // value={{user:{...user}}}
+  return user && (
+    <CurrentUserContext.Provider value={user}>
+      {children && children}
+    </CurrentUserContext.Provider>
+  );
 };
