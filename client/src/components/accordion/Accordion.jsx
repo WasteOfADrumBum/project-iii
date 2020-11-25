@@ -1,18 +1,15 @@
+import React from "react";
 import { Accordion, Card } from "react-bootstrap";
 import "../../assets/styles/accordion.scss";
-import { useUser } from "../../utils/UserVerify";
+import { CurrentUserContext } from "../../utils/UserContext";
 
 // (8.8 / (({ mpgcity } + { mpghwy }) / 2)) * { totalmiles } = CO2e
 
 const AccordionComp = () => {
-  const user = useUser();
-  const userVehilceMpgCity = user.vehicles[0].mpgcity;
-  const userVehilceMpgHwy = user.vehicles[0].mpgcity;
+  const {vehicles} = React.useContext(CurrentUserContext);
   const totalMiles = 20;
-
-  console.log("Vehicles:", user.vehicles[0]);
-  console.log("MGP City: ", user.vehicles[0].mpgcity);
-  console.log("MPG Hwy:", user.vehicles[0].mpgcity);
+  const userVehilceMpgCity = vehicles[0].mpgcity;
+  const userVehilceMpgHwy = vehicles[0].mpghwy;
 
   return (
     <div>
@@ -29,8 +26,8 @@ const AccordionComp = () => {
                 </div>
                 <div className="col-md-4 text-right ">
                   <span>
-                    {(8.8 / ((userVehilceMpgCity + userVehilceMpgHwy) / 2)) *
-                      totalMiles}
+                    {(8.8 / ((userVehilceMpgCity + userVehilceMpgHwy) / 2) *
+                      totalMiles)}
                     kg CO2e
                   </span>
                 </div>
