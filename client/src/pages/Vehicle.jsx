@@ -10,6 +10,7 @@ import Models from "../utils/model";
 import Transmissions from "../utils/transmission";
 import Cylinders from "../utils/cylinders";
 import Years from "../utils/year";
+import vehicles from "../utils/vehicle.json"
 import axios from "axios";
 
 // TODO: Caputre form data and store to project3_db's users.vehicles or from client/utils/vehice.json
@@ -25,35 +26,86 @@ const Vehicle = () => {
   const {user} = React.useContext(CurrentUserContext);
 
   // Set State to ""
-  const [state, setState] = React.useState({
-    make: "",
-    model: "",
-    year: "",
-    type: "",
-    drive: "",
-    transmission: "",
-    cylinders: "",
-    displacement: "",
-    fueltype: "",
-    mpgcity: "",
-    mpghwy: "",
-  });
+  const chosenYear = []
+  const chosenMake = []
+  const makesToDisplay = []
+  const chosenModel = []
+  const modelsToDisplay = []
+  const chosenFuel = []
+  const fuelToDisplay = []
+  const chosenEngine = []
+  const engineToDisplay = []
+  const chosenVehicle = []
+  const transmissionToDisplay = []
+  
 
-  // Hadle Change State
-  const handleChange = ({ target: { name, value } }) =>
-    setState({ ...state, [name]: value });
+  function handleYearSelect (event) {
+    vehicles.map (vehicle => {
+      if (vehicle[event.target.name] == [event.target.value]) {
+        chosenYear.push(vehicle)
+      }
+    })
+  }
+  function handleMakeSelect (event) {
+    chosenYear.map( vehicle => {
+      if (vehicle[event.target.name] == [event.target.value]) {
+        chosenMake.push(vehicle)
+      }
+    })
+    chosenMake.map(unique => {
+      if (modelsToDisplay.indexOf(unique.model) < 0) {
+        modelsToDisplay.push(unique.model)
+      }
+    })
+  }
+  function handleModelSelect (event) {
+    chosenMake.map( vehicle => {
+      if (vehicle[event.target.name] == [event.target.value]) {
+        chosenModel.push(vehicle)
+      }
+    })
+    chosenModel.map(unique => {
+      if (fuelToDisplay.indexOf(unique.fueltype) < 0) {
+        fuelToDisplay.push(unique.fueltype)
+      }
+    })
+  }
 
-  // Handle onClick auth route
-  const handleClick = async () => {
-    try {
-      const response = await axios.post("/api/v1/users/", state);
-      console.log("LOGIN | Response", response);
-      localStorage.setItem("__token__", response.data.token);
-      history.push("/profile");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  function handleFuelSelect (event) {
+    chosenModel.map(vehicle => {
+      if (vehicle[event.target.name] == [event.target.value]) {
+        chosenFuel.push(vehicle)
+      }
+    })
+    chosenFuel.map(unique => {
+      if (engineToDisplay.indexOf(unique.fueltype) < 0) {
+        engineToDisplay.push(unique.fueltype)
+      }
+    })
+  }
+
+  function handleEngineSelect (event) {
+    chosenFuel.map(vehicle => {
+      if (vehicle[event.target.name] == [event.target.value]) {
+        chosenEngine.push(vehicle)
+      }
+    })
+    chosenEngine.map(unique => {
+      if (transmissionToDisplay.indexOf(unique.transmission) < 0) {
+        transmissionToDisplay.push(unique.transmission)
+      }
+    })
+  }
+
+  function handleTransmissionSelect (event) {
+    chosenEngine.map(vehicle => {
+      if (vehicle[event.target.name] == [event.target.value]) {
+        chosenVehicle.push(vehicle)
+      }
+    })
+  }
+
+
 
   return (
     <>
@@ -93,7 +145,7 @@ const Vehicle = () => {
                     <Form.Label>Year</Form.Label>
                     <Form.Control
                       name="year"
-                      onChange={handleChange}
+                      onChange={handleYearSelect}
                       as="select"
                       placeholder="1984"
                     >
@@ -107,12 +159,12 @@ const Vehicle = () => {
                     <Form.Label>Make</Form.Label>
                     <Form.Control
                       name="make"
-                      onChange={handleChange}
+                      onChange={handleMakeSelect}
                       as="select"
                       placeholder="Chevrolet"
                     >
-                      {Makes.map((make) => (
-                        <option key={make}>{make}</option>
+                      {makesToDisplay.map((vehicle) => (
+                        <option key={vehicle.make}>{vehicle.make}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
@@ -121,28 +173,42 @@ const Vehicle = () => {
                     <Form.Label>Model</Form.Label>
                     <Form.Control
                       name="model"
-                      onChange={handleChange}
+                      onChange={handleModelSelect}
                       as="select"
                       placeholder="Corvette"
                     >
-                      {Models.map((model) => (
-                        <option key={model}>{model}</option>
+                      {modelsToDisplay.map((vehicle) => (
+                        <option key={vehicle.model}>{vehicle.model}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
 
                 <Form.Row>
+                <Form.Group as={Col} controlId="formGridFuelType">
+                    <Form.Label>Fuel Type</Form.Label>
+                    <Form.Control
+                      name="fueltype"
+                      onChange={handleFuelSelect}
+                      as="select"
+                      placeholder="gasoline"
+                    >
+                      {fuelToDisplay.map((vehicle) => (
+                        <option key={vehicle.fueltype}>{vehicle.fueltype}</option>
+                      ))}
+                    </Form.Control>
+                  </Form.Group>
+
                   <Form.Group as={Col} controlId="formGridFirstEngine">
                     <Form.Label>Engine</Form.Label>
                     <Form.Control
                       name="cylinders"
-                      onChange={handleChange}
+                      onChange={handleEngineSelect}
                       as="select"
                       placeholder="8 cylinder"
                     >
-                      {Cylinders.map((cylinder) => (
-                        <option key={cylinder}>{cylinder}</option>
+                      {engineToDisplay.map((vehicle) => (
+                        <option key={vehicle.cylinders}>{vehicle.cylinders}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
@@ -151,11 +217,12 @@ const Vehicle = () => {
                     <Form.Label>Transmission</Form.Label>
                     <Form.Control
                       name="transmission"
-                      onChange={handleChange}
+                      onChange={handleTransmissionSelect}
                       as="select"
+                      placeholder="Automatic"
                     >
-                      {Transmissions.map((transmission) => (
-                        <option key={transmission}>{transmission}</option>
+                      {transmissionToDisplay.map((vehicle) => (
+                        <option key={vehicle.transmission}>{vehicle.transmission}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
@@ -167,7 +234,7 @@ const Vehicle = () => {
                 <Button
                   variant="primary"
                   type="submit"
-                  onClick={() => handleClick()}
+                  // onClick={() => handleClick()}
                 >
                   Next
                 </Button>
