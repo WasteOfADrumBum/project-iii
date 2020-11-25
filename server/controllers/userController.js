@@ -19,7 +19,8 @@ exports.deleteMe = async (req, res, next) => {
 exports.getAllUsers = base.getAll(User);
 exports.getUser = base.getOne(User);
 
-exports.updatePlaces = base.updateUserPlaces(User);
+exports.updatePlaces = base.updateUserPlaces(User)
+
 // Don't update password on this
 exports.updateUser = base.updateOne(User);
 exports.deleteUser = base.deleteOne(User);
