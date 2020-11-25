@@ -33,5 +33,9 @@ router
   .patch(UserController.updateUser)
   .delete(UserController.deleteUser);
 
+router
+  .route("/updatePlaces/:id")
+  .patch(UserController.updatePlaces)
+
 // Export router
 module.exports = router;

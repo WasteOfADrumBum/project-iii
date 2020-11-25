@@ -30,10 +30,15 @@ const AddressModal = () => {
     if (addressInfo) {
       console.log(addressInfo); //console logs the addressInfo object which contains the data to be sent to the database
       try {
+        const token = localStorage.getItem("__token__");
         let userId = _id; //TODO - REPLACE "" WITH STATE/VARIABLE THAT WILL CARRY USERID AFTER PROFILE IS LOADED
         const response = await axios.patch(
           `/api/v1/users/updatePlaces/${userId}`,
-          addressInfo
+          addressInfo,
+          {
+            headers: { Authorization: "Bearer " + token },
+          }
+
         );
         console.log(response);
       } catch (error) {
