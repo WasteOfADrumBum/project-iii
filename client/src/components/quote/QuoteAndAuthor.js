@@ -11,7 +11,7 @@ export default function QuoteAndAuthor(props) {
         <div className="card" style={{background: "transparent", border: "none"}}>
 
             <div className="card-body">
-                <p className="card-text">{quote.quote}</p>
+                <p className="card-text"><i>"{quote.quote}"</i></p>
                 <h5 className="card-title">- {quote.author}</h5>
                 <button
                     className="ml-3 btn-primary"

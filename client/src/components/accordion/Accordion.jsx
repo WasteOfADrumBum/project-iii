@@ -11,6 +11,11 @@ const AccordionComp = () => {
   const userVehilceMpgCity = vehicles[0].mpgcity;
   const userVehilceMpgHwy = vehicles[0].mpghwy;
 
+  function number_format (val, decimals){
+    val = parseFloat(val);
+    return val.toFixed(decimals);
+  }
+
   return (
     <div>
       <Accordion defaultActiveKey="0">
@@ -26,8 +31,8 @@ const AccordionComp = () => {
                 </div>
                 <div className="col-md-4 text-right ">
                   <span>
-                    {(8.8 / ((userVehilceMpgCity + userVehilceMpgHwy) / 2) *
-                      totalMiles)}
+                    {number_format((8.8 / ((userVehilceMpgCity + userVehilceMpgHwy) / 2) *
+                      totalMiles),2)}
                     kg CO2e
                   </span>
                 </div>
@@ -59,7 +64,7 @@ const AccordionComp = () => {
                 </div>
                 {/* Grey Hound Bus: 9mpg avg 55 seat compacity */}
                 <div className="col-md-4 text-right">
-                  {((8.8 / (9 / 2)) * totalMiles) / 55}
+                  {number_format(((8.8 / (9 / 2)) * totalMiles) / 55, 2)}
                   kg CO2e
                 </div>
               </div>
@@ -95,7 +100,7 @@ const AccordionComp = () => {
                   Your carbon footprint for this trip is:
                 </div>
                 {/* 0.0195 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
-                <div className="col-md-4 text-right">{0.0195 * totalMiles}</div>
+                <div className="col-md-4 text-right">{number_format(0.0195 * totalMiles,2)}</div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">
@@ -133,7 +138,7 @@ const AccordionComp = () => {
                   Your carbon footprint for this trip is:
                 </div>
                 {/* 0.0085 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
-                <div className="col-md-4 text-right">{0.0085 * totalMiles}</div>
+                <div className="col-md-4 text-right">{number_format(0.0085 * totalMiles,2)}</div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">

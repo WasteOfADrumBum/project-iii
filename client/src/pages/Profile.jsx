@@ -10,6 +10,7 @@ import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import VehilceLoop from "../components/loops/VehicleLoop"
 import PlacesLoop from "../components/loops/PlacesLoop"
+import RandomQuote from "../components/quote/Quote"
 
 
 const Profile = () => {
@@ -44,7 +45,7 @@ const Profile = () => {
               {firstName} {lastName}'s Profile
             </h1>
             <div className="row">
-              <div className="col-md-12">Profile Info</div>
+              <div className="col-md-12"><RandomQuote/></div>
             </div>
             <div className="row">
               <div className="col-md-12">
@@ -65,11 +66,7 @@ const Profile = () => {
             */}
             <div className="row pt-2 pb-3">
               <div className="col-md-12 location-list">
-                <button className="btn-warning mr-2 d-inline">Δ</button>
-                <button className="btn-danger mr-2 d-inline">X</button>
-                <p className="mr-2 d-inline">
-                  <b>vehicle.year vehicle.make vehicle.model </b>
-                </p>
+                
                 <VehilceLoop/>
               </div>
             </div>
@@ -83,14 +80,6 @@ const Profile = () => {
             </div>
             <div className="row">
               <div className="col-md-12 pt-2 pb-5 location-list">
-                <button className="btn-warning mr-2 d-inline">Δ</button>
-                <button className="btn-danger mr-2 d-inline">X</button>
-                <p className="mr-2 d-inline">
-                  <b>places.name</b>
-                </p>
-                <p className="d-inline">
-                  places.street places.city places.state places.zip
-                </p>
                 <PlacesLoop/>
               </div>
             </div>
