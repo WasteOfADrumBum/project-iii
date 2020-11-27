@@ -65,6 +65,7 @@ const AddressModal = () => {
             name="name"
             type="text"
             placeholder="Location Name"
+            required
           />
           <AddressAutocomplete
             getAddressData={getAddressData}

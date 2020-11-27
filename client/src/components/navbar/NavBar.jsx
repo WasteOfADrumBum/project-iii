@@ -12,7 +12,7 @@ const NavBar = () => {
   if (localStorage.getItem("__token__")) {
     return (
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand ><Link to="/"><BrandName/></Link></Navbar.Brand>
+        <Navbar.Brand ><Link to="/profile"><BrandName/></Link></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ml-auto">
@@ -27,7 +27,7 @@ const NavBar = () => {
   }
   return (
     <Navbar bg="light" expand="lg">
-      <Navbar.Brand><Link to="/">Carbon FX</Link></Navbar.Brand>
+      <Navbar.Brand><Link to="/"><BrandName/></Link></Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">

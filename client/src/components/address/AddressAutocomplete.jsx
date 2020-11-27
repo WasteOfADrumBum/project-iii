@@ -66,7 +66,7 @@ const AddressAutocomplete = ({
   if (shouldRunGetAddressDataCallback) {
     let splittedAddress = addressValue.split(", ");
     getAddressData({
-      name: "Home",
+      name: "Placeholder",
       lat: coordinates.lat,
       lon: coordinates.lng,
       zip: zipCode,

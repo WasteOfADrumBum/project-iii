@@ -8,30 +8,30 @@ import { Button } from "react-bootstrap";
 import "../assets/styles/profile.scss";
 import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
-import VehilceLoop from "../components/loops/VehicleLoop"
-import PlacesLoop from "../components/loops/PlacesLoop"
-import RandomQuote from "../components/quote/Quote"
-
+import VehilceLoop from "../components/loops/VehicleLoop";
+import PlacesLoop from "../components/loops/PlacesLoop";
+import RandomQuote from "../components/quote/Quote";
 
 const Profile = () => {
-  const {firstName, lastName} = React.useContext(CurrentUserContext);
-  
-  // const {refreshToken} = React.useContext(CurrentUserContext);
+  const { refreshToken, firstName, lastName } = React.useContext(CurrentUserContext);
   const history = useHistory();
 
-  // React.useEffect(()=>{
-  //   refreshToken();
-  // },[refreshToken]);
+  // ! page continues to load before auth redirect throwing error
 
-  console.log("PROFILE | User Info: ", firstName, lastName)
+  // Check User Auth For Page
+  React.useEffect(()=>{
+    refreshToken();
+  },[refreshToken]);
 
+  console.log(firstName, lastName + "'s Profile.");
   return (
     <>
       <NavBar />
       <div className="profile-container p-5">
         <div className="row profile-content-container">
           <div className="col-md-3 text-center p-4 m-auto">
-            <img className="img-fluid"
+            <img
+              className="img-fluid"
               src="../assets/images/placeholder-profile-sq.jpg"
               alt="Profile"
               style={{
@@ -45,7 +45,9 @@ const Profile = () => {
               {firstName} {lastName}'s Profile
             </h1>
             <div className="row">
-              <div className="col-md-12"><RandomQuote/></div>
+              <div className="col-md-12">
+                <RandomQuote />
+              </div>
             </div>
             <div className="row">
               <div className="col-md-12">
@@ -66,8 +68,7 @@ const Profile = () => {
             */}
             <div className="row pt-2 pb-3">
               <div className="col-md-12 location-list">
-                
-                <VehilceLoop/>
+                <VehilceLoop />
               </div>
             </div>
             <div className="row">
@@ -80,7 +81,7 @@ const Profile = () => {
             </div>
             <div className="row">
               <div className="col-md-12 pt-2 pb-5 location-list">
-                <PlacesLoop/>
+                <PlacesLoop />
               </div>
             </div>
           </div>
