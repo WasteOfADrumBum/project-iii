@@ -21,12 +21,16 @@ const Vehicle = () => {
   const history = useHistory();
   const {user} = React.useContext(CurrentUserContext);
 
+
+  const [makeState, setMakeState] = React.useState([])
+  const [modelState, setModelState] = React.useState([])
+
   // Set State to ""
-  const chosenYear = []
+  // const chosenYear = []
   const chosenMake = []
-  const makesToDisplay = []
+  // const makesToDisplay = []
   const chosenModel = []
-  const modelsToDisplay = []
+  // const modelsToDisplay = []
   const chosenFuel = []
   const fuelToDisplay = []
   const chosenEngine = []
@@ -36,15 +40,32 @@ const Vehicle = () => {
   
 
   function handleYearSelect (event) {
+    const chosenYear = []
+    const makesToDisplay = []
+
+    // Matching the key in vehicle.json with the value of the target, that's set to be the same as the key we want to look up
     vehicles.map (vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
+        // If the vehicle year equals the value of the drop down we push it into the below array
         chosenYear.push(vehicle)
       }
     })
+
+    // Filtering out duplicate values
+    chosenYear.map (unique => {
+      // If the make of the vehicle is already in the below array it will not be added, which results in an array of unique values
+      if (makesToDisplay.indexOf(unique.make) < 0) {
+        makesToDisplay.push(unique.make)
+      }
+    })
+    setMakeState(...makeState, makesToDisplay)
   }
   function handleMakeSelect (event) {
-    chosenYear.map( vehicle => {
-      if (vehicle[event.target.name] == [event.target.value]) {
+    const chosenMake = []
+    const modelsToDisplay = []
+    console.log("makestate in model select", makeState)
+    makeState.map( vehicle => {
+      if (makeState[event.target.name] == [event.target.value]) {
         chosenMake.push(vehicle)
       }
     })
@@ -53,6 +74,8 @@ const Vehicle = () => {
         modelsToDisplay.push(unique.model)
       }
     })
+    console.log("and this is modelstodispla", modelsToDisplay)
+    setModelState(...modelState, modelsToDisplay)
   }
   function handleModelSelect (event) {
     chosenMake.map( vehicle => {
@@ -113,14 +136,14 @@ const Vehicle = () => {
             <div className="col-md-8 pt-5 pr-5 pl-5 text-center">
               <span>
                 <b>
-                  {user.firstName}, to tally up your annual transportation footprint. We will need
+                  {/* {user.firstName}, to tally up your annual transportation footprint. We will need
                   to consider your travel, including how far you travel in a
                   personal vehicle. For your vehicle usage, if you travel more
                   than 15,000 miles per year, it can make a huge difference in
                   your carbon footprint. To calculate your footprint accurately,
                   we'll need to know the make and model of your vehicle.
                   Depending on the type of vehicle, transmission, fuel type, and
-                  cylinders you own will alter your score.
+                  cylinders you own will alter your score. */}
                 </b>
               </span>
             </div>
@@ -159,9 +182,9 @@ const Vehicle = () => {
                       as="select"
                       placeholder="Chevrolet"
                     >
-                      {makesToDisplay.map((vehicle) => (
-                        <option key={vehicle.make}>{vehicle.make}</option>
-                      ))}
+                      {makeState.map((make) => {
+                        return (<option key={make}>{make}</option>)
+                      })}
                     </Form.Control>
                   </Form.Group>
 
@@ -173,9 +196,9 @@ const Vehicle = () => {
                       as="select"
                       placeholder="Corvette"
                     >
-                      {modelsToDisplay.map((vehicle) => (
-                        <option key={vehicle.model}>{vehicle.model}</option>
-                      ))}
+                      {modelState.map((model) => {
+                        return (<option key={model}>{model}</option>)
+                    })}
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
@@ -224,7 +247,7 @@ const Vehicle = () => {
                   </Form.Group>
                 </Form.Row>
                 {/* 
-                // TODO: Make "next" button relocate to /letsgo
+                // TODO: Make "next" buton relocate to /letsgo
                 // TODO: Make "Skip" button relocate to /profile
                 */}
                 <Button
