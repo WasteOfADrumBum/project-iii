@@ -13,17 +13,22 @@ import PlacesLoop from "../components/loops/PlacesLoop";
 import RandomQuote from "../components/quote/Quote";
 
 const Profile = () => {
-  const { refreshToken, firstName, lastName } = React.useContext(CurrentUserContext);
+  const { refreshToken, firstName, lastName, vehicles } = React.useContext(
+    CurrentUserContext
+  );
   const history = useHistory();
 
   // ! page continues to load before auth redirect throwing error
 
   // Check User Auth For Page
-  React.useEffect(()=>{
+  React.useEffect(() => {
+    console.log("Profile | useEffect")
     refreshToken();
-  },[refreshToken]);
+    console.log("Profile | after refreshToken")
+  }, [refreshToken]);
 
-  console.log(firstName, lastName + "'s Profile.");
+  console.log(firstName, lastName + "'s Vehicles: "+vehicles);
+
   return (
     <>
       <NavBar />

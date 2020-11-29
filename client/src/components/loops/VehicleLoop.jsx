@@ -5,6 +5,7 @@ const VehicleLoop = () => {
   const { vehicles } = React.useContext(CurrentUserContext);
   const [list, setList] = React.useState(vehicles);
 
+  // Handle Removal of Vehicle from user.vehiceles array by ID
   function handleRemove(_id) {
     if (_id) {
       console.log("Removing ", _id); // id being removed from array
@@ -22,10 +23,12 @@ const VehicleLoop = () => {
       //   console.log(error);
       // }
     }
+    // Make new list by filtering out removed item
     const newList = list.filter((item) => item._id !== _id);
     setList(newList);
   }
 
+  // Map Array to List
   const List = ({ list, onRemove }) => (
     <div style={{ maxHeight: "200px", overflowY: "auto" }}>
       {vehicles.map((item) => (
@@ -34,6 +37,7 @@ const VehicleLoop = () => {
     </div>
   );
 
+  // List item Format
   const Item = ({ item, onRemove }) => (
     <div>
       <button className="btn-warning mr-2 d-inline" disabled="disabled">

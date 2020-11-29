@@ -2,107 +2,108 @@ import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
+import Select from "react-select";
 import "../assets/styles/vehicle.scss";
 import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import Years from "../utils/year";
-import vehicles from "../utils/vehicle.json"
+import vehicles from "./vehicle-in-pages.json";
 import axios from "axios";
+import VehicleSelectionform from "../components/form/VehicleSelectionForm";
 
-// TODO: Caputre form data and store to project3_db's users.vehicles or from client/utils/vehice.json
-// ! ↑↑↑ Bug: throwing 401 error
-// ? Need to figure out how to grab all vehilce info with limited selected options
-// TODO: Form currently populating but only selecting options given not one option from given array
-// ? possibly need to .filter based on previous selection
-// ? Need to figure out how to select vehicle from array given input and post that to user.vehilce
-// ! Current problem is you can select a 1984 Ford Civic with 2 cylinder 10 speed transmission
-// ! ↑↑↑ current form does not match array for correct output
 const Vehicle = () => {
   const history = useHistory();
-  const {user} = React.useContext(CurrentUserContext);
-
+  const { user } = React.useContext(CurrentUserContext);
+  const emptyArr = [];
+  const [makeState, setMakeState] = React.useState([]);
   // Set State to ""
-  const chosenYear = []
-  const chosenMake = []
-  const makesToDisplay = []
-  const chosenModel = []
-  const modelsToDisplay = []
-  const chosenFuel = []
-  const fuelToDisplay = []
-  const chosenEngine = []
-  const engineToDisplay = []
-  const chosenVehicle = []
-  const transmissionToDisplay = []
-  
+  const chosenYear = [];
+  const chosenMake = [];
+  const makesToDisplay = [];
+  const chosenModel = [];
+  const modelsToDisplay = [];
+  const chosenFuel = [];
+  const fuelToDisplay = [];
+  const chosenEngine = [];
+  const engineToDisplay = [];
+  const chosenVehicle = [];
+  const transmissionToDisplay = [];
 
-  function handleYearSelect (event) {
-    vehicles.map (vehicle => {
+  function handleYearSelect(event) {
+    vehicles.map((vehicle) => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenYear.push(vehicle)
+        chosenYear.push(vehicle);
       }
-    })
+    });
+    chosenYear.map((unique) => {
+      if (makesToDisplay.indexOf(unique.make) < 0) {
+        makesToDisplay.push(unique.make);
+      }
+    });
+    makesToDisplay.map((make) => {
+      makeState.push(make);
+    });
   }
-  function handleMakeSelect (event) {
-    chosenYear.map( vehicle => {
+
+  const modifyState = makeState;
+  console.log("modifyState" + modifyState);
+
+  function handleMakeSelect(event) {
+    console.log("makestodisplay but on the makes element ", makesToDisplay);
+    chosenYear.map((vehicle) => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenMake.push(vehicle)
+        chosenMake.push(vehicle);
       }
-    })
-    chosenMake.map(unique => {
+    });
+    chosenMake.map((unique) => {
       if (modelsToDisplay.indexOf(unique.model) < 0) {
-        modelsToDisplay.push(unique.model)
+        modelsToDisplay.push(unique.model);
       }
-    })
+    });
   }
-  function handleModelSelect (event) {
-    chosenMake.map( vehicle => {
+  function handleModelSelect(event) {
+    chosenMake.map((vehicle) => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenModel.push(vehicle)
+        chosenModel.push(vehicle);
       }
-    })
-    chosenModel.map(unique => {
+    });
+    chosenModel.map((unique) => {
       if (fuelToDisplay.indexOf(unique.fueltype) < 0) {
-        fuelToDisplay.push(unique.fueltype)
+        fuelToDisplay.push(unique.fueltype);
       }
-    })
+    });
   }
-
-  function handleFuelSelect (event) {
-    chosenModel.map(vehicle => {
+  function handleFuelSelect(event) {
+    chosenModel.map((vehicle) => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenFuel.push(vehicle)
+        chosenFuel.push(vehicle);
       }
-    })
-    chosenFuel.map(unique => {
+    });
+    chosenFuel.map((unique) => {
       if (engineToDisplay.indexOf(unique.fueltype) < 0) {
-        engineToDisplay.push(unique.fueltype)
+        engineToDisplay.push(unique.fueltype);
       }
-    })
+    });
   }
-
-  function handleEngineSelect (event) {
-    chosenFuel.map(vehicle => {
+  function handleEngineSelect(event) {
+    chosenFuel.map((vehicle) => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenEngine.push(vehicle)
+        chosenEngine.push(vehicle);
       }
-    })
-    chosenEngine.map(unique => {
+    });
+    chosenEngine.map((unique) => {
       if (transmissionToDisplay.indexOf(unique.transmission) < 0) {
-        transmissionToDisplay.push(unique.transmission)
+        transmissionToDisplay.push(unique.transmission);
       }
-    })
+    });
   }
-
-  function handleTransmissionSelect (event) {
-    chosenEngine.map(vehicle => {
+  function handleTransmissionSelect(event) {
+    chosenEngine.map((vehicle) => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenVehicle.push(vehicle)
+        chosenVehicle.push(vehicle);
       }
-    })
+    });
   }
-
-
-
   return (
     <>
       <NavBar />
@@ -113,7 +114,7 @@ const Vehicle = () => {
             <div className="col-md-8 pt-5 pr-5 pl-5 text-center">
               <span>
                 <b>
-                  {user.firstName}, to tally up your annual transportation footprint. We will need
+                  {/* {user.firstName}, to tally up your annual transportation footprint. We will need */}
                   to consider your travel, including how far you travel in a
                   personal vehicle. For your vehicle usage, if you travel more
                   than 15,000 miles per year, it can make a huge difference in
@@ -145,12 +146,12 @@ const Vehicle = () => {
                       as="select"
                       placeholder="1984"
                     >
+                      {console.log("years", Years)}
                       {Years.map((year) => (
                         <option key={year}>{year}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridMake">
                     <Form.Label>Make</Form.Label>
                     <Form.Control
@@ -159,12 +160,14 @@ const Vehicle = () => {
                       as="select"
                       placeholder="Chevrolet"
                     >
-                      {makesToDisplay.map((vehicle) => (
-                        <option key={vehicle.make}>{vehicle.make}</option>
+                      {console.log("in the render! makeS", makeState)}
+                      {console.log("in the render! modS", modifyState)}
+
+                      {modifyState.map((make) => (
+                        <option key={make}>{make}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridModel">
                     <Form.Label>Model</Form.Label>
                     <Form.Control
@@ -179,9 +182,8 @@ const Vehicle = () => {
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
-
                 <Form.Row>
-                <Form.Group as={Col} controlId="formGridFuelType">
+                  <Form.Group as={Col} controlId="formGridFuelType">
                     <Form.Label>Fuel Type</Form.Label>
                     <Form.Control
                       name="fueltype"
@@ -190,11 +192,12 @@ const Vehicle = () => {
                       placeholder="gasoline"
                     >
                       {fuelToDisplay.map((vehicle) => (
-                        <option key={vehicle.fueltype}>{vehicle.fueltype}</option>
+                        <option key={vehicle.fueltype}>
+                          {vehicle.fueltype}
+                        </option>
                       ))}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridFirstEngine">
                     <Form.Label>Engine</Form.Label>
                     <Form.Control
@@ -204,11 +207,12 @@ const Vehicle = () => {
                       placeholder="8 cylinder"
                     >
                       {engineToDisplay.map((vehicle) => (
-                        <option key={vehicle.cylinders}>{vehicle.cylinders}</option>
+                        <option key={vehicle.cylinders}>
+                          {vehicle.cylinders}
+                        </option>
                       ))}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridTransmission">
                     <Form.Label>Transmission</Form.Label>
                     <Form.Control
@@ -218,7 +222,9 @@ const Vehicle = () => {
                       placeholder="Automatic"
                     >
                       {transmissionToDisplay.map((vehicle) => (
-                        <option key={vehicle.transmission}>{vehicle.transmission}</option>
+                        <option key={vehicle.transmission}>
+                          {vehicle.transmission}
+                        </option>
                       ))}
                     </Form.Control>
                   </Form.Group>
@@ -239,9 +245,9 @@ const Vehicle = () => {
           </div>
         </div>
       </div>
+      <VehicleSelectionform />
       <Footer />
     </>
   );
 };
-
 export default Vehicle;
