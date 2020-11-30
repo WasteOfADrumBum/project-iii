@@ -22,7 +22,9 @@ const LetsGo = () => {
     latFrom: "",
     lonFrom: "",
     latTo: "",
-    lonTo: ""
+    lonTo: "",
+    distance: '',
+    totalTimeTravel: ''
   });
 
   let addressInfoTo;
@@ -53,15 +55,45 @@ const LetsGo = () => {
     }
   };
 
+  const hanldeDistanceUpdate = (distance, time) => {
+    console.log('do the update!!', distance.text, time.value)
+    if (state.distance.length === 0) {
+      setState({...state, 
+        distance: distance.text,
+        totalTimeTravel: time.value})
+    }
+  
+  }
+
+
+  // We made this one const instead of two
   const handleButtonClick = async () => {
     if(addressInfoFrom && addressInfoTo) {
       console.log(addressInfoFrom, addressInfoTo)
+      setState({ ...state, 
+            latFrom: addressInfoFrom.lat,
+          lonFrom: addressInfoFrom.lon,
+          latTo: addressInfoTo.lat,
+          lonTo: addressInfoTo.lon
+          })
     };
-    handleChange();
+   // handleChange(addressInfoFrom, addressInfoTo);
   };
 
-  const handleChange = ({ target: { name, value } }) =>
-  setState({ ...state, [name]: value });
+  // Here is the issue
+//   function handleChange (from, to) {
+//   setState({ ...state, 
+//     latFrom: from.lat,
+//   lonFrom: from.lon,
+//   latTo: to.lat,
+//   lonTo: to.lon
+//   })
+
+  
+// console.log("current state", state)};
+
+console.log("current stat!!!!!!!!e", state)
+
 
   return (
     <>
@@ -136,10 +168,22 @@ const LetsGo = () => {
               <MapLoader
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiG1j9c6Y1v76qmSWne_tAc_5TRiDQlLg"
                 loadingElement={<div style={{ height: `100%` }} />}
+                fromLat={state.latFrom} 
+                fromLon={state.lonFrom} 
+                toLat={state.latTo} 
+                toLon= {state.lonTo} 
+                hanldeDistanceUpdate= {hanldeDistanceUpdate}
               />
             </div>
             <div className="col-md-6 mb-5">
-              <AccordionComp />
+              <AccordionComp 
+              fromLat={state.latFrom} 
+              fromLon={state.lonFrom} 
+              toLat={state.latTo} 
+              toLon= {state.lonTo} 
+              distance={state.distance}
+              time={state.totalTimeTravel}
+              />
             </div>
           </div>
         </div>

@@ -40,7 +40,10 @@ const AddressAutocomplete = ({
     setAddressValue(description);
     // Get latitude, longitude, and ZipCode
     getGeocode({ address: description })
-      .then((results) => getLatLng(results[0]))
+      .then((results) => {
+        console.log('reutls from geocode', results)
+       return getLatLng(results[0])
+      })
       .then(({ lat, lng }) => {
         console.log("Coordinates: ", { lat, lng });
         setCoordinates({
