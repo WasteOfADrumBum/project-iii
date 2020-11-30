@@ -8,8 +8,6 @@ import { Form, Col, Button } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { CurrentUserContext } from "../utils/UserContext";
 
-
-
 const LoginPage = () => {
   const history = useHistory();
   const {setUser} = React.useContext(CurrentUserContext);
@@ -30,7 +28,6 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/v1/users/login", state);
-      console.log("LOGIN | Response", response);
       setUser(response.data.data.user);
       localStorage.setItem("__token__", response.data.token);
       history.push("/profile");

@@ -2,26 +2,18 @@ import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
+import Select from "react-select";
 import "../assets/styles/vehicle.scss";
 import { CurrentUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import Years from "../utils/year";
-import vehicles from "../utils/vehicle.json"
+import vehicles from "./vehicle-in-pages.json";
 import axios from "axios";
+import VehicleSelectionform from "../components/form/VehicleSelectionForm";
 
-// TODO: Caputre form data and store to project3_db's users.vehicles or from client/utils/vehice.json
-// ! ↑↑↑ Bug: throwing 401 error
-// ? Need to figure out how to grab all vehilce info with limited selected options
-// TODO: Form currently populating but only selecting options given not one option from given array
-// ? possibly need to .filter based on previous selection
-// ? Need to figure out how to select vehicle from array given input and post that to user.vehilce
-// ! Current problem is you can select a 1984 Ford Civic with 2 cylinder 10 speed transmission
-// ! ↑↑↑ current form does not match array for correct output
 const Vehicle = () => {
   const history = useHistory();
   const {user} = React.useContext(CurrentUserContext);
-
-
   const [makeState, setMakeState] = React.useState([])
   const [modelState, setModelState] = React.useState([])
   const [fuelState, setFuelState] = React.useState([])
@@ -83,13 +75,14 @@ const Vehicle = () => {
 
     vehicles.map( vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenMake.push(vehicle)
+        chosenMake.push(vehicle);
       }
+
     })
     console.log("here is chosenmake", chosenMake)
     chosenMake.map(unique => {
       if (modelsToDisplay.indexOf(unique.model) < 0) {
-        modelsToDisplay.push(unique.model)
+        modelsToDisplay.push(unique.model);
       }
     })
     console.log("and this is modelstodispla", modelsToDisplay)
@@ -101,13 +94,13 @@ const Vehicle = () => {
 
     vehicles.map( vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenModel.push(vehicle)
+        chosenModel.push(vehicle);
       }
     })
     console.log("chosenModel", chosenModel)
     chosenModel.map(unique => {
       if (fuelToDisplay.indexOf(unique.fueltype) < 0) {
-        fuelToDisplay.push(unique.fueltype)
+        fuelToDisplay.push(unique.fueltype);
       }
     })
     setFuelState(...fuelState, fuelToDisplay)
@@ -119,7 +112,7 @@ const Vehicle = () => {
 
     vehicles.map(vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenFuel.push(vehicle)
+        chosenFuel.push(vehicle);
       }
     })
     chosenFuel.map(unique => {
@@ -138,12 +131,12 @@ const Vehicle = () => {
 
     vehicles.map(vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenEngine.push(vehicle)
+        chosenEngine.push(vehicle);
       }
-    })
-    chosenEngine.map(unique => {
+    });
+    chosenEngine.map((unique) => {
       if (transmissionToDisplay.indexOf(unique.transmission) < 0) {
-        transmissionToDisplay.push(unique.transmission)
+        transmissionToDisplay.push(unique.transmission);
       }
     })
     setTransmissionState(...transmissionState, transmissionToDisplay)
@@ -152,13 +145,10 @@ const Vehicle = () => {
   function handleTransmissionSelect (event) {
     vehicles.map(vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
-        chosenVehicle.push(vehicle)
+        chosenVehicle.push(vehicle);
       }
-    })
+    });
   }
-
-
-
   return (
     <>
       <NavBar />
@@ -169,14 +159,14 @@ const Vehicle = () => {
             <div className="col-md-8 pt-5 pr-5 pl-5 text-center">
               <span>
                 <b>
-                  {/* {user.firstName}, to tally up your annual transportation footprint. We will need
+                  {firstName}, to tally up your annual transportation footprint. We will need
                   to consider your travel, including how far you travel in a
                   personal vehicle. For your vehicle usage, if you travel more
                   than 15,000 miles per year, it can make a huge difference in
                   your carbon footprint. To calculate your footprint accurately,
                   we'll need to know the make and model of your vehicle.
                   Depending on the type of vehicle, transmission, fuel type, and
-                  cylinders you own will alter your score. */}
+                  cylinders you own will alter your score.
                 </b>
               </span>
             </div>
@@ -201,12 +191,12 @@ const Vehicle = () => {
                       as="select"
                       placeholder="1984"
                     >
+                      {console.log("years", Years)}
                       {Years.map((year) => (
                         <option key={year}>{year}</option>
                       ))}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridMake">
                     <Form.Label>Make</Form.Label>
                     <Form.Control
@@ -220,7 +210,6 @@ const Vehicle = () => {
                       })}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridModel">
                     <Form.Label>Model</Form.Label>
                     <Form.Control
@@ -235,9 +224,8 @@ const Vehicle = () => {
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
-
                 <Form.Row>
-                <Form.Group as={Col} controlId="formGridFuelType">
+                  <Form.Group as={Col} controlId="formGridFuelType">
                     <Form.Label>Fuel Type</Form.Label>
                     <Form.Control
                       name="fueltype"
@@ -250,7 +238,6 @@ const Vehicle = () => {
                       })}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridFirstEngine">
                     <Form.Label>Engine</Form.Label>
                     <Form.Control
@@ -264,7 +251,6 @@ const Vehicle = () => {
                       })}
                     </Form.Control>
                   </Form.Group>
-
                   <Form.Group as={Col} controlId="formGridTransmission">
                     <Form.Label>Transmission</Form.Label>
                     <Form.Control
@@ -276,6 +262,7 @@ const Vehicle = () => {
                       {transmissionState.map((transmission) => {
                         return (<option key={transmission}>{transmission}</option>)
                       })}
+
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
@@ -299,5 +286,4 @@ const Vehicle = () => {
     </>
   );
 };
-
 export default Vehicle;
