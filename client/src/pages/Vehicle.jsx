@@ -27,6 +27,14 @@ const Vehicle = () => {
   const [fuelState, setFuelState] = React.useState([])
   const [engineState, setEngineState] = React.useState([])
   const [transmissionState, setTransmissionState] = React.useState([])
+  const [chosenVehicleState, setChosenVehicleState] = React.useState({
+    year: "",
+    make: "",
+    model: "",
+    fueltype: "",
+    cylinders: "",
+    transmission: ""
+  })
 
 
   // Set State to ""
@@ -46,6 +54,11 @@ const Vehicle = () => {
   function handleYearSelect (event) {
     const chosenYear = []
     const makesToDisplay = []
+    const {name, value} = event.target
+    console.log("name", event.target.name)
+    console.log("value", event.target.value)
+    setChosenVehicleState({...chosenVehicleState, [name]: value})
+    console.log(chosenVehicleState)
 
     // Matching the key in vehicle.json with the value of the target, that's set to be the same as the key we want to look up
     vehicles.map (vehicle => {
