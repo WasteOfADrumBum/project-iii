@@ -7,7 +7,7 @@ import { checkUser } from "../utils/UserVerify";
 
 const LandingPage = () => {
   React.useEffect(() => {
-    checkUser();
+    // checkUser();
   }, []);
   
   return (

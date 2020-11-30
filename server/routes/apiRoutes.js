@@ -11,6 +11,7 @@ router.post("/signup", AuthController.signup);
 router.use(AuthController.protect);
 
 // GET Routes: FIND
+router.get("/jwt", AppController.findByJwt);
 router.get("/UserInfo", AppController.findUser);
 router.get("/VehicleInfo", AppController.findVehicle);
 

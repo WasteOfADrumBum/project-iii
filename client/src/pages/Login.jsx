@@ -1,20 +1,22 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
 import "../assets/styles/login.scss";
-import { checkUser } from "../utils/UserVerify";
+// import { useUser } from "../utils/UserVerify";
 import { Form, Col, Button } from "react-bootstrap";
 
 const LoginPage = () => {
-  React.useEffect(() => {
-    checkUser();
-  }, []);
+  const history = useHistory();
+  // const user = useUser();
+  // React.useEffect(() => {
+  //   checkUser();
+  // }, []);
 
-  if (localStorage.getItem("__token__")) {
-    window.location.href = "./profile";
-  }
+  // if (localStorage.getItem("__token__")) {
+  //   window.location.href = "./profile";
+  // }
 
   // Set email & password State to ""
   const [state, setState] = React.useState({
@@ -27,12 +29,14 @@ const LoginPage = () => {
     setState({ ...state, [name]: value });
 
   // Handle onClick auth route
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     try {
       const response = await axios.post("/api/v1/users/login", state);
       console.log("LOGIN | Response", response);
       localStorage.setItem("__token__", response.data.token);
-      window.location.href = "./profile";
+      // window.location.href = "./profile";
+      history.push("/profile");
     } catch (error) {
       console.log(error);
     }
@@ -52,7 +56,7 @@ const LoginPage = () => {
                 <h1>Account Login</h1>
               </div>
               <div className="col-md-12 mt-2 mb-2">
-                <Form>
+                <Form onSubmit={handleClick}>
                   <Form.Row>
                     <Form.Group as={Col} controlId="formGridEmail">
                       <Form.Control
@@ -81,7 +85,6 @@ const LoginPage = () => {
                     variant="success"
                     type="submit"
                     style={{ width: "100%" }}
-                    onClick={() => handleClick()}
                   >
                     Login
                   </Button>

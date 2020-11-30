@@ -13,7 +13,7 @@ import { withScriptjs } from "react-google-maps";
 
 const LetsGo = () => {
   React.useEffect(() => {
-    checkUser();
+    // checkUser();
   }, []);
 
   if (!localStorage.getItem("__token__")) {

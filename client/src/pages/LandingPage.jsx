@@ -9,7 +9,7 @@ import { checkUser } from "../utils/UserVerify";
 const LandingPage = () => {
   React.useEffect(() => {
     // ! ↓↓↓ Moved to function in Client Utils ↓↓↓
-    checkUser();
+    // checkUser();
   }, []);
 
   if (localStorage.getItem("__token__")) {

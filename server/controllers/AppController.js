@@ -24,6 +24,9 @@ module.exports = {
         });
     },
 
+    findByJwt: function(req, res){
+      res.json(req.user)
+    },
     // Vehicle Methods
     findVehicle: function (req, res) {
       console.log('WE hit find vehicle!!', Vehicle)

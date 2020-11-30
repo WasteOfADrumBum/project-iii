@@ -12,7 +12,7 @@ import { checkUser } from "../utils/UserVerify";
 
 const Register = () => {
   React.useEffect(() => {
-    checkUser();
+    // checkUser();
   }, []);
 
   if (localStorage.getItem("__token__")) {

@@ -10,7 +10,7 @@ import { checkUser } from "../utils/UserVerify";
 
 const Vehicle = () => {
   React.useEffect(() => {
-    checkUser();
+    // checkUser();
   }, []);
 
   if (!localStorage.getItem("__token__")) {
