@@ -5,12 +5,12 @@ import { CurrentUserContext } from "../../utils/UserContext";
 
 // (8.8 / (({ mpgcity } + { mpghwy }) / 2)) * { totalmiles } = CO2e
 
-const AccordionComp = () => {
+const AccordionComp = (props) => {
   const {vehicles} = React.useContext(CurrentUserContext);
   const totalMiles = 20;
   const userVehilceMpgCity = vehicles[0].mpgcity;
   const userVehilceMpgHwy = vehicles[0].mpghwy;
-
+  console.log("acordion props", props)
   function number_format (val, decimals){
     val = parseFloat(val);
     return val.toFixed(decimals);
@@ -41,13 +41,13 @@ const AccordionComp = () => {
                 <div className="col-md-8 text-left">
                   Your total commute time for this trip is:
                 </div>
-                <div className="col-md-4 text-right">##:##</div>
+                <div className="col-md-4 text-right">{props.time}</div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">
                   Your total distance for this trip is:
                 </div>
-                <div className="col-md-4 text-right">#.## Miles</div>
+                <div className="col-md-4 text-right">{props.distance}</div>
               </div>
             </Card.Body>
           </Accordion.Collapse>

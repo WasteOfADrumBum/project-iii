@@ -11,14 +11,14 @@ import {
 
 class Map extends Component {
   state = {
-    directions: null
+    directions: null,
   };
 
   componentDidMount() {
     const directionsService = new google.maps.DirectionsService();
-
-    const origin = { lat: 35.7686092, lng: -78.6369899 };
-    const destination = { lat: 35.7731053, lng: -78.6411849 };
+    console.log("props", this.props)
+    const origin = { lat: this.props.fromLat, lng: this.props.fromLon };
+    const destination = { lat: this.props.toLat, lng: this.props.toLon };
  
     directionsService.route(
       {
@@ -27,6 +27,11 @@ class Map extends Component {
         travelMode: google.maps.TravelMode.DRIVING
       },
       (result, status) => {
+        console.log("result", result)
+        console.log("status", status)
+
+        this.props.hanldeDistanceUpdate(result.routes[0].legs[0].distance, result.routes[0].legs[0].duration)
+
         if (status === google.maps.DirectionsStatus.OK) {
           this.setState({
             directions: result
