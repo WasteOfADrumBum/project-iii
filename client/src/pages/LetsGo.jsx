@@ -4,23 +4,92 @@ import Footer from "../components/footer/Footer";
 import AddressAutocomplete from "../components/address/AddressAutocomplete";
 import AccordionComp from "../components/accordion/Accordion";
 import "../assets/styles/letsgo.scss";
-import { checkUser } from "../utils/UserVerify";
 import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
+import { useUserContext } from "../utils/UserContext";
+// import { useHistory } from "react-router-dom";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
-// ! <AddressForm/> needs to be independent when called again
+// TODO: onClick() Let's Go! btn send address information to map and map to accordion
 
 const LetsGo = () => {
-  React.useEffect(() => {
-    // checkUser();
-  }, []);
-
-  if (!localStorage.getItem("__token__")) {
-    window.location.href = "./login";
-  }
-
+  const [user] = useUserContext();
   const MapLoader = withScriptjs(Map);
+  const [state, setState] = React.useState({
+    latFrom: "",
+    lonFrom: "",
+    latTo: "",
+    lonTo: "",
+    distance: "",
+    totalTimeTravel: "",
+  });
+
+  let addressInfoTo;
+  const getAddressDataTo = (addressData) => {
+    if (
+      addressData.lat &&
+      addressData.lon &&
+      addressData.zip &&
+      addressData.street &&
+      addressData.city &&
+      addressData.state
+    ) {
+      addressInfoTo = addressData;
+    }
+  };
+
+  let addressInfoFrom;
+  const getAddressDataFrom = (addressData) => {
+    if (
+      addressData.lat &&
+      addressData.lon &&
+      addressData.zip &&
+      addressData.street &&
+      addressData.city &&
+      addressData.state
+    ) {
+      addressInfoFrom = addressData;
+    }
+  };
+
+  const hanldeDistanceUpdate = (distance, time) => {
+    console.log("do the update!!", distance.text, time.value);
+    if (state.distance.length === 0) {
+      setState({
+        ...state,
+        distance: distance.text,
+        totalTimeTravel: time.value,
+      });
+    }
+  };
+
+  // We made this one const instead of two
+  const handleButtonClick = async () => {
+    if (addressInfoFrom && addressInfoTo) {
+      console.log(addressInfoFrom, addressInfoTo);
+      setState({
+        ...state,
+        latFrom: addressInfoFrom.lat,
+        lonFrom: addressInfoFrom.lon,
+        latTo: addressInfoTo.lat,
+        lonTo: addressInfoTo.lon,
+      });
+    }
+    // handleChange(addressInfoFrom, addressInfoTo);
+  };
+
+  // Here is the issue
+  //   function handleChange (from, to) {
+  //   setState({ ...state,
+  //     latFrom: from.lat,
+  //   lonFrom: from.lon,
+  //   latTo: to.lat,
+  //   lonTo: to.lon
+  //   })
+
+  // console.log("current state", state)};
+
+  console.log("current stat!!!!!!!!e", state);
 
   return (
     <>
@@ -29,7 +98,7 @@ const LetsGo = () => {
         <div className="letsgo-form-container">
           <div className="row text-center p-5">
             <div className="col-md-12">
-              <h1>Where are we going today?</h1>
+              <h1>Where are we going today {user.firstName}?</h1>
               <p>Select from one of your places, or enter a new address!</p>
             </div>
           </div>
@@ -51,7 +120,10 @@ const LetsGo = () => {
                   </select>
                 </div>
                 <div className="col-md-12 pt-3 address-content-container">
-                  <AddressAutocomplete />
+                  <AddressAutocomplete
+                    getAddressData={getAddressDataFrom}
+                    shouldRunGetAddressDataCallback={true}
+                  />
                 </div>
               </div>
             </div>
@@ -72,14 +144,20 @@ const LetsGo = () => {
                   </select>
                 </div>
                 <div className="col-md-12 pt-3 address-content-container">
-                  <AddressAutocomplete />
+                  <AddressAutocomplete
+                    getAddressData={getAddressDataTo}
+                    shouldRunGetAddressDataCallback={true}
+                  />
                 </div>
               </div>
             </div>
           </div>
           <div className="row text-center">
             <div className="col-md-12">
-              <button className="btn-success mt-5 pt-2 pb-2 pr-4 pl-4">
+              <button
+                className="btn-success mt-2 mb-5 pt-2 pb-2 pr-4 pl-4"
+                onClick={handleButtonClick}
+              >
                 Let's Go!
               </button>
             </div>
@@ -89,10 +167,22 @@ const LetsGo = () => {
               <MapLoader
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiG1j9c6Y1v76qmSWne_tAc_5TRiDQlLg"
                 loadingElement={<div style={{ height: `100%` }} />}
+                fromLat={state.latFrom}
+                fromLon={state.lonFrom}
+                toLat={state.latTo}
+                toLon={state.lonTo}
+                hanldeDistanceUpdate={hanldeDistanceUpdate}
               />
             </div>
             <div className="col-md-6 mb-5">
-              <AccordionComp />
+              <AccordionComp
+                fromLat={state.latFrom}
+                fromLon={state.lonFrom}
+                toLat={state.latTo}
+                toLon={state.lonTo}
+                distance={state.distance}
+                time={state.totalTimeTravel}
+              />
             </div>
           </div>
         </div>

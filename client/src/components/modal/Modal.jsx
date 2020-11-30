@@ -3,8 +3,10 @@ import AddressAutocomplete from "../address/AddressAutocomplete";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import "../../assets/styles/modal.scss";
+import { CurrentUserContext } from "../../utils/UserContext";
 
 const AddressModal = () => {
+  const { _id } = React.useContext(CurrentUserContext);
   //front end code to grab address split address
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -13,6 +15,7 @@ const AddressModal = () => {
   let addressInfo;
   const getAddressData = (addressData) => {
     if (
+      addressData.name &&
       addressData.lat &&
       addressData.lon &&
       addressData.zip &&
@@ -28,10 +31,14 @@ const AddressModal = () => {
     if (addressInfo) {
       console.log(addressInfo); //console logs the addressInfo object which contains the data to be sent to the database
       try {
-        let userId = ""; //TODO - REPLACE "" WITH STATE/VARIABLE THAT WILL CARRY USERID AFTER PROFILE IS LOADED
+        const token = localStorage.getItem("__token__");
+        let userId = _id; //TODO - REPLACE "" WITH STATE/VARIABLE THAT WILL CARRY USERID AFTER PROFILE IS LOADED
         const response = await axios.patch(
           `/api/v1/users/updatePlaces/${userId}`,
-          addressInfo
+          addressInfo,
+          {
+            headers: { Authorization: "Bearer " + token },
+          }
         );
         console.log(response);
       } catch (error) {
@@ -53,6 +60,13 @@ const AddressModal = () => {
           <Modal.Title>Enter A New Address</Modal.Title>
         </Modal.Header>
         <Modal.Body>
+          <input
+            className="mb-2"
+            name="name"
+            type="text"
+            placeholder="Location Name"
+            required
+          />
           <AddressAutocomplete
             getAddressData={getAddressData}
             shouldRunGetAddressDataCallback={true}

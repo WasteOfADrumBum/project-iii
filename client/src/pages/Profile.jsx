@@ -4,24 +4,19 @@ import Footer from "../components/footer/Footer";
 import ColumnChart from "../components/charts/ColumnChart";
 import DoughnutChart from "../components/charts/DoughnutChart";
 import AddressModal from "../components/modal/Modal";
-// import { userDataMount } from "../utils/UserDataMount";
 import { Button } from "react-bootstrap";
 import "../assets/styles/profile.scss";
-import { useUser } from "../utils/UserVerify";
+import { useUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
+import VehilceLoop from "../components/loops/VehicleLoop";
+import PlacesLoop from "../components/loops/PlacesLoop";
+import RandomQuote from "../components/quote/Quote";
 
 const Profile = () => {
+  const [user] = useUserContext();
+  console.log(user)
+  console.log("User ID: ", user._id)
   const history = useHistory();
-  const user = useUser();
-
-  // React.useEffect(() => {
-  // checkUser();
-  //   userDataMount();
-  // }, []);
-
-  // if (!localStorage.getItem("__token__")) {
-  //   window.location.href = "./login";
-  // }
 
   return (
     <>
@@ -30,10 +25,10 @@ const Profile = () => {
         <div className="row profile-content-container">
           <div className="col-md-3 text-center p-4 m-auto">
             <img
+              className="img-fluid"
               src="../assets/images/placeholder-profile-sq.jpg"
               alt="Profile"
               style={{
-                width: "15rem",
                 borderRadius: "100px",
                 border: ".5rem solid  rgba(255, 255, 255, .5)",
               }}
@@ -44,7 +39,9 @@ const Profile = () => {
               {user.firstName} {user.lastName}'s Profile
             </h1>
             <div className="row">
-              <div className="col-md-12">Profile Info</div>
+              <div className="col-md-12">
+                <RandomQuote />
+              </div>
             </div>
             <div className="row">
               <div className="col-md-12">
@@ -62,11 +59,7 @@ const Profile = () => {
             </div>
             <div className="row pt-2 pb-3">
               <div className="col-md-12 location-list">
-                <button className="btn-warning mr-2 d-inline">Δ</button>
-                <button className="btn-danger mr-2 d-inline">X</button>
-                <p className="mr-2 d-inline">
-                  <b>vehicle.year vehicle.make vehicle.model </b>
-                </p>
+                <VehilceLoop />
               </div>
             </div>
             <div className="row">
@@ -79,14 +72,7 @@ const Profile = () => {
             </div>
             <div className="row">
               <div className="col-md-12 pt-2 pb-5 location-list">
-                <button className="btn-warning mr-2 d-inline">Δ</button>
-                <button className="btn-danger mr-2 d-inline">X</button>
-                <p className="mr-2 d-inline">
-                  <b>places.name</b>
-                </p>
-                <p className="d-inline">
-                  places.street places.city places.state places.zip
-                </p>
+                <PlacesLoop />
               </div>
             </div>
           </div>

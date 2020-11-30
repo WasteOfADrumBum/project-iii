@@ -5,17 +5,21 @@ import {
   GoogleMap,
   DirectionsRenderer
 } from "react-google-maps";
+
+// TODO: Replace origion and destination with lat and lgn from Adderess Auto Complete values
+// TODO: Replace travelMode: google.maps.TravelMode.DRIVING with mode of transportation from Accordion
+
 class Map extends Component {
   state = {
-    directions: null
+    directions: null,
   };
 
   componentDidMount() {
     const directionsService = new google.maps.DirectionsService();
-
-    const origin = { lat: 40.756795, lng: -73.954298 };
-    const destination = { lat: 41.756795, lng: -78.954298 };
-
+    console.log("props", this.props)
+    const origin = { lat: this.props.fromLat, lng: this.props.fromLon };
+    const destination = { lat: this.props.toLat, lng: this.props.toLon };
+ 
     directionsService.route(
       {
         origin: origin,
@@ -23,6 +27,11 @@ class Map extends Component {
         travelMode: google.maps.TravelMode.DRIVING
       },
       (result, status) => {
+        console.log("result", result)
+        console.log("status", status)
+
+        this.props.hanldeDistanceUpdate(result.routes[0].legs[0].distance, result.routes[0].legs[0].duration)
+
         if (status === google.maps.DirectionsStatus.OK) {
           this.setState({
             directions: result
