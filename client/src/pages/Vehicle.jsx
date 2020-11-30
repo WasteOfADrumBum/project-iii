@@ -24,19 +24,23 @@ const Vehicle = () => {
 
   const [makeState, setMakeState] = React.useState([])
   const [modelState, setModelState] = React.useState([])
+  const [fuelState, setFuelState] = React.useState([])
+  const [engineState, setEngineState] = React.useState([])
+  const [transmissionState, setTransmissionState] = React.useState([])
+
 
   // Set State to ""
   // const chosenYear = []
-  const chosenMake = []
+  // const chosenMake = []
   // const makesToDisplay = []
-  const chosenModel = []
+  // const chosenModel = []
   // const modelsToDisplay = []
-  const chosenFuel = []
-  const fuelToDisplay = []
-  const chosenEngine = []
-  const engineToDisplay = []
+  // const chosenFuel = []
+  // const fuelToDisplay = []
+  // const chosenEngine = []
+  // const engineToDisplay = []
   const chosenVehicle = []
-  const transmissionToDisplay = []
+  // const transmissionToDisplay = []
   
 
   function handleYearSelect (event) {
@@ -63,12 +67,13 @@ const Vehicle = () => {
   function handleMakeSelect (event) {
     const chosenMake = []
     const modelsToDisplay = []
-    console.log("makestate in model select", makeState)
-    makeState.map( vehicle => {
-      if (makeState[event.target.name] == [event.target.value]) {
+
+    vehicles.map( vehicle => {
+      if (vehicle[event.target.name] == [event.target.value]) {
         chosenMake.push(vehicle)
       }
     })
+    console.log("here is chosenmake", chosenMake)
     chosenMake.map(unique => {
       if (modelsToDisplay.indexOf(unique.model) < 0) {
         modelsToDisplay.push(unique.model)
@@ -78,33 +83,47 @@ const Vehicle = () => {
     setModelState(...modelState, modelsToDisplay)
   }
   function handleModelSelect (event) {
-    chosenMake.map( vehicle => {
+    const chosenModel = []
+    const fuelToDisplay = []
+
+    vehicles.map( vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
         chosenModel.push(vehicle)
       }
     })
+    console.log("chosenModel", chosenModel)
     chosenModel.map(unique => {
       if (fuelToDisplay.indexOf(unique.fueltype) < 0) {
         fuelToDisplay.push(unique.fueltype)
       }
     })
+    setFuelState(...fuelState, fuelToDisplay)
   }
 
   function handleFuelSelect (event) {
-    chosenModel.map(vehicle => {
+    const chosenFuel = []
+    const engineToDisplay = []
+
+    vehicles.map(vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
         chosenFuel.push(vehicle)
       }
     })
     chosenFuel.map(unique => {
-      if (engineToDisplay.indexOf(unique.fueltype) < 0) {
-        engineToDisplay.push(unique.fueltype)
+      if (engineToDisplay.indexOf(unique.cylinders) < 0) {
+        engineToDisplay.push(unique.cylinders)
       }
     })
+    console.log("enginetodisplay", engineToDisplay)
+    setEngineState(...engineState, engineToDisplay)
+    console.log("enginestate", engineState)
   }
 
   function handleEngineSelect (event) {
-    chosenFuel.map(vehicle => {
+    const chosenEngine = []
+    const transmissionToDisplay = []
+
+    vehicles.map(vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
         chosenEngine.push(vehicle)
       }
@@ -114,10 +133,11 @@ const Vehicle = () => {
         transmissionToDisplay.push(unique.transmission)
       }
     })
+    setTransmissionState(...transmissionState, transmissionToDisplay)
   }
 
   function handleTransmissionSelect (event) {
-    chosenEngine.map(vehicle => {
+    vehicles.map(vehicle => {
       if (vehicle[event.target.name] == [event.target.value]) {
         chosenVehicle.push(vehicle)
       }
@@ -212,9 +232,9 @@ const Vehicle = () => {
                       as="select"
                       placeholder="gasoline"
                     >
-                      {fuelToDisplay.map((vehicle) => (
-                        <option key={vehicle.fueltype}>{vehicle.fueltype}</option>
-                      ))}
+                      {fuelState.map((fuelType) => {
+                        return (<option key={fuelType}>{fuelType}</option>)
+                      })}
                     </Form.Control>
                   </Form.Group>
 
@@ -226,9 +246,9 @@ const Vehicle = () => {
                       as="select"
                       placeholder="8 cylinder"
                     >
-                      {engineToDisplay.map((vehicle) => (
-                        <option key={vehicle.cylinders}>{vehicle.cylinders}</option>
-                      ))}
+                      {engineState.map((engine) => {
+                        return (<option key={engine}>{engine}</option>)
+                      })}
                     </Form.Control>
                   </Form.Group>
 
@@ -240,9 +260,9 @@ const Vehicle = () => {
                       as="select"
                       placeholder="Automatic"
                     >
-                      {transmissionToDisplay.map((vehicle) => (
-                        <option key={vehicle.transmission}>{vehicle.transmission}</option>
-                      ))}
+                      {transmissionState.map((transmission) => {
+                        return (<option key={transmission}>{transmission}</option>)
+                      })}
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
