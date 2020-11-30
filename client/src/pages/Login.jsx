@@ -4,19 +4,12 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import axios from "axios";
 import "../assets/styles/login.scss";
-// import { useUser } from "../utils/UserVerify";
 import { Form, Col, Button } from "react-bootstrap";
+import { useUserContext } from "../utils/UserContext";
 
 const LoginPage = () => {
   const history = useHistory();
-  // const user = useUser();
-  // React.useEffect(() => {
-  //   checkUser();
-  // }, []);
-
-  // if (localStorage.getItem("__token__")) {
-  //   window.location.href = "./profile";
-  // }
+  const [user, triggerUserContext] = useUserContext();
 
   // Set email & password State to ""
   const [state, setState] = React.useState({
@@ -33,9 +26,9 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/v1/users/login", state);
-      console.log("LOGIN | Response", response);
+      // setUser(response.data.data.user);
       localStorage.setItem("__token__", response.data.token);
-      // window.location.href = "./profile";
+      triggerUserContext();
       history.push("/profile");
     } catch (error) {
       console.log(error);
@@ -85,6 +78,7 @@ const LoginPage = () => {
                     variant="success"
                     type="submit"
                     style={{ width: "100%" }}
+                    onClick={handleClick}
                   >
                     Login
                   </Button>

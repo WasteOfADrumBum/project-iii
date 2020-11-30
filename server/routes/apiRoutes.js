@@ -14,6 +14,7 @@ router.use(AuthController.protect);
 router.get("/jwt", AppController.findByJwt);
 router.get("/UserInfo", AppController.findUser);
 router.get("/VehicleInfo", AppController.findVehicle);
+router.get("/jwt", AppController.findByJwt);
 
 // POST Routes: CREATE
 router.post("/UserInfo", AppController.createUser);
@@ -32,6 +33,10 @@ router
   .get(UserController.getUser)
   .patch(UserController.updateUser)
   .delete(UserController.deleteUser);
+
+router
+  .route("/updatePlaces/:id")
+  .patch(UserController.updatePlaces)
 
 // Export router
 module.exports = router;

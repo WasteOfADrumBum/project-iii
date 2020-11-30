@@ -4,18 +4,8 @@ import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import Button from "react-bootstrap/Button";
 import "../assets/styles/landingpage.scss";
-import { checkUser } from "../utils/UserVerify";
 
 const LandingPage = () => {
-  React.useEffect(() => {
-    // ! ↓↓↓ Moved to function in Client Utils ↓↓↓
-    // checkUser();
-  }, []);
-
-  if (localStorage.getItem("__token__")) {
-    window.location.href = "./profile";
-  }
-
   return (
     <>
       <NavBar />

@@ -12,7 +12,7 @@ const data = [
     image: "assets/images/joshua-avatar.png",
     alt: "Joshua",
     caption: "Joshua M. Small",
-    description: "Front End Developer",
+    description: "Full Stack Developer",
     github: "https://github.com/WasteOfADrumBum",
     linkedin: "https://www.linkedin.com/in/joshuamsmall",
   },

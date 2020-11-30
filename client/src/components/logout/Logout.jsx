@@ -1,4 +1,6 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 // TODO: Remove LogoutLink from NavBar after removing token
 
@@ -31,9 +33,9 @@ const LogoutLink = () => {
   // After handleClick logs user out, user is navigated back to homepage
   return (
     <>
-      <a href="/" className="nav-link" onClick={handleClick}>
+      <Link to="/" className="nav-link" onClick={handleClick}>
         Logout
-      </a>
+      </Link>
     </>
   );
 };

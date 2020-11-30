@@ -6,6 +6,7 @@ import usePlacesAutocomplete, {
 } from "use-places-autocomplete";
 import useOnclickOutside from "react-cool-onclickoutside";
 import "../../assets/styles/addressautocomplete.scss";
+
 const AddressAutocomplete = ({
   getAddressData,
   shouldRunGetAddressDataCallback,
@@ -39,7 +40,10 @@ const AddressAutocomplete = ({
     setAddressValue(description);
     // Get latitude, longitude, and ZipCode
     getGeocode({ address: description })
-      .then((results) => getLatLng(results[0]))
+      .then((results) => {
+        console.log('reutls from geocode', results)
+       return getLatLng(results[0])
+      })
       .then(({ lat, lng }) => {
         console.log("Coordinates: ", { lat, lng });
         setCoordinates({
@@ -65,7 +69,7 @@ const AddressAutocomplete = ({
   if (shouldRunGetAddressDataCallback) {
     let splittedAddress = addressValue.split(", ");
     getAddressData({
-      name: "Home",
+      name: "Placeholder",
       lat: coordinates.lat,
       lon: coordinates.lng,
       zip: zipCode,

@@ -5,12 +5,10 @@ import App from "./App";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 import "bootstrap/dist/css/bootstrap.css";
-import "./assets/styles/index.scss"
+import "./assets/styles/index.scss";
 
 ReactDOM.render(
-  <React.Fragment>
-    <App />
-  </React.Fragment>,
+    <App />,
   document.getElementById("root")
 );
 

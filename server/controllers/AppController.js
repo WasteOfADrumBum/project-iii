@@ -24,22 +24,12 @@ module.exports = {
         });
     },
 
-    findByJwt: function(req, res){
-      res.json(req.user)
+    findByJwt : function (req, res) {
+      res.json(req.user);
     },
-    // Vehicle Methods
+
     findVehicle: function (req, res) {
       console.log('WE hit find vehicle!!', Vehicle)
-      //res.send('ttesttt')
-
-              // where: {
-        //   make: req.params.make,
-        //   model: req.params.model,
-        //   year: req.params.year,
-        //   engine: req.params.engine,
-        //   transmission: req.params.transmission,
-        // },
-      
       Vehicle.find({}).limit(100).then((foundVehicle) => {
         console.log('we found these thigns fro DB', foundVehicle)
           res.json(foundVehicle);
