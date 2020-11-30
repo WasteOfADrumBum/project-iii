@@ -7,26 +7,24 @@ import Vehicle from "./pages/Vehicle";
 import Register from "./pages/Register";
 import LetsGo from "./pages/LetsGo";
 import Profile from "./pages/Profile";
-import { CurrentUserProvider } from "./utils/UserContext";
+import { CurrentUserProvider, useUserContext } from "./utils/UserContext";
 
-class App extends React.Component {
-  render() {
-    return (
-      <Router basename={process.env.PUBLIC_URL + "/"}>
-        <CurrentUserProvider>
-          <Switch>
-            <Route exact path="/" component={LandingPage} />
-            <Route exact path="/login" component={Login} />
-            <Route exact path="/register" component={Register} />
-            <Route exact path="/vehicle" component={Vehicle} />
-            <Route exact path="/letsgo" component={LetsGo} />
-            <Route exact path="/profile" component={Profile} />
-            <Route exact path="/contact" component={Contact} />
-          </Switch>
-        </CurrentUserProvider>
-      </Router>
-    );
-  }
+
+const ProtectedRoute = ({ component: Component, ...rest }) => {
+  const [user] = useUserContext();
+  return <Route {...rest} component={user.firstName ? Component : Login} />
 }
 
-export default App;
+export default () => <Router basename={process.env.PUBLIC_URL + "/"}>
+  <CurrentUserProvider>
+    <Switch>
+      <Route exact path="/" component={LandingPage} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/register" component={Register} />
+      <Route exact path="/vehicle" component={Vehicle} />
+      <Route exact path="/letsgo" component={LetsGo} />
+      <ProtectedRoute exact path="/profile" component={Profile} />
+      <Route exact path="/contact" component={Contact} />
+    </Switch>
+  </CurrentUserProvider>
+</Router>

@@ -61,7 +61,6 @@ let userSeed = [
     passwordConfirm: "password1!",
     role: "user",
     active: true,
-    // vehicles: vehicles.id
     vehicles: {
       make: "Audi",
       model: "Quattro",
