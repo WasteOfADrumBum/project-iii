@@ -14,8 +14,7 @@ import RandomQuote from "../components/quote/Quote";
 
 const Profile = () => {
   const [user] = useUserContext();
-  console.log(user)
-  console.log("User ID: ", user._id)
+  console.log(user.firstName, "'s User ID: ", user._id)
   const history = useHistory();
 
   return (

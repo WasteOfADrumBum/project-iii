@@ -7,7 +7,8 @@ import { useUserContext } from "../../utils/UserContext";
 
 const AccordionComp = (props) => {
   const [user] = useUserContext();
-  const totalMiles = 20;
+  const totalMiles = parseInt(props.distance);
+  console.log(props.distance)
   const userVehilceMpgCity = user.vehicles[0].mpgcity;
   const userVehilceMpgHwy = user.vehicles[0].mpghwy;
   console.log("acordion props", props);
