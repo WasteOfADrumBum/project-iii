@@ -27,6 +27,19 @@ const Vehicle = () => {
     cylinders: "",
     transmission: ""
   })
+  const [paramState, setParamState] = React.useState ({
+   make: "",
+   model: "",
+   year: null,
+   type: "",
+   drive: "",
+   transmission: "",
+   cylinders: "",
+   displacement: "",
+   fueltype: "",
+   mpgcity: null,
+   mpghwy: null
+  })
 
 
   // Set State to ""
@@ -176,7 +189,23 @@ const Vehicle = () => {
   function handleClick (event) {
     event.preventDefault()
     console.log("here's what we chose", chosenVehicleState)
+    vehicles.map((vehicle) => {
+      if (vehicle.year === chosenVehicleState.year &&
+        vehicle.make === chosenVehicleState.make &&
+        vehicle.model === chosenVehicleState.model &&
+        vehicle.fueltype === chosenVehicleState.fueltype &&
+        vehicle.cylinders === chosenVehicleState.cylinders &&
+        vehicle.transmission === chosenVehicleState.transmission) {
+          setParamState(vehicle)
+          console.log("match!!!!")
+          console.log(vehicle)
+
+          // Here, vehicle is what we will use in the put request as data.  
+          // We need to think about duplicate values, for future development if we won't have time.  I was able to narrow down all of our fields and still find two results.
+        }
+    })
   }
+    
   return (
     <>
       <NavBar />
@@ -306,7 +335,7 @@ const Vehicle = () => {
                 <Button
                   variant="primary"
                   type="submit"
-                  onClick={() => handleClick()}
+                  onClick={handleClick}
                 >
                   Next
                 </Button>
