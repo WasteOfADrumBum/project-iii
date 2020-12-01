@@ -4,7 +4,7 @@ import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
 import Select from "react-select";
 import "../assets/styles/vehicle.scss";
-import { CurrentUserContext } from "../utils/UserContext";
+import { useUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import Years from "../utils/year";
 import vehicles from "./vehicle-in-pages.json";
@@ -13,7 +13,7 @@ import VehicleSelectionform from "../components/form/VehicleSelectionForm";
 
 const Vehicle = () => {
   const history = useHistory();
-  const {user} = React.useContext(CurrentUserContext);
+  const [user] = useUserContext();
   const [makeState, setMakeState] = React.useState([])
   const [modelState, setModelState] = React.useState([])
   const [fuelState, setFuelState] = React.useState([])
@@ -159,7 +159,7 @@ const Vehicle = () => {
             <div className="col-md-8 pt-5 pr-5 pl-5 text-center">
               <span>
                 <b>
-                  {firstName}, to tally up your annual transportation footprint. We will need
+                  {user.firstName}, to tally up your annual transportation footprint. We will need
                   to consider your travel, including how far you travel in a
                   personal vehicle. For your vehicle usage, if you travel more
                   than 15,000 miles per year, it can make a huge difference in

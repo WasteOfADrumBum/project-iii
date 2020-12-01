@@ -4,9 +4,6 @@ import axios from "axios";
 
 const PlacesLoop = () => {
   const [{ places }, triggerUserReload] = useUserContext();
-  // const { places } = React.useContext(CurrentUserContext);
-  // const [list, setList] = React.useState(places);
-
   // Handle Removal of Places from user.places array by ID
   const onRemove = async (id) => {
     if (!id) return;
