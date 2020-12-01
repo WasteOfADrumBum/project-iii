@@ -6,7 +6,7 @@ class ColumnChart extends Component {
   render() {
     const options = {
       title: {
-        text: "Potential vs Acutal",
+        text: "US Avg. vs Acutal (kg CO2e)",
       },
       animationEnabled: true,
       data: [
@@ -15,14 +15,14 @@ class ColumnChart extends Component {
           type: "column",
           dataPoints: [
             // TODO: Replace y cordinate with user data
-            { label: "Potential /Day", y: 10, color: "YellowGreen"},
-            { label: "Actual /Day", y: 8 , color: "OliveDrab"},
-            { label: "Potential /Week", y: 15 , color: "YellowGreen"},
-            { label: "Actual /Week", y: 12 , color: "OliveDrab"},
-            { label: "Potential /Month", y: 25 , color: "YellowGreen"},
-            { label: "Actual /Month", y: 20 , color: "OliveDrab"},
-            { label: "Potential /Year", y: 30 , color: "YellowGreen"},
-            { label: "Actual /Year", y: 18 , color: "OliveDrab"},
+            { label: "Actual /Day", y: 1, color: "OliveDrab"},
+            { label: "US Avg. /Day", y: 318.15, color: "YellowGreen"},
+            { label: "Actual /Week", y: 1, color: "OliveDrab"},
+            { label: "US Avg. /Week", y: 318.15 , color: "YellowGreen"},
+            { label: "Actual /Month", y: 1, color: "OliveDrab"},
+            { label: "US Avg. /Month", y: 1383.33, color: "YellowGreen"},
+            { label: "Actual /Year", y: 1, color: "OliveDrab"},
+            { label: "US Avg. /Year", y: 16600, color: "YellowGreen"},
           ],
         },
       ],

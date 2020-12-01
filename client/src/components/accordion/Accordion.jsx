@@ -37,7 +37,7 @@ const AccordionComp = (props) => {
                         totalMiles,
                       2
                     )}
-                    kg CO2e
+                    &nbsp;kg CO2e
                   </span>
                 </div>
               </div>
@@ -82,7 +82,7 @@ const AccordionComp = (props) => {
                 {/* Grey Hound Bus: 9mpg avg 55 seat compacity */}
                 <div className="col-md-4 text-right">
                   {number_format(((8.8 / (9 / 2)) * totalMiles) / 55, 2)}
-                  kg CO2e
+                  &nbsp;kg CO2e
                 </div>
               </div>
               <div className="row">
@@ -122,6 +122,7 @@ const AccordionComp = (props) => {
                 {/* 0.0195 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
                 <div className="col-md-4 text-right">
                   {number_format(0.0195 * totalMiles, 2)}
+                  &nbsp;kg CO2e
                 </div>
               </div>
               <div className="row">
@@ -161,6 +162,7 @@ const AccordionComp = (props) => {
                 {/* 0.0085 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
                 <div className="col-md-4 text-right">
                   {number_format(0.0085 * totalMiles, 2)}
+                  &nbsp;kg CO2e
                 </div>
               </div>
               <div className="row">
