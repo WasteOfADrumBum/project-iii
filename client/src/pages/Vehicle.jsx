@@ -27,6 +27,19 @@ const Vehicle = () => {
     cylinders: "",
     transmission: ""
   })
+  const [paramState, setParamState] = React.useState ({
+   make: "",
+   model: "",
+   year: null,
+   type: "",
+   drive: "",
+   transmission: "",
+   cylinders: "",
+   displacement: "",
+   fueltype: "",
+   mpgcity: null,
+   mpghwy: null
+  })
 
 
   // Set State to ""
@@ -49,7 +62,7 @@ const Vehicle = () => {
     const {name, value} = event.target
     console.log("name", event.target.name)
     console.log("value", event.target.value)
-    setChosenVehicleState({...chosenVehicleState, [name]: value})
+    setChosenVehicleState({...chosenVehicleState, [name]: parseInt(value)})
     console.log(chosenVehicleState)
 
     // Matching the key in vehicle.json with the value of the target, that's set to be the same as the key we want to look up
@@ -69,15 +82,17 @@ const Vehicle = () => {
     })
     setMakeState(...makeState, makesToDisplay)
   }
+
+
   function handleMakeSelect (event) {
     const chosenMake = []
     const modelsToDisplay = []
-
+    const {name, value} = event.target
     vehicles.map( vehicle => {
-      if (vehicle[event.target.name] == [event.target.value]) {
+      if (vehicle[event.target.name] == [event.target.value]  && 
+        vehicle.year == chosenVehicleState.year) {
         chosenMake.push(vehicle);
       }
-
     })
     console.log("here is chosenmake", chosenMake)
     chosenMake.map(unique => {
@@ -87,31 +102,39 @@ const Vehicle = () => {
     })
     console.log("and this is modelstodispla", modelsToDisplay)
     setModelState(...modelState, modelsToDisplay)
+    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
   }
+
+
   function handleModelSelect (event) {
     const chosenModel = []
     const fuelToDisplay = []
-
+    const {name, value} = event.target
     vehicles.map( vehicle => {
-      if (vehicle[event.target.name] == [event.target.value]) {
+      if (vehicle[event.target.name] == [event.target.value] && 
+        vehicle.year == chosenVehicleState.year && 
+        vehicle.make == chosenVehicleState.make) {
         chosenModel.push(vehicle);
       }
     })
-    console.log("chosenModel", chosenModel)
     chosenModel.map(unique => {
       if (fuelToDisplay.indexOf(unique.fueltype) < 0) {
         fuelToDisplay.push(unique.fueltype);
       }
     })
     setFuelState(...fuelState, fuelToDisplay)
+    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
   }
 
   function handleFuelSelect (event) {
     const chosenFuel = []
     const engineToDisplay = []
-
+    const {name, value} = event.target
     vehicles.map(vehicle => {
-      if (vehicle[event.target.name] == [event.target.value]) {
+      if (vehicle[event.target.name] == [event.target.value] && 
+        vehicle.year == chosenVehicleState.year && 
+        vehicle.make == chosenVehicleState.make &&
+        vehicle.model == chosenVehicleState.model) {
         chosenFuel.push(vehicle);
       }
     })
@@ -120,17 +143,20 @@ const Vehicle = () => {
         engineToDisplay.push(unique.cylinders)
       }
     })
-    console.log("enginetodisplay", engineToDisplay)
     setEngineState(...engineState, engineToDisplay)
-    console.log("enginestate", engineState)
+    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
   }
 
   function handleEngineSelect (event) {
     const chosenEngine = []
     const transmissionToDisplay = []
-
+    const {name, value} = event.target
     vehicles.map(vehicle => {
-      if (vehicle[event.target.name] == [event.target.value]) {
+      if (vehicle[event.target.name] == [event.target.value] && 
+        vehicle.year == chosenVehicleState.year && 
+        vehicle.make == chosenVehicleState.make &&
+        vehicle.model == chosenVehicleState.model &&
+        vehicle.fueltype == chosenVehicleState.fueltype) {
         chosenEngine.push(vehicle);
       }
     });
@@ -140,15 +166,46 @@ const Vehicle = () => {
       }
     })
     setTransmissionState(...transmissionState, transmissionToDisplay)
+    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
   }
 
   function handleTransmissionSelect (event) {
+    const {name, value} = event.target
+
     vehicles.map(vehicle => {
-      if (vehicle[event.target.name] == [event.target.value]) {
-        chosenVehicle.push(vehicle);
+      if (vehicle[event.target.name] == [event.target.value] && 
+        vehicle.year == chosenVehicleState.year && 
+        vehicle.make == chosenVehicleState.make &&
+        vehicle.model == chosenVehicleState.model &&
+        vehicle.fueltype == chosenVehicleState.fueltype &&
+        vehicle.cylinders == chosenVehicleState.cylinders) {
+
+          setChosenVehicleState({...chosenVehicleState, [name]: (value)})
       }
     });
+    console.log(chosenVehicleState)
   }
+
+  function handleClick (event) {
+    event.preventDefault()
+    console.log("here's what we chose", chosenVehicleState)
+    vehicles.map((vehicle) => {
+      if (vehicle.year === chosenVehicleState.year &&
+        vehicle.make === chosenVehicleState.make &&
+        vehicle.model === chosenVehicleState.model &&
+        vehicle.fueltype === chosenVehicleState.fueltype &&
+        vehicle.cylinders === chosenVehicleState.cylinders &&
+        vehicle.transmission === chosenVehicleState.transmission) {
+          setParamState(vehicle)
+          console.log("match!!!!")
+          console.log(vehicle)
+
+          // Here, vehicle is what we will use in the put request as data.  
+          // We need to think about duplicate values, for future development if we won't have time.  I was able to narrow down all of our fields and still find two results.
+        }
+    })
+  }
+    
   return (
     <>
       <NavBar />
@@ -189,9 +246,9 @@ const Vehicle = () => {
                       name="year"
                       onChange={handleYearSelect}
                       as="select"
-                      placeholder="1984"
+                      placeholder="Choose..."
                     >
-                      {console.log("years", Years)}
+                      <option selected>Choose...</option>
                       {Years.map((year) => (
                         <option key={year}>{year}</option>
                       ))}
@@ -205,6 +262,7 @@ const Vehicle = () => {
                       as="select"
                       placeholder="Chevrolet"
                     >
+                      <option selected>Choose...</option>
                       {makeState.map((make) => {
                         return (<option key={make}>{make}</option>)
                       })}
@@ -218,6 +276,7 @@ const Vehicle = () => {
                       as="select"
                       placeholder="Corvette"
                     >
+                      <option selected>Choose...</option>
                       {modelState.map((model) => {
                         return (<option key={model}>{model}</option>)
                     })}
@@ -233,6 +292,7 @@ const Vehicle = () => {
                       as="select"
                       placeholder="gasoline"
                     >
+                      <option selected>Choose...</option>
                       {fuelState.map((fuelType) => {
                         return (<option key={fuelType}>{fuelType}</option>)
                       })}
@@ -246,6 +306,7 @@ const Vehicle = () => {
                       as="select"
                       placeholder="8 cylinder"
                     >
+                      <option selected>Choose...</option>
                       {engineState.map((engine) => {
                         return (<option key={engine}>{engine}</option>)
                       })}
@@ -259,6 +320,7 @@ const Vehicle = () => {
                       as="select"
                       placeholder="Automatic"
                     >
+                      <option selected>Choose...</option>
                       {transmissionState.map((transmission) => {
                         return (<option key={transmission}>{transmission}</option>)
                       })}
@@ -273,7 +335,7 @@ const Vehicle = () => {
                 <Button
                   variant="primary"
                   type="submit"
-                  // onClick={() => handleClick()}
+                  onClick={handleClick}
                 >
                   Next
                 </Button>
