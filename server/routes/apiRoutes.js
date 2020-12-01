@@ -38,6 +38,8 @@ router
   .delete(UserController.deleteUser);
 
 router
+  .route("/updateVehicle/:id")
+  .patch(UserController.updateVehicle)
   .route("/updatePlaces/:id")
   .patch(UserController.updatePlaces)
 
