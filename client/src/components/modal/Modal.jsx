@@ -3,10 +3,10 @@ import AddressAutocomplete from "../address/AddressAutocomplete";
 import { Modal, Button } from "react-bootstrap";
 import axios from "axios";
 import "../../assets/styles/modal.scss";
-import { CurrentUserContext } from "../../utils/UserContext";
+import { useUserContext } from "../../utils/UserContext";
 
 const AddressModal = () => {
-  const { _id } = React.useContext(CurrentUserContext);
+  const [user] = useUserContext();
   //front end code to grab address split address
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -32,7 +32,7 @@ const AddressModal = () => {
       console.log(addressInfo); //console logs the addressInfo object which contains the data to be sent to the database
       try {
         const token = localStorage.getItem("__token__");
-        let userId = _id; //TODO - REPLACE "" WITH STATE/VARIABLE THAT WILL CARRY USERID AFTER PROFILE IS LOADED
+        let userId = user._id; //TODO - REPLACE "" WITH STATE/VARIABLE THAT WILL CARRY USERID AFTER PROFILE IS LOADED
         const response = await axios.patch(
           `/api/v1/users/updatePlaces/${userId}`,
           addressInfo,

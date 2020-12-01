@@ -10,9 +10,8 @@ const LandingPage = () => {
     <>
       <NavBar />
       <div className="landing-page-container">
-        <div className="row">
-          <div className="col-lg-4" />
-          <div className="jumbo-text p-5 m-5 col-lg-4">
+        <div className="row justify-content-center">
+          <div className="jumbo-text p-5 m-5 col-lg-4 ">
             <h2>Hello we are</h2>
             <h1>Carbon FX</h1>
             <p className="mt-4">Start reducing your carbon footprint today</p>
@@ -24,7 +23,6 @@ const LandingPage = () => {
               </Button>
             </p>
           </div>
-          <div className="col-lg-4" />
         </div>
       </div>
       <Footer />

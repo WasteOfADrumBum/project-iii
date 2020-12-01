@@ -8,7 +8,7 @@ import { useUserContext } from "../../utils/UserContext";
 const AccordionComp = (props) => {
   const [user] = useUserContext();
   const totalMiles = parseInt(props.distance);
-  console.log(props.distance)
+  console.log(props.distance);
   const userVehilceMpgCity = user.vehicles[0].mpgcity;
   const userVehilceMpgHwy = user.vehicles[0].mpghwy;
   console.log("acordion props", props);
@@ -53,6 +53,19 @@ const AccordionComp = (props) => {
                 </div>
                 <div className="col-md-4 text-right">{props.distance}</div>
               </div>
+              <div className="row mt-2 justify-content-center">
+                <div className="col-lg-6">
+                  <hr />
+                  <p>
+                    The average American’s energy-related carbon footprint is
+                    16.6 metric tons of carbon dioxide (tCO2e) annually
+                    according to the latest information from the U.S. Department
+                    of Energy. 15% of which is from owning a car. On average an
+                    american travels 11,224 miles annually in a car that's
+                    averaging 23.4 miles per gallon.
+                  </p>
+                </div>
+              </div>
             </Card.Body>
           </Accordion.Collapse>
         </Card>
@@ -76,18 +89,21 @@ const AccordionComp = (props) => {
                 <div className="col-md-8 text-left">
                   Your total commute time for this trip is:
                 </div>
-                <div className="col-md-4 text-right">##:##</div>
+                <div className="col-md-4 text-right">{props.time}</div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">
                   Your total distance for this trip is:
                 </div>
-                <div className="col-md-4 text-right">#.## Miles</div>
+                <div className="col-md-4 text-right">{props.distance}</div>
               </div>
-              <div className="row mt-2">
-                <div className="col-md-12 text-left">
-                  A Greyhound Bus may only get 9mpg, but it can hold 55
-                  passengers at once.
+              <div className="row mt-2 justify-content-center">
+                <div className="col-lg-6">
+                  <hr />
+                  <p>
+                    A Greyhound Bus may only get 9mpg, but it can hold 55
+                    passengers at once.
+                  </p>
                 </div>
               </div>
             </Card.Body>
@@ -112,22 +128,21 @@ const AccordionComp = (props) => {
                 <div className="col-md-8 text-left">
                   Your total commute time for this trip is:
                 </div>
-                <div className="col-md-4 text-right">##:##</div>
+                <div className="col-md-4 text-right">{props.time}</div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">
                   Your total distance for this trip is:
                 </div>
-                <div className="col-md-4 text-right">#.## Miles</div>
+                <div className="col-md-4 text-right">{props.distance}</div>
               </div>
-              <div className="row mt-2">
-                <div className="col-md-12 text-left">
-                  Walking at 3 mph (4.8 km/hr) burns 250 kCal
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12 text-left">
-                  If you walk 3 mph, it would take 40 minutes to go 2 miles.
+              <div className="row mt-2 justify-content-center">
+                <div className="col-lg-6">
+                  <hr />
+                  <p>Walking at 3 mph (4.8 km/hr) burns 250 kCal</p>
+                  <p>
+                    If you walk 3 mph, it would take 40 minutes to go 2 miles.
+                  </p>
                 </div>
               </div>
             </Card.Body>
@@ -152,31 +167,28 @@ const AccordionComp = (props) => {
                 <div className="col-md-8 text-left">
                   Your total commute time for this trip is:
                 </div>
-                <div className="col-md-4 text-right">##:##</div>
+                <div className="col-md-4 text-right">{props.time}</div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">
                   Your total distance for this trip is:
                 </div>
-                <div className="col-md-4 text-right">#.## Miles</div>
+                <div className="col-md-4 text-right">{props.distance}</div>
               </div>
-              <div className="row mt-2">
-                <div className="col-md-12 text-left ">
-                  Riding a bicycle at 8 mph (12.8 kph) burns 280 kCal
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-md-12 text-left ">
-                  If you ride a bicycle at 8 mph, it would take 15 minutes to go
-                  2 miles.
-                </div>
-              </div>
-              <div className="row mt-2">
-                <div className="col-md-12 text-left ">
-                  <i>
-                    Biking leaves less of a carbon footprint then walking due to
-                    the amount of CO2 you exhale over the same distance.
-                  </i>
+              <div className="row mt-2 justify-content-center">
+                <div className="col-lg-6">
+                  <hr />
+                  <p>Riding a bicycle at 8 mph (12.8 kph) burns 280 kCal</p>
+                  <p>
+                    If you ride a bicycle at 8 mph, it would take 15 minutes to
+                    go 2 miles.
+                  </p>
+                  <p>
+                    <i>
+                      Biking leaves less of a carbon footprint then walking due
+                      to the amount of CO2 you exhale over the same distance.
+                    </i>
+                  </p>
                 </div>
               </div>
             </Card.Body>
