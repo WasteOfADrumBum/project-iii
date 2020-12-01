@@ -1,21 +1,26 @@
 .landing-page-container {
-    color: #000;
-    padding: 0 !important;
-    border-radius: 0 !important;
-    background-image: url("../images/landing-page-bg.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-position: center;
-    max-width: 100% !important;
-    min-height: 100vh;
+  color: #000;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background-image: url("../images/landing-page-bg.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  max-width: 100% !important;
+  min-height: 100vh;
 
-    .row {
-        max-width: 100% !important;
-    }
+  .row {
+    max-width: 100% !important;
+  }
+
+  .info-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 2rem;
+  }
 }
 
 .jumbo-text {
-    background-color: rgba(255, 255, 255, .5);
-    border-radius: 2rem;
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 2rem;
 }

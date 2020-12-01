@@ -77,7 +77,7 @@ const Profile = () => {
             </div>
           </div>
         </div>
-        <div className="row pt-5">
+        <div className="row mt-5 profile-content-container">
           <div className="col-md-6 text-center p-3">
             <ColumnChart />
           </div>
