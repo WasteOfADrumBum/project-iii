@@ -20,7 +20,10 @@ router.get("/jwt", AppController.findByJwt);
 router.post("/UserInfo", AppController.createUser);
 
 // DELETE Routes
+router.delete("/", UserController.deleteVehicle);
+router.delete("/", UserController.deletePlace);
 router.delete("/deleteMe", UserController.deleteMe);
+
 
 // ↓↓↓ Only admin have permission to access for the below APIs ↓↓↓
 router.use(AuthController.restrictTo("admin", "user"));

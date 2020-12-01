@@ -1,6 +1,28 @@
 const User = require("../models/UserInfo");
 const base = require("./BaseController");
 
+exports.deleteVehicle = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: { vehicles: { _id: req.query.vehicle } }
+    })
+    res.sendStatus(200)
+  } catch (error) {
+    res.sendStatus(500)
+  }
+}
+
+exports.deletePlace = async (req, res) => {
+  try {
+    await User.findByIdAndUpdate(req.user._id, {
+      $pull: { places: { _id: req.query.place } }
+    })
+    res.sendStatus(200)
+  } catch (error) {
+    res.sendStatus(500)
+  }
+}
+
 exports.deleteMe = async (req, res, next) => {
   try {
     await User.findByIdAndUpdate(req.user.id, {

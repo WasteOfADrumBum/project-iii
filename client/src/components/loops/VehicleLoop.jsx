@@ -1,44 +1,31 @@
 import React from "react";
-import { CurrentUserContext } from "../../utils/UserContext";
+import { useUserContext } from "../../utils/UserContext";
+import axios from "axios";
 
 const VehicleLoop = () => {
-  const { vehicles } = React.useContext(CurrentUserContext);
-  const [list, setList] = React.useState(vehicles);
-
+  const [{ vehicles }, triggerUserReload] = useUserContext();
   // Handle Removal of Vehicle from user.vehiceles array by ID
-  function handleRemove(_id) {
-    if (_id) {
-      console.log("Removing ", _id); // id being removed from array
-      // try {
-      //   const token = localStorage.getItem("__token__");
-      //   // ! _id is vehicle id and needs to be user id
-      // // May have to solve id issue in route
-      // let userId = _id;
-      // // ! Need route for deleting vehicles
-      //   const response = axios.delete(`/api/v1/users/NEEDROUTE/${userId}`, {
-      //     headers: { Authorization: "Bearer " + token },
-      //   });
-      //   console.log("Places Remove Response: ", response);
-      // } catch (error) {
-      //   console.log(error);
-      // }
-    }
-    // Make new list by filtering out removed item
-    const newList = list.filter((item) => item._id !== _id);
-    setList(newList);
-  }
+  const onRemove = async (id) => {
+    if (!id) return;
 
-  // Map Array to List
-  const List = ({ list, onRemove }) => (
-    <div style={{ maxHeight: "200px", overflowY: "auto" }}>
-      {vehicles.map((item) => (
-        <Item key={item._id} item={item} onRemove={onRemove} />
-      ))}
-    </div>
-  );
+    console.log("Removing ", id); // id being removed from array
+
+    try {
+      const token = localStorage.getItem("__token__");
+      if (!token) throw new Error("No token saved");
+
+      await axios.delete("/api/v1/users?vehicle=" + id, {
+        headers: { Authorization: "Bearer " + token },
+      });
+
+      triggerUserReload();
+    } catch (error) {
+      console.warn(error.message);
+    }
+  };
 
   // List item Format
-  const Item = ({ item, onRemove }) => (
+  const Item = ({ item }) => (
     <div>
       <button className="btn-warning mr-2 d-inline" disabled="disabled">
         Δ
@@ -59,7 +46,13 @@ const VehicleLoop = () => {
     </div>
   );
 
-  return <List list={list} onRemove={handleRemove} />;
+  return (
+    <div style={{ maxHeight: "200px", overflowY: "auto" }}>
+      {vehicles.map((item) => (
+        <Item key={item._id} item={item} onRemove={onRemove} />
+      ))}
+    </div>
+  );
 };
 
 export default VehicleLoop;
