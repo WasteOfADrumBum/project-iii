@@ -5,14 +5,11 @@ import Footer from "../components/footer/Footer";
 import axios from "axios";
 import "../assets/styles/login.scss";
 import { Form, Col, Button } from "react-bootstrap";
-// import { useHistory } from "react-router-dom";
 import { useUserContext } from "../utils/UserContext";
 
 const LoginPage = () => {
   const history = useHistory();
   const [user, triggerUserContext] = useUserContext();
-  // const {setUser} = React.useContext(CurrentUserContext);
-  // const {refreshToken} = React.useContext(CurrentUserContext);
 
   // Set email & password State to ""
   const [state, setState] = React.useState({
