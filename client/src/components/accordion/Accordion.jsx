@@ -1,17 +1,17 @@
 import React from "react";
 import { Accordion, Card } from "react-bootstrap";
 import "../../assets/styles/accordion.scss";
-import { CurrentUserContext } from "../../utils/UserContext";
+import { useUserContext } from "../../utils/UserContext";
 
 // (8.8 / (({ mpgcity } + { mpghwy }) / 2)) * { totalmiles } = CO2e
 
 const AccordionComp = (props) => {
-  const {vehicles} = React.useContext(CurrentUserContext);
+  const [user] = useUserContext();
   const totalMiles = 20;
-  const userVehilceMpgCity = vehicles[0].mpgcity;
-  const userVehilceMpgHwy = vehicles[0].mpghwy;
-  console.log("acordion props", props)
-  function number_format (val, decimals){
+  const userVehilceMpgCity = user.vehicles[0].mpgcity;
+  const userVehilceMpgHwy = user.vehicles[0].mpghwy;
+  console.log("acordion props", props);
+  function number_format(val, decimals) {
     val = parseFloat(val);
     return val.toFixed(decimals);
   }
@@ -31,8 +31,11 @@ const AccordionComp = (props) => {
                 </div>
                 <div className="col-md-4 text-right ">
                   <span>
-                    {number_format((8.8 / ((userVehilceMpgCity + userVehilceMpgHwy) / 2) *
-                      totalMiles),2)}
+                    {number_format(
+                      (8.8 / ((userVehilceMpgCity + userVehilceMpgHwy) / 2)) *
+                        totalMiles,
+                      2
+                    )}
                     kg CO2e
                   </span>
                 </div>
@@ -100,7 +103,9 @@ const AccordionComp = (props) => {
                   Your carbon footprint for this trip is:
                 </div>
                 {/* 0.0195 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
-                <div className="col-md-4 text-right">{number_format(0.0195 * totalMiles,2)}</div>
+                <div className="col-md-4 text-right">
+                  {number_format(0.0195 * totalMiles, 2)}
+                </div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">
@@ -138,7 +143,9 @@ const AccordionComp = (props) => {
                   Your carbon footprint for this trip is:
                 </div>
                 {/* 0.0085 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
-                <div className="col-md-4 text-right">{number_format(0.0085 * totalMiles,2)}</div>
+                <div className="col-md-4 text-right">
+                  {number_format(0.0085 * totalMiles, 2)}
+                </div>
               </div>
               <div className="row">
                 <div className="col-md-8 text-left">
