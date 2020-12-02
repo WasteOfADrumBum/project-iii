@@ -14,7 +14,7 @@ const PlacesLoop = () => {
       const token = localStorage.getItem("__token__");
       if (!token) throw new Error("No token saved");
 
-      await axios.delete("/api/v1/users?place=" + id, {
+      await axios.delete("/api/v1/users?places=" + id, {
         headers: { Authorization: "Bearer " + token },
       });
 

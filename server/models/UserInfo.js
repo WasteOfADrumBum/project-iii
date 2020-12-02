@@ -55,8 +55,6 @@ const UserSchema = new mongoose.Schema({
 
   vehicles: [
     {
-      // type: mongoose.Schema.Types.ObjectId,
-      // ref: "VehicleInfo",
       make: { type: String },
       model: { type: String },
       year: { type: Number },
@@ -96,46 +94,17 @@ const UserSchema = new mongoose.Schema({
       },
     },
   ],
-
   routes: [
     {
-      carOnly: {
-        distance: {
-          type: Number,
-        },
-        time: {
-          type: Number,
-        },
-        footprint: {
-          type: Number,
-        },
-        created: {
-          type: Date,
-          default: () => new Date(),
-        },
-        completed: {
-          type: Boolean,
-          default: false,
-        },
+      mode: {
+        type: String,
       },
-      mixedMode: {
-        distance: {
-          type: Number,
-        },
-        time: {
-          type: Number,
-        },
-        footprint: {
-          type: Number,
-        },
-        created: {
-          type: Date,
-          default: () => new Date(),
-        },
-        completed: {
-          type: Boolean,
-          default: false,
-        },
+      footprint: {
+        type: Number,
+      },
+      created: {
+        type: Date,
+        default: () => new Date(),
       },
     },
   ],

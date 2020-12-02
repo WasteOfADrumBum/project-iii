@@ -15,7 +15,7 @@ exports.deleteVehicle = async (req, res) => {
 exports.deletePlace = async (req, res) => {
   try {
     await User.findByIdAndUpdate(req.user._id, {
-      $pull: { places: { _id: req.query.place } }
+      $pull: { places: { _id: req.query.places } }
     })
     res.sendStatus(200)
   } catch (error) {
@@ -40,7 +40,6 @@ exports.deleteMe = async (req, res, next) => {
 
 exports.getAllUsers = base.getAll(User);
 exports.getUser = base.getOne(User);
-
 exports.updatePlaces = base.updateUserPlaces(User)
 
 // Don't update password on this

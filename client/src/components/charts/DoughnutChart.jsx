@@ -25,10 +25,10 @@ class DoughnutChart extends Component {
           yValueFormatString: "#,###'%'",
           dataPoints: [
             // TODO: Replace Placeholder text and y cordinate with user data
-            { name: "Placeholder-1", y: 25, color: "#CDB30C"},
-            { name: "Placeholder-2", y: 50, color: "#62760c" },
-            { name: "Placeholder-3", y: 15, color: "#535204" },
-            { name: "Placeholder-4", y: 10, color: "#523906" },
+            { name: "Driving", y: 25, color: "#CDB30C"},
+            { name: "Walking", y: 50, color: "#62760c" },
+            { name: "Bicycling", y: 15, color: "#535204" },
+            { name: "Transit", y: 10, color: "#523906" },
           ],
         },
       ],
