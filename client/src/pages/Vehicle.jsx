@@ -2,134 +2,134 @@ import React from "react";
 import NavBar from "../components/navbar/NavBar";
 import Footer from "../components/footer/Footer";
 import { Form, Col, Button } from "react-bootstrap";
-import Select from "react-select";
 import "../assets/styles/vehicle.scss";
 import { useUserContext } from "../utils/UserContext";
 import { useHistory } from "react-router-dom";
 import Years from "../utils/year";
 import vehicles from "./vehicle-in-pages.json";
 import axios from "axios";
-import VehicleSelectionform from "../components/form/VehicleSelectionForm";
-
-
 
 const Vehicle = () => {
   const history = useHistory();
   const [user] = useUserContext();
-  const [makeState, setMakeState] = React.useState([])
-  const [modelState, setModelState] = React.useState([])
-  const [fuelState, setFuelState] = React.useState([])
-  const [engineState, setEngineState] = React.useState([])
-  const [transmissionState, setTransmissionState] = React.useState([])
+  const [makeState, setMakeState] = React.useState([]);
+  const [modelState, setModelState] = React.useState([]);
+  const [fuelState, setFuelState] = React.useState([]);
+  const [engineState, setEngineState] = React.useState([]);
+  const [transmissionState, setTransmissionState] = React.useState([]);
   const [chosenVehicleState, setChosenVehicleState] = React.useState({
     year: "",
     make: "",
     model: "",
     fueltype: "",
     cylinders: "",
-    transmission: ""
-  })
+    transmission: "",
+  });
 
   // const [{ vehicles }, triggerUserReload] = useUserContext();
 
-
-
-  function handleYearSelect (event) {
-    const chosenYear = []
-    const makesToDisplay = []
-    const {name, value} = event.target
-    setChosenVehicleState({...chosenVehicleState, [name]: parseInt(value)})
+  function handleYearSelect(event) {
+    const chosenYear = [];
+    const makesToDisplay = [];
+    const { name, value } = event.target;
+    setChosenVehicleState({ ...chosenVehicleState, [name]: parseInt(value) });
 
     // Matching the key in vehicle.json with the value of the target, that's set to be the same as the key we want to look up
-    vehicles.map (vehicle => {
+    vehicles.map((vehicle) => {
       if (vehicle[event.target.name] == [event.target.value]) {
         // If the vehicle year equals the value of the drop down we push it into the below array
-        chosenYear.push(vehicle)
+        chosenYear.push(vehicle);
       }
-    })
+    });
 
     // Filtering out duplicate values
-    chosenYear.map (unique => {
+    chosenYear.map((unique) => {
       // If the make of the vehicle is already in the below array it will not be added, which results in an array of unique values
       if (makesToDisplay.indexOf(unique.make) < 0) {
-        makesToDisplay.push(unique.make)
+        makesToDisplay.push(unique.make);
       }
-    })
-    setMakeState(...makeState, makesToDisplay)
+    });
+    setMakeState(...makeState, makesToDisplay);
   }
 
-
-  function handleMakeSelect (event) {
-    const chosenMake = []
-    const modelsToDisplay = []
-    const {name, value} = event.target
-    vehicles.map( vehicle => {
-      if (vehicle[event.target.name] == [event.target.value]  && 
-        vehicle.year == chosenVehicleState.year) {
+  function handleMakeSelect(event) {
+    const chosenMake = [];
+    const modelsToDisplay = [];
+    const { name, value } = event.target;
+    vehicles.map((vehicle) => {
+      if (
+        vehicle[event.target.name] == [event.target.value] &&
+        vehicle.year == chosenVehicleState.year
+      ) {
         chosenMake.push(vehicle);
       }
-    })
-    chosenMake.map(unique => {
+    });
+    chosenMake.map((unique) => {
       if (modelsToDisplay.indexOf(unique.model) < 0) {
         modelsToDisplay.push(unique.model);
       }
-    })
-    setModelState(...modelState, modelsToDisplay)
-    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
+    });
+    setModelState(...modelState, modelsToDisplay);
+    setChosenVehicleState({ ...chosenVehicleState, [name]: value });
   }
 
-
-  function handleModelSelect (event) {
-    const chosenModel = []
-    const fuelToDisplay = []
-    const {name, value} = event.target
-    vehicles.map( vehicle => {
-      if (vehicle[event.target.name] == [event.target.value] && 
-        vehicle.year == chosenVehicleState.year && 
-        vehicle.make == chosenVehicleState.make) {
+  function handleModelSelect(event) {
+    const chosenModel = [];
+    const fuelToDisplay = [];
+    const { name, value } = event.target;
+    vehicles.map((vehicle) => {
+      if (
+        vehicle[event.target.name] == [event.target.value] &&
+        vehicle.year == chosenVehicleState.year &&
+        vehicle.make == chosenVehicleState.make
+      ) {
         chosenModel.push(vehicle);
       }
-    })
-    chosenModel.map(unique => {
+    });
+    chosenModel.map((unique) => {
       if (fuelToDisplay.indexOf(unique.fueltype) < 0) {
         fuelToDisplay.push(unique.fueltype);
       }
-    })
-    setFuelState(...fuelState, fuelToDisplay)
-    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
+    });
+    setFuelState(...fuelState, fuelToDisplay);
+    setChosenVehicleState({ ...chosenVehicleState, [name]: value });
   }
 
-  function handleFuelSelect (event) {
-    const chosenFuel = []
-    const engineToDisplay = []
-    const {name, value} = event.target
-    vehicles.map(vehicle => {
-      if (vehicle[event.target.name] == [event.target.value] && 
-        vehicle.year == chosenVehicleState.year && 
+  function handleFuelSelect(event) {
+    const chosenFuel = [];
+    const engineToDisplay = [];
+    const { name, value } = event.target;
+    vehicles.map((vehicle) => {
+      if (
+        vehicle[event.target.name] == [event.target.value] &&
+        vehicle.year == chosenVehicleState.year &&
         vehicle.make == chosenVehicleState.make &&
-        vehicle.model == chosenVehicleState.model) {
+        vehicle.model == chosenVehicleState.model
+      ) {
         chosenFuel.push(vehicle);
       }
-    })
-    chosenFuel.map(unique => {
+    });
+    chosenFuel.map((unique) => {
       if (engineToDisplay.indexOf(unique.cylinders) < 0) {
-        engineToDisplay.push(unique.cylinders)
+        engineToDisplay.push(unique.cylinders);
       }
-    })
-    setEngineState(...engineState, engineToDisplay)
-    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
+    });
+    setEngineState(...engineState, engineToDisplay);
+    setChosenVehicleState({ ...chosenVehicleState, [name]: value });
   }
 
-  function handleEngineSelect (event) {
-    const chosenEngine = []
-    const transmissionToDisplay = []
-    const {name, value} = event.target
-    vehicles.map(vehicle => {
-      if (vehicle[event.target.name] == [event.target.value] && 
-        vehicle.year == chosenVehicleState.year && 
+  function handleEngineSelect(event) {
+    const chosenEngine = [];
+    const transmissionToDisplay = [];
+    const { name, value } = event.target;
+    vehicles.map((vehicle) => {
+      if (
+        vehicle[event.target.name] == [event.target.value] &&
+        vehicle.year == chosenVehicleState.year &&
         vehicle.make == chosenVehicleState.make &&
         vehicle.model == chosenVehicleState.model &&
-        vehicle.fueltype == chosenVehicleState.fueltype) {
+        vehicle.fueltype == chosenVehicleState.fueltype
+      ) {
         chosenEngine.push(vehicle);
       }
     });
@@ -137,102 +137,69 @@ const Vehicle = () => {
       if (transmissionToDisplay.indexOf(unique.transmission) < 0) {
         transmissionToDisplay.push(unique.transmission);
       }
-    })
-    setTransmissionState(...transmissionState, transmissionToDisplay)
-    setChosenVehicleState({...chosenVehicleState, [name]: (value)})
+    });
+    setTransmissionState(...transmissionState, transmissionToDisplay);
+    setChosenVehicleState({ ...chosenVehicleState, [name]: value });
   }
 
-  function handleTransmissionSelect (event) {
-    const {name, value} = event.target
+  function handleTransmissionSelect(event) {
+    const { name, value } = event.target;
 
-    vehicles.map(vehicle => {
-      if (vehicle[event.target.name] == [event.target.value] && 
-        vehicle.year == chosenVehicleState.year && 
+    vehicles.map((vehicle) => {
+      if (
+        vehicle[event.target.name] == [event.target.value] &&
+        vehicle.year == chosenVehicleState.year &&
         vehicle.make == chosenVehicleState.make &&
         vehicle.model == chosenVehicleState.model &&
         vehicle.fueltype == chosenVehicleState.fueltype &&
-        vehicle.cylinders == chosenVehicleState.cylinders) {
-
-          setChosenVehicleState({...chosenVehicleState, [name]: (value)})
+        vehicle.cylinders == chosenVehicleState.cylinders
+      ) {
+        setChosenVehicleState({ ...chosenVehicleState, [name]: value });
       }
     });
   }
 
-  function handleClick (event) {
-    event.preventDefault()
-    let vehicleToAdd
+  function handleClick(event) {
+    event.preventDefault();
+    let vehicleToAdd;
     vehicles.map((vehicle) => {
-      if (vehicle.year === chosenVehicleState.year &&
+      if (
+        vehicle.year === chosenVehicleState.year &&
         vehicle.make === chosenVehicleState.make &&
         vehicle.model === chosenVehicleState.model &&
         vehicle.fueltype === chosenVehicleState.fueltype &&
         vehicle.cylinders === chosenVehicleState.cylinders &&
-        vehicle.transmission === chosenVehicleState.transmission) {
-          vehicleToAdd = vehicle          
-        }
-    })
-      AddVehicle(vehicleToAdd)
+        vehicle.transmission === chosenVehicleState.transmission
+      ) {
+        vehicleToAdd = vehicle;
+      }
+    });
+    AddVehicle(vehicleToAdd);
+    history.push("/profile");
   }
 
-
-  const AddVehicle = async (data) => {
-      console.log("Data", data);
-      console.log("user", user)
-      const params = {make: data.make,
-        model: data.model,
-        year: data.year,
-        mpgcity: data.mpgcity,
-        mpghwy: data.mpghwy}
-      if (params) {
-        console.log("params", params)
-      console.log("adding ", user._id); 
-  
+  const AddVehicle = async (vehicleData) => {
+    console.log("Data", vehicleData);
+    console.log("user", user);
+    if (vehicleData) {
+      console.log("Vehicle Parameters: ", vehicleData);
+      console.log("Adding to User: ", user.firstName, user._id);
       try {
         const token = localStorage.getItem("__token__");
         if (!token) throw new Error("No token saved");
-        console.log("passed token error checking")
-  
-        await axios.patch(`/api/v1/users/updateVehicle/${user._id}`, params, {
+        console.log("passed token error checking");
+
+        await axios.patch(`/api/v1/users/updateVehicle/${user._id}`, vehicleData, {
           headers: { Authorization: "Bearer " + token },
         });
-        console.log("posted?")
-  
-        // ();
+        console.log("Posted Vehicle Parameters: ", vehicleData);
+        console.log("Posted  Adding to User: ", user.firstName, user._id);
       } catch (error) {
         console.warn(error.message);
       }
-    };
-  }
+    }
+  };
 
-  // The below gives me a 401 error
-
-  // const addVehicle = async (data) => {
-  //   const token = localStorage.getItem("__token__");
-  //   console.log("token", token)
-  //   try {
-  //   const res = await axios.patch("/api/v1/users?vehicle=", { 
-  //     headers: { 
-  //       Authorization: "Bearer " + token 
-  //     },
-    //   params: {
-    //   _id: data._id,
-    //   make: data.make,
-    //   model: data.model,
-    //   year: data.year,
-    //   mpgcity: data.mpgcity,
-    //   mpghwy: data.mpghwy 
-    // }
-    // });
-    
-  //   console.log("res", res)
-  //   console.log("data", res.data)
-  //   console.log("user", user)
-  //   } 
-  //   catch (error) {
-  //     console.log("PATCH ERROR", error)
-  //   }
-  // }
-    
   return (
     <>
       <NavBar />
@@ -243,14 +210,14 @@ const Vehicle = () => {
             <div className="col-md-8 pt-5 pr-5 pl-5 text-center">
               <span>
                 <b>
-                  {user.firstName}, to tally up your annual transportation footprint. We will need
-                  to consider your travel, including how far you travel in a
-                  personal vehicle. For your vehicle usage, if you travel more
-                  than 15,000 miles per year, it can make a huge difference in
-                  your carbon footprint. To calculate your footprint accurately,
-                  we'll need to know the make and model of your vehicle.
-                  Depending on the type of vehicle, transmission, fuel type, and
-                  cylinders you own will alter your score.
+                  {user.firstName}, to tally up your annual transportation
+                  footprint. We will need to consider your travel, including how
+                  far you travel in a personal vehicle. For your vehicle usage,
+                  if you travel more than 15,000 miles per year, it can make a
+                  huge difference in your carbon footprint. To calculate your
+                  footprint accurately, we'll need to know the make and model of
+                  your vehicle. Depending on the type of vehicle, transmission,
+                  fuel type, and cylinders you own will alter your score.
                 </b>
               </span>
             </div>
@@ -291,7 +258,7 @@ const Vehicle = () => {
                     >
                       <option selected>Choose...</option>
                       {makeState.map((make) => {
-                        return (<option key={make}>{make}</option>)
+                        return <option key={make}>{make}</option>;
                       })}
                     </Form.Control>
                   </Form.Group>
@@ -305,8 +272,8 @@ const Vehicle = () => {
                     >
                       <option selected>Choose...</option>
                       {modelState.map((model) => {
-                        return (<option key={model}>{model}</option>)
-                    })}
+                        return <option key={model}>{model}</option>;
+                      })}
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
@@ -321,7 +288,7 @@ const Vehicle = () => {
                     >
                       <option selected>Choose...</option>
                       {fuelState.map((fuelType) => {
-                        return (<option key={fuelType}>{fuelType}</option>)
+                        return <option key={fuelType}>{fuelType}</option>;
                       })}
                     </Form.Control>
                   </Form.Group>
@@ -335,7 +302,7 @@ const Vehicle = () => {
                     >
                       <option selected>Choose...</option>
                       {engineState.map((engine) => {
-                        return (<option key={engine}>{engine}</option>)
+                        return <option key={engine}>{engine}</option>;
                       })}
                     </Form.Control>
                   </Form.Group>
@@ -349,9 +316,10 @@ const Vehicle = () => {
                     >
                       <option selected>Choose...</option>
                       {transmissionState.map((transmission) => {
-                        return (<option key={transmission}>{transmission}</option>)
+                        return (
+                          <option key={transmission}>{transmission}</option>
+                        );
                       })}
-
                     </Form.Control>
                   </Form.Group>
                 </Form.Row>
@@ -359,11 +327,7 @@ const Vehicle = () => {
                 // TODO: Make "next" buton relocate to /letsgo
                 // TODO: Make "Skip" button relocate to /profile
                 */}
-                <Button
-                  variant="primary"
-                  type="submit"
-                  onClick={handleClick}
-                >
+                <Button variant="primary" type="submit" onClick={handleClick}>
                   Next
                 </Button>
               </Form>

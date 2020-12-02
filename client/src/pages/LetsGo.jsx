@@ -61,7 +61,7 @@ const LetsGo = () => {
     if (state.distance.length === 0) {
       setState({...state, 
         distance: distance.text,
-        totalTimeTravel: time.value})
+        totalTimeTravel: time.text})
     }
   };
 

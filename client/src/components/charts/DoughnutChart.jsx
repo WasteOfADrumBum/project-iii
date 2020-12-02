@@ -1,9 +1,14 @@
-import React, { Component } from "react";
+import React from "react";
 import CanvasJSReact from "../../assets/canvasjs.react";
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import { useUserContext } from "../../utils/UserContext";
 
-class DoughnutChart extends Component {
-  render() {
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+const DoughnutChart = () => {
+    const [{ routes }] = useUserContext();
+    console.log("Doughnut Routes", routes)
+
+    // routes.filter(routes.mode = driving).map
     const options = {
       animationEnabled: true,
       title: {
@@ -25,7 +30,7 @@ class DoughnutChart extends Component {
           yValueFormatString: "#,###'%'",
           dataPoints: [
             // TODO: Replace Placeholder text and y cordinate with user data
-            { name: "Driving", y: 25, color: "#CDB30C"},
+            { name: "Driving", y: 50, color: "#CDB30C" },
             { name: "Walking", y: 50, color: "#62760c" },
             { name: "Bicycling", y: 15, color: "#535204" },
             { name: "Transit", y: 10, color: "#523906" },
@@ -44,7 +49,6 @@ class DoughnutChart extends Component {
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
     );
-  }
 }
 
 export default DoughnutChart;
