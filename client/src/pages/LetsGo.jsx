@@ -7,13 +7,11 @@ import "../assets/styles/letsgo.scss";
 import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
 import { CurrentUserContext } from "../utils/UserContext";
-// import { useHistory } from "react-router-dom";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
 // TODO: onClick() Let's Go! btn send address information to map and map to accordion
 
 const LetsGo = () => {
-  // const history = useHistory();
   const {firstName} = React.useContext(CurrentUserContext);
 
   const MapLoader = withScriptjs(Map);
@@ -59,7 +57,7 @@ const LetsGo = () => {
   const hanldeDistanceUpdate = (distance, time) => {
     console.log('do the update!!', distance.text, time.value)
     if (state.distance.length === 0) {
-      setState({...state, 
+        setState({...state, 
         distance: distance.text,
         totalTimeTravel: time.value})
     }
@@ -84,20 +82,7 @@ const LetsGo = () => {
           lonTo: addressInfoTo.lon
           })
     };
-   // handleChange(addressInfoFrom, addressInfoTo);
   };
-
-  // Here is the issue
-//   function handleChange (from, to) {
-//   setState({ ...state, 
-//     latFrom: from.lat,
-//   lonFrom: from.lon,
-//   latTo: to.lat,
-//   lonTo: to.lon
-//   })
-
-  
-// console.log("current state", state)};
 
 console.log("current state", state)
 
