@@ -59,7 +59,7 @@ const LetsGo = () => {
   const hanldeDistanceUpdate = (distance, time) => {
     console.log('do the update!!', distance.text, time.value)
     if (state.distance.length === 0) {
-      setState({...state, 
+        setState({...state, 
         distance: distance.text,
         totalTimeTravel: time.value})
     }
@@ -84,20 +84,7 @@ const LetsGo = () => {
           lonTo: addressInfoTo.lon
           })
     };
-   // handleChange(addressInfoFrom, addressInfoTo);
   };
-
-  // Here is the issue
-//   function handleChange (from, to) {
-//   setState({ ...state, 
-//     latFrom: from.lat,
-//   lonFrom: from.lon,
-//   latTo: to.lat,
-//   lonTo: to.lon
-//   })
-
-  
-// console.log("current state", state)};
 
 console.log("current state", state)
 
