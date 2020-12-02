@@ -23,8 +23,9 @@ const LetsGo = () => {
     lonFrom: "",
     latTo: "",
     lonTo: "",
-    distance: '',
-    totalTimeTravel: ''
+    distance: "",
+    totalTimeTravel: "",
+    travelMode: "DRIVING"
   });
 
   let addressInfoTo;
@@ -62,7 +63,13 @@ const LetsGo = () => {
         distance: distance.text,
         totalTimeTravel: time.value})
     }
-  
+  };
+
+  const getMode = () => {
+     setState({...state, 
+      travelMode: this.getElementById});
+    
+    console.log(state.travelMode);
   }
 
 
@@ -71,7 +78,7 @@ const LetsGo = () => {
     if(addressInfoFrom && addressInfoTo) {
       console.log(addressInfoFrom, addressInfoTo)
       setState({ ...state, 
-            latFrom: addressInfoFrom.lat,
+          latFrom: addressInfoFrom.lat,
           lonFrom: addressInfoFrom.lon,
           latTo: addressInfoTo.lat,
           lonTo: addressInfoTo.lon
@@ -92,7 +99,7 @@ const LetsGo = () => {
   
 // console.log("current state", state)};
 
-console.log("current stat!!!!!!!!e", state)
+console.log("current state", state)
 
 
   return (
@@ -171,7 +178,7 @@ console.log("current stat!!!!!!!!e", state)
                 fromLat={state.latFrom} 
                 fromLon={state.lonFrom} 
                 toLat={state.latTo} 
-                toLon= {state.lonTo} 
+                toLon= {state.lonTo}
                 hanldeDistanceUpdate= {hanldeDistanceUpdate}
               />
             </div>
@@ -183,6 +190,7 @@ console.log("current stat!!!!!!!!e", state)
               toLon= {state.lonTo} 
               distance={state.distance}
               time={state.totalTimeTravel}
+              getMode={getMode}
               />
             </div>
           </div>
