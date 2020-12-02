@@ -1,71 +1,64 @@
 /*global google*/
-import React, { Component } from "react";
+import React from "react";
 import {
   withGoogleMap,
   GoogleMap,
   DirectionsRenderer
 } from "react-google-maps";
 
-// TODO: Replace origion and destination with lat and lgn from Adderess Auto Complete values
-// TODO: Replace travelMode: google.maps.TravelMode.DRIVING with mode of transportation from Accordion
-
-class Map extends Component {
-  state = {
+const Map = (props) => {
+  const [state, setState] = React.useState({
     directions: null,
-  };
+  });
 
-  componentDidMount() {
-    const directionsService = new google.maps.DirectionsService();
-    console.log("props", this.props)
-    const origin = { lat: this.props.fromLat, lng: this.props.fromLon };
-    const destination = { lat: this.props.toLat, lng: this.props.toLon };
-    const travelMode = this.props.travelMode;
- 
-    directionsService.route(
-      {
-        origin: origin,
-        destination: destination,
-        travelMode: google.maps.TravelMode[travelMode]
-      },
-      (result, status) => {
-        console.log("result", result)
-        console.log("status", status)
+  const directionsService = new google.maps.DirectionsService();
+  console.log("props", props)
+  const origin = { lat: props.fromLat, lng: props.fromLon };
+  const destination = { lat: props.toLat, lng: props.toLon };
+  const travelMode = props.travelMode;
 
-        this.props.hanldeDistanceUpdate(result.routes[0].legs[0].distance, result.routes[0].legs[0].duration)
+  directionsService.route(
+    {
+      origin: origin,
+      destination: destination,
+      travelMode: google.maps.TravelMode[travelMode]
+    },
+    (result, status) => {
+      console.log("result", result)
+      console.log("status", status)
 
-        if (status === google.maps.DirectionsStatus.OK) {
-          this.setState({
-            directions: result
-          });
-        } else {
-          console.error(`error fetching directions ${result}`);
-        }
+      props.hanldeDistanceUpdate(result.routes[0].legs[0].distance, result.routes[0].legs[0].duration)
+
+      if (status === google.maps.DirectionsStatus.OK) {
+        setState({
+          directions: result
+        });
+      } else {
+        console.error(`error fetching directions ${result}`);
       }
-    );
-  }
+    }
+  );
+    
+  const GoogleMapExample = withGoogleMap(props => (
+    <GoogleMap
+      defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
+      defaultZoom={13}
+    >
+      <DirectionsRenderer
+        directions={state.directions}
+      />
+    </GoogleMap>
+  ));
 
-  render() {
-    const GoogleMapExample = withGoogleMap(props => (
-      <GoogleMap
-        defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
-        defaultZoom={13}
-      >
-        <DirectionsRenderer
-          directions={this.state.directions}
-        />
-      </GoogleMap>
-    ));
-
-    return (
-      <div>
-        <GoogleMapExample
-          containerElement={<div style={{ height: "500px", width: "100%", position: "relative",
-          overflow: "hidden"}} />}
-          mapElement={<div style={{ height: `100%` }} />}
-        />
-      </div>
-    );
-  }
+  return (
+    <div>
+      <GoogleMapExample
+        containerElement={<div style={{ height: "500px", width: "100%", position: "relative",
+        overflow: "hidden"}} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+    </div>
+  );
 }
 
 export default Map;
