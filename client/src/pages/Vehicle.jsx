@@ -158,9 +158,6 @@ const Vehicle = () => {
     });
   }
 
-// CTRL Z MARKER
-
-
   function handleClick (event) {
     event.preventDefault()
     let vehicleToAdd
@@ -181,8 +178,13 @@ const Vehicle = () => {
   const AddVehicle = async (data) => {
       console.log("Data", data);
       console.log("user", user)
-      if (!user._id) return;
-  
+      const params = {make: data.make,
+        model: data.model,
+        year: data.year,
+        mpgcity: data.mpgcity,
+        mpghwy: data.mpghwy}
+      if (params) {
+        console.log("params", params)
       console.log("adding ", user._id); 
   
       try {
@@ -190,23 +192,15 @@ const Vehicle = () => {
         if (!token) throw new Error("No token saved");
         console.log("passed token error checking")
   
-        await axios.patch("/api/v1/users?vehicle=" + user._id, {
+        await axios.patch(`/api/v1/users/updateVehicle/${user._id}`, params, {
           headers: { Authorization: "Bearer " + token },
-          params: {
-            make: data.make,
-            model: data.model,
-            year: data.year,
-            mpgcity: data.mpgcity,
-            mpghwy: data.mpghwy 
-          }
-          
         });
         console.log("posted?")
   
-        // triggerUserReload();
+        // ();
       } catch (error) {
         console.warn(error.message);
-      // }
+      }
     };
   }
 
