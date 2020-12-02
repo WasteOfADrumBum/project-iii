@@ -71,27 +71,13 @@ const UserSchema = new mongoose.Schema({
 
   places: [
     {
-      name: {
-        type: String,
-      },
-      lat: {
-        type: String,
-      },
-      lon: {
-        type: String,
-      },
-      street: {
-        type: String,
-      },
-      city: {
-        type: String,
-      },
-      state: {
-        type: String,
-      },
-      zip: {
-        type: String,
-      },
+      name: { type: String },
+      lat: { type: String },
+      lon: { type: String },
+      street: { type: String },
+      city: { type: String },
+      state: { type: String },
+      zip: { type: String },
     },
   ],
   routes: [
