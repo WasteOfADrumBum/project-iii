@@ -7,13 +7,11 @@ import "../assets/styles/letsgo.scss";
 import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
 import { CurrentUserContext } from "../utils/UserContext";
-// import { useHistory } from "react-router-dom";
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
 // TODO: onClick() Let's Go! btn send address information to map and map to accordion
 
 const LetsGo = () => {
-  // const history = useHistory();
   const {firstName} = React.useContext(CurrentUserContext);
 
   const MapLoader = withScriptjs(Map);
