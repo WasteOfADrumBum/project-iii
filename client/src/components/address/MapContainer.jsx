@@ -19,12 +19,13 @@ class Map extends Component {
     console.log("props", this.props)
     const origin = { lat: this.props.fromLat, lng: this.props.fromLon };
     const destination = { lat: this.props.toLat, lng: this.props.toLon };
+    const travelMode = this.props.travelMode;
  
     directionsService.route(
       {
         origin: origin,
         destination: destination,
-        travelMode: google.maps.TravelMode.DRIVING
+        travelMode: google.maps.TravelMode[travelMode]
       },
       (result, status) => {
         console.log("result", result)

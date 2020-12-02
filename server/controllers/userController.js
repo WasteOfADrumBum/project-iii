@@ -1,5 +1,5 @@
 const User = require("../models/UserInfo");
-const base = require("./BaseController");
+const base = require("./baseController");
 
 exports.deleteVehicle = async (req, res) => {
   try {
