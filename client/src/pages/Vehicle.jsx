@@ -11,6 +11,8 @@ import vehicles from "./vehicle-in-pages.json";
 import axios from "axios";
 import VehicleSelectionform from "../components/form/VehicleSelectionForm";
 
+
+
 const Vehicle = () => {
   const history = useHistory();
   const [user] = useUserContext();
@@ -27,43 +29,16 @@ const Vehicle = () => {
     cylinders: "",
     transmission: ""
   })
-  const [paramState, setParamState] = React.useState ({
-   make: "",
-   model: "",
-   year: null,
-   type: "",
-   drive: "",
-   transmission: "",
-   cylinders: "",
-   displacement: "",
-   fueltype: "",
-   mpgcity: null,
-   mpghwy: null
-  })
+
+  // const [{ vehicles }, triggerUserReload] = useUserContext();
 
 
-  // Set State to ""
-  // const chosenYear = []
-  // const chosenMake = []
-  // const makesToDisplay = []
-  // const chosenModel = []
-  // const modelsToDisplay = []
-  // const chosenFuel = []
-  // const fuelToDisplay = []
-  // const chosenEngine = []
-  // const engineToDisplay = []
-  const chosenVehicle = []
-  // const transmissionToDisplay = []
-  
 
   function handleYearSelect (event) {
     const chosenYear = []
     const makesToDisplay = []
     const {name, value} = event.target
-    console.log("name", event.target.name)
-    console.log("value", event.target.value)
     setChosenVehicleState({...chosenVehicleState, [name]: parseInt(value)})
-    console.log(chosenVehicleState)
 
     // Matching the key in vehicle.json with the value of the target, that's set to be the same as the key we want to look up
     vehicles.map (vehicle => {
@@ -94,13 +69,11 @@ const Vehicle = () => {
         chosenMake.push(vehicle);
       }
     })
-    console.log("here is chosenmake", chosenMake)
     chosenMake.map(unique => {
       if (modelsToDisplay.indexOf(unique.model) < 0) {
         modelsToDisplay.push(unique.model);
       }
     })
-    console.log("and this is modelstodispla", modelsToDisplay)
     setModelState(...modelState, modelsToDisplay)
     setChosenVehicleState({...chosenVehicleState, [name]: (value)})
   }
@@ -183,12 +156,14 @@ const Vehicle = () => {
           setChosenVehicleState({...chosenVehicleState, [name]: (value)})
       }
     });
-    console.log(chosenVehicleState)
   }
+
+// CTRL Z MARKER
+
 
   function handleClick (event) {
     event.preventDefault()
-    console.log("here's what we chose", chosenVehicleState)
+    let vehicleToAdd
     vehicles.map((vehicle) => {
       if (vehicle.year === chosenVehicleState.year &&
         vehicle.make === chosenVehicleState.make &&
@@ -196,15 +171,73 @@ const Vehicle = () => {
         vehicle.fueltype === chosenVehicleState.fueltype &&
         vehicle.cylinders === chosenVehicleState.cylinders &&
         vehicle.transmission === chosenVehicleState.transmission) {
-          setParamState(vehicle)
-          console.log("match!!!!")
-          console.log(vehicle)
-
-          // Here, vehicle is what we will use in the put request as data.  
-          // We need to think about duplicate values, for future development if we won't have time.  I was able to narrow down all of our fields and still find two results.
+          vehicleToAdd = vehicle          
         }
     })
+      AddVehicle(vehicleToAdd)
   }
+
+
+  const AddVehicle = async (data) => {
+      console.log("Data", data);
+      console.log("user", user)
+      if (!user._id) return;
+  
+      console.log("adding ", user._id); 
+  
+      try {
+        const token = localStorage.getItem("__token__");
+        if (!token) throw new Error("No token saved");
+        console.log("passed token error checking")
+  
+        await axios.patch("/api/v1/users?vehicle=" + user._id, {
+          headers: { Authorization: "Bearer " + token },
+          params: {
+            make: data.make,
+            model: data.model,
+            year: data.year,
+            mpgcity: data.mpgcity,
+            mpghwy: data.mpghwy 
+          }
+          
+        });
+        console.log("posted?")
+  
+        // triggerUserReload();
+      } catch (error) {
+        console.warn(error.message);
+      // }
+    };
+  }
+
+  // The below gives me a 401 error
+
+  // const addVehicle = async (data) => {
+  //   const token = localStorage.getItem("__token__");
+  //   console.log("token", token)
+  //   try {
+  //   const res = await axios.patch("/api/v1/users?vehicle=", { 
+  //     headers: { 
+  //       Authorization: "Bearer " + token 
+  //     },
+    //   params: {
+    //   _id: data._id,
+    //   make: data.make,
+    //   model: data.model,
+    //   year: data.year,
+    //   mpgcity: data.mpgcity,
+    //   mpghwy: data.mpghwy 
+    // }
+    // });
+    
+  //   console.log("res", res)
+  //   console.log("data", res.data)
+  //   console.log("user", user)
+  //   } 
+  //   catch (error) {
+  //     console.log("PATCH ERROR", error)
+  //   }
+  // }
     
   return (
     <>
