@@ -65,11 +65,11 @@ const LetsGo = () => {
     }
   };
 
-  const getMode = () => {
-     setState({...state, 
-      travelMode: this.getElementById});
+  const getMode = (e) => {
+    setState({...state, 
+    travelMode: e.currentTarget.id});
     
-    console.log(state.travelMode);
+    console.log(e.currentTarget.id);
   }
 
 
@@ -179,6 +179,7 @@ console.log("current state", state)
                 fromLon={state.lonFrom} 
                 toLat={state.latTo} 
                 toLon= {state.lonTo}
+                travelMode={state.travelMode}
                 hanldeDistanceUpdate= {hanldeDistanceUpdate}
               />
             </div>
