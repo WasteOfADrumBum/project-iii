@@ -50,6 +50,11 @@ let userSeed = [
         zip: "27601",
       },
     ],
+    routes: {
+      mode: "Driving",
+      footprint: "0.41",
+      created: "2020-12-01 23:21:18.028Z", 
+    },
     // TODO: +routes
   },
   {
@@ -94,7 +99,11 @@ let userSeed = [
         zip: "27601",
       },
     ],
-    // TODO: +routes
+    routes: {
+      mode: "Driving",
+      footprint: "0.41",
+      created: "2020-12-01 23:21:18.028Z", 
+    },
   },
 ];
 

@@ -94,6 +94,49 @@ exports.updateUserPlaces = (Model) => async (req, res, next) => {
   }
 };
 
+exports.updateUserVehicle = (Model) => async (req, res, next) => {
+  try {
+
+    const userData = await Model.findById(req.params.id)
+    const doc = await Model.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          "vehicles": [
+            {
+                "id" : req.body.id,
+                "make" : req.body.make,
+                "model" : req.body.model,
+                "year" : req.body.year,
+                "mpgcity": req.body.mpgcity,
+                "mpghwy" : req.body.mpghwy,
+            },
+            ...userData.vehicles
+          ]
+        }
+      }
+      );
+
+    if (!doc) {
+      return next(
+        new AppError(404, "fail", "No document found with that id"),
+        req,
+        res,
+        next
+      );
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        doc,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 exports.createOne = (Model) => async (req, res, next) => {
   try {
