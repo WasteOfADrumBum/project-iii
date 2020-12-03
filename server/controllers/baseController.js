@@ -52,27 +52,23 @@ exports.updateOne = (Model) => async (req, res, next) => {
 
 exports.updateUserPlaces = (Model) => async (req, res, next) => {
   try {
-
-    const userData = await Model.findById(req.params.id)
-    const doc = await Model.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          "places": [
-            {
-                "name" : req.body.name,
-                "lat" : req.body.lat,
-                "lon" : req.body.lon,
-                "street": req.body.street,
-                "city" : req.body.city,
-                "state" : req.body.state,
-                "zip" : req.body.zip,
-            },
-            ...userData.places
-          ]
-        }
-      }
-      );
+    const userData = await Model.findById(req.params.id);
+    const doc = await Model.findByIdAndUpdate(req.params.id, {
+      $set: {
+        places: [
+          {
+            name: req.body.name,
+            lat: req.body.lat,
+            lon: req.body.lon,
+            street: req.body.street,
+            city: req.body.city,
+            state: req.body.state,
+            zip: req.body.zip,
+          },
+          ...userData.places,
+        ],
+      },
+    });
 
     if (!doc) {
       return next(
@@ -96,31 +92,27 @@ exports.updateUserPlaces = (Model) => async (req, res, next) => {
 
 exports.updateUserVehicle = (Model) => async (req, res, next) => {
   try {
-
-    const userData = await Model.findById(req.params.id)
-    const doc = await Model.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          "vehicles": [
-            {
-                "make" : req.body.make,
-                "model" : req.body.model,
-                "year" : req.body.year,
-                "type" : req.body.type,
-                "drive": req.body.drive,
-                "transmisson": req.body.transmisson,
-                "cylinders": req.body.cylinders,
-                "displacement": req.body.displacement,
-                "fueltype": req.body.fueltype,
-                "mpgcity": req.body.mpgcity,
-                "mpghwy" : req.body.mpghwy,
-            },
-            ...userData.vehicles
-          ]
-        }
-      }
-      );
+    const userData = await Model.findById(req.params.id);
+    const doc = await Model.findByIdAndUpdate(req.params.id, {
+      $set: {
+        vehicles: [
+          {
+            make: req.body.make,
+            model: req.body.model,
+            year: req.body.year,
+            type: req.body.type,
+            drive: req.body.drive,
+            transmisson: req.body.transmisson,
+            cylinders: req.body.cylinders,
+            displacement: req.body.displacement,
+            fueltype: req.body.fueltype,
+            mpgcity: req.body.mpgcity,
+            mpghwy: req.body.mpghwy,
+          },
+          ...userData.vehicles,
+        ],
+      },
+    });
 
     if (!doc) {
       return next(
@@ -144,23 +136,19 @@ exports.updateUserVehicle = (Model) => async (req, res, next) => {
 
 exports.updateUserRoute = (Model) => async (req, res, next) => {
   try {
-
-    const userData = await Model.findById(req.params.id)
-    const doc = await Model.findByIdAndUpdate(
-      req.params.id,
-      {
-        $set: {
-          "routes": [
-            {
-                "mode" : req.body.mode,
-                "footprint" : req.body.footprint,
-                
-            },
-            ...userData.routes
-          ]
-        }
-      }
-      );
+    console.log("updateUserRoute")
+    const userData = await Model.findById(req.params.id);
+    const doc = await Model.findByIdAndUpdate(req.params.id, {
+      $set: {
+        routes: [
+          {
+            mode: req.body.mode,
+            footprint: req.body.footprint,
+          },
+          ...userData.routes,
+        ],
+      },
+    });
 
     if (!doc) {
       return next(
@@ -177,11 +165,11 @@ exports.updateUserRoute = (Model) => async (req, res, next) => {
         doc,
       },
     });
+    console.log("userData.routes", userData.routes)
   } catch (error) {
     next(error);
   }
 };
-
 
 exports.createOne = (Model) => async (req, res, next) => {
   try {
