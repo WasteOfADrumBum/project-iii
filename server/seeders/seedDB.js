@@ -107,7 +107,7 @@ let userSeed = [
     {
       mode: "Walking",
       footprint: 0.12,
-      created: "2020-11-03 23:21:18.028Z"
+      created: "2020-11-05 23:21:18.028Z"
     },
     {
       mode: "Cycling",
@@ -127,7 +127,7 @@ let userSeed = [
     {
       mode: "Cycling",
       footprint: 0.25,
-      created: "2020-11-27 23:21:18.028Z"
+      created: "2020-11-17 23:21:18.028Z"
     },
   ],
   },

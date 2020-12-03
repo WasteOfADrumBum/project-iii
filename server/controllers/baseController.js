@@ -142,6 +142,46 @@ exports.updateUserVehicle = (Model) => async (req, res, next) => {
   }
 };
 
+exports.updateUserRoute = (Model) => async (req, res, next) => {
+  try {
+
+    const userData = await Model.findById(req.params.id)
+    const doc = await Model.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          "routes": [
+            {
+                "mode" : req.body.mode,
+                "footprint" : req.body.footprint,
+                
+            },
+            ...userData.routes
+          ]
+        }
+      }
+      );
+
+    if (!doc) {
+      return next(
+        new AppError(404, "fail", "No document found with that id"),
+        req,
+        res,
+        next
+      );
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        doc,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 exports.createOne = (Model) => async (req, res, next) => {
   try {
