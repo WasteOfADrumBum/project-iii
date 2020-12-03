@@ -18,24 +18,25 @@ const [footPrintState, setFootPrintState] = React.useState({
   const footPrintWeek = [];
   const footPrintMonth = []; 
   const footPrintYear = [];
-  const formattedArr= []
-  const todayUnformatted = new Date()
-  const today = moment(todayUnformatted).format()
-  const lastWeek = moment(today).subtract(7, "days").fromNow()
-  const lastMonth = moment(today).subtract(30, "days").fromNow()
-  const lastYear = moment(today).subtract(365, "days").fromNow()
+  // const formattedArr= []
+  const now = new Date()
+  // const today = moment(todayUnformatted).startOf().fromNow()
+  // const lastWeek = moment(todayUnformatted).subtract(7, "days").fromNow()
+  // const lastMonth = moment(todayUnformatted).subtract(30, "days").fromNow()
+  // const lastYear = moment(todayUnformatted).subtract(365, "days").fromNow()
+  // console.log(lastWeek)
 
-  function formatDates() {
-    user.routes.map((route) => {
-      formattedArr.push({
-        created: moment(route.created).format(),
-        footprint: route.footprint
-      }
-        )
+  // function formatDates() {
+  //   user.routes.map((route) => {
+  //     formattedArr.push({
+  //       created: moment(route.created).format(),
+  //       footprint: route.footprint
+  //     }
+  //       )
       
-    })
-    console.log(formattedArr, "ARRAY")
-  }
+  //   })
+  //   console.log(formattedArr, "ARRAY")
+  // }
 
   // function findSumDay(arr) {
   //   let sum = 0
@@ -70,17 +71,21 @@ const [footPrintState, setFootPrintState] = React.useState({
   // }
 
   function sortRoutes() {
-    formattedArr.map((date) => {
-      if (date > lastWeek) {
+    console.log("ROUTES", user.routes)
+    user.routes.map((date) => {
+      console.log(now - date.created)
+      // console.log(date.created, "DATE CREATED | ", [date.created].diff(lastWeek))
+      if (now - date.created < 86400000) {
         footPrintDay.push(date.footprint)
-      } else if (date < lastWeek) {
+      } else if (now - date.created > 604800000) {
         footPrintWeek.push(date.footprint)
-      } else if (date < lastMonth) {
+      } else if (now - date.created > 2592000000) {
         footPrintMonth.push(date.footprint)
-      } else  if (date < lastYear) {
+      } else  if (now - date.created > 31104000000) {
         footPrintYear.push(date.footprint)
       }  
     })
+    console.log(footPrintDay, footPrintWeek, footPrintMonth, footPrintYear)
     let daySum = 0;
     let weekSum = 0;
     let monthSum = 0;
@@ -127,7 +132,7 @@ const [footPrintState, setFootPrintState] = React.useState({
     console.log(daySum, weekSum, monthSum, yearSum)
   }
 
-  formatDates()
+  // formatDates()
   sortRoutes()
 
     const options = {
