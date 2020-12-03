@@ -58,10 +58,10 @@ const LetsGo = () => {
   const handleDistanceUpdate = (distance, time) => {
     console.log('do the update!!', distance.text, time.text)
     if (state.distance.length === 0) {
-        setState({...state, 
+        setState({
         distance: distance.text,
         totalTimeTravel: time.text})
-        console.log(state);
+        console.log("state", state);
     } else if (state.distance.text !== distance.text) {
       setState({...state,
         distance: distance.text,
@@ -176,7 +176,7 @@ console.log("current state", state)
                 toLat={state.latTo} 
                 toLon= {state.lonTo}
                 travelMode={state.travelMode}
-                handleDistanceUpdate={() => handleDistanceUpdate}
+                handleDistanceUpdate={handleDistanceUpdate}
               />
             </div>
             <div className="col-md-6 mb-5">

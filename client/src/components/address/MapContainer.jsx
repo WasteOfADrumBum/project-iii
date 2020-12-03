@@ -30,6 +30,7 @@ class Map extends Component {
         console.log("result", result)
         console.log("status", status)
 
+  
         this.props.handleDistanceUpdate(result.routes[0].legs[0].distance, result.routes[0].legs[0].duration);
 
         if (status === google.maps.DirectionsStatus.OK) {
