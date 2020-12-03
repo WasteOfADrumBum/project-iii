@@ -10,9 +10,6 @@ import { CurrentUserContext } from "../utils/UserContext";
 import LetsGoLoop from "../components/loops/LetsGoLoop";
 import axios from "axios"
 
-// TODO: Dropdown placeholder values to be replaced with saved locations from database
-// TODO: onClick() Let's Go! btn send address information to map and map to accordion
-
 const LetsGo = () => {
   const [user]= React.useContext(CurrentUserContext);
 
@@ -64,7 +61,7 @@ const LetsGo = () => {
       " AND THE TIME TO ",
       time
     );
-    if (state.distance != distance.text) {
+    if (state.distance !== distance.text) {
       setState({
         ...state,
         distance: distance.text,
