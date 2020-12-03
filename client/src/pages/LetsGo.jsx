@@ -64,7 +64,7 @@ const LetsGo = () => {
       " AND THE TIME TO ",
       time
     );
-    if (state.distance != distance.text) {
+    if (state.distance !== distance.text) {
       setState({
         ...state,
         distance: distance.text,
@@ -108,6 +108,8 @@ const LetsGo = () => {
 
         await axios.patch(`/api/v1/users/updateRoute/${user._id}`, routeData, {
           headers: { Authorization: "Bearer " + token },
+        }).then(function (response) {
+          console.log("Patch Response", response);
         });
         console.log("Posted Route Parameters: ", routeData);
         console.log("Posted  Adding to User: ", user.firstName, user._id);
@@ -118,7 +120,6 @@ const LetsGo = () => {
   };
 
   const testFn = () => {
-    console.log("hello")
     const co2Arr = []
     console.log(state.distance, state.travelMode)
     const testVal = document.getElementsByClassName("co2Div")
@@ -206,12 +207,12 @@ const LetsGo = () => {
                 className="btn-success mt-2 mb-5 pt-2 pb-2 pr-4 pl-4"
                 onClick={handleButtonClick}
               >
-                Show Me Options!
+                Let's Go!
               </button>
             </div>
           </div>
           <div className="row text-center m-3">
-            <div className="col-md-6 mb-5">
+            <div className="col-md-6 ">
               <MapLoader
                 googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAiG1j9c6Y1v76qmSWne_tAc_5TRiDQlLg"
                 loadingElement={<div style={{ height: `100%` }} />}
@@ -223,7 +224,7 @@ const LetsGo = () => {
                 hanldeDistanceUpdate={hanldeDistanceUpdate}
               />
             </div>
-            <div className="col-md-6 mb-5">
+            <div className="col-md-6 ">
               <AccordionComp
                 fromLat={state.latFrom}
                 fromLon={state.lonFrom}
@@ -235,13 +236,13 @@ const LetsGo = () => {
               />
             </div>
           </div>
-          <div class="row justify-content-center">
+          <div class="row text-center">
             <div class="col-md-12 justify-content-center">
             <button
                 className="btn-success mt-2 mb-5 pt-2 pb-2 pr-4 pl-4"
                 onClick={testFn}
               >
-                Let's Go!
+                Choose this Route!
               </button>
             </div>
           </div>
