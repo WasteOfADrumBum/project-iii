@@ -9,6 +9,7 @@ const DoughnutChart = () => {
     console.log("Doughnut Routes", routes)
 
     // routes.filter(routes.mode = driving).map
+
     const options = {
       animationEnabled: true,
       title: {
@@ -49,6 +50,7 @@ const DoughnutChart = () => {
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
     );
+
 }
 
 export default DoughnutChart;
