@@ -175,33 +175,25 @@ const Vehicle = () => {
       }
     });
     AddVehicle(vehicleToAdd);
+    history.push("/profile");
   }
 
-  const AddVehicle = async (data) => {
-    console.log("Data", data);
+  const AddVehicle = async (vehicleData) => {
+    console.log("Data", vehicleData);
     console.log("user", user);
-    const params = {
-      make: data.make,
-      model: data.model,
-      year: data.year,
-      mpgcity: data.mpgcity,
-      mpghwy: data.mpghwy,
-    };
-    if (params) {
-      console.log("params", params);
-      console.log("adding ", user._id);
-
+    if (vehicleData) {
+      console.log("Vehicle Parameters: ", vehicleData);
+      console.log("Adding to User: ", user.firstName, user._id);
       try {
         const token = localStorage.getItem("__token__");
         if (!token) throw new Error("No token saved");
         console.log("passed token error checking");
 
-        await axios.patch(`/api/v1/users/updateVehicle/${user._id}`, params, {
+        await axios.patch(`/api/v1/users/updateVehicle/${user._id}`, vehicleData, {
           headers: { Authorization: "Bearer " + token },
         });
-        console.log("posted?");
-
-        // ();
+        console.log("Posted Vehicle Parameters: ", vehicleData);
+        console.log("Posted  Adding to User: ", user.firstName, user._id);
       } catch (error) {
         console.warn(error.message);
       }

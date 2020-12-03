@@ -104,10 +104,15 @@ exports.updateUserVehicle = (Model) => async (req, res, next) => {
         $set: {
           "vehicles": [
             {
-                "id" : req.body.id,
                 "make" : req.body.make,
                 "model" : req.body.model,
                 "year" : req.body.year,
+                "type" : req.body.type,
+                "drive": req.body.drive,
+                "transmisson": req.body.transmisson,
+                "cylinders": req.body.cylinders,
+                "displacement": req.body.displacement,
+                "fueltype": req.body.fueltype,
                 "mpgcity": req.body.mpgcity,
                 "mpghwy" : req.body.mpghwy,
             },

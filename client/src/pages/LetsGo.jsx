@@ -7,13 +7,12 @@ import "../assets/styles/letsgo.scss";
 import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
 import { CurrentUserContext } from "../utils/UserContext";
-// import { useHistory } from "react-router-dom";
+
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
 // TODO: onClick() Let's Go! btn send address information to map and map to accordion
 
 const LetsGo = () => {
-  // const history = useHistory();
   const {firstName} = React.useContext(CurrentUserContext);
 
   const MapLoader = withScriptjs(Map);
@@ -23,8 +22,9 @@ const LetsGo = () => {
     lonFrom: "",
     latTo: "",
     lonTo: "",
-    distance: '',
-    totalTimeTravel: ''
+    distance: "",
+    totalTimeTravel: "",
+    travelMode: "DRIVING"
   });
 
   let addressInfoTo;
@@ -56,13 +56,20 @@ const LetsGo = () => {
   };
 
   const hanldeDistanceUpdate = (distance, time) => {
-    console.log('do the update!!', distance.text, time.value)
+    console.log("WE'RE IN HANDLEDISTANCEUPDATE, AND THE STATE IS ", state)
+    console.log("WHAT WE'RE GOING TO DO IS CHANGE THE DISTANCE TO ", distance, " AND THE TIME TO ", time)
     if (state.distance.length === 0) {
-      setState({...state, 
+        setState({...state, 
         distance: distance.text,
-        totalTimeTravel: time.value})
+        totalTimeTravel: time.text})
     }
-  
+  };
+
+  const getMode = (e) => {
+    setState({...state, 
+    travelMode: e.currentTarget.id});
+    
+    console.log(e.currentTarget.id);
   }
 
 
@@ -71,28 +78,15 @@ const LetsGo = () => {
     if(addressInfoFrom && addressInfoTo) {
       console.log(addressInfoFrom, addressInfoTo)
       setState({ ...state, 
-            latFrom: addressInfoFrom.lat,
+          latFrom: addressInfoFrom.lat,
           lonFrom: addressInfoFrom.lon,
           latTo: addressInfoTo.lat,
           lonTo: addressInfoTo.lon
           })
     };
-   // handleChange(addressInfoFrom, addressInfoTo);
   };
 
-  // Here is the issue
-//   function handleChange (from, to) {
-//   setState({ ...state, 
-//     latFrom: from.lat,
-//   lonFrom: from.lon,
-//   latTo: to.lat,
-//   lonTo: to.lon
-//   })
-
-  
-// console.log("current state", state)};
-
-console.log("current stat!!!!!!!!e", state)
+console.log("current state", state)
 
 
   return (
@@ -171,7 +165,8 @@ console.log("current stat!!!!!!!!e", state)
                 fromLat={state.latFrom} 
                 fromLon={state.lonFrom} 
                 toLat={state.latTo} 
-                toLon= {state.lonTo} 
+                toLon= {state.lonTo}
+                travelMode={state.travelMode}
                 hanldeDistanceUpdate= {hanldeDistanceUpdate}
               />
             </div>
@@ -183,6 +178,7 @@ console.log("current stat!!!!!!!!e", state)
               toLon= {state.lonTo} 
               distance={state.distance}
               time={state.totalTimeTravel}
+              getMode={getMode}
               />
             </div>
           </div>

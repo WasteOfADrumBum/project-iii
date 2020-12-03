@@ -9,8 +9,8 @@ const AccordionComp = (props) => {
   const [user] = useUserContext();
   const totalMiles = parseInt(props.distance);
   console.log(props.distance);
-  const userVehilceMpgCity = user.vehicles[0].mpgcity;
-  const userVehilceMpgHwy = user.vehicles[0].mpghwy;
+  const userVehicleMpgCity = user.vehicles[0].mpgcity;
+  const userVehicleMpgHwy = user.vehicles[0].mpghwy;
   console.log("acordion props", props);
   function number_format(val, decimals) {
     val = parseFloat(val);
@@ -21,7 +21,7 @@ const AccordionComp = (props) => {
     <div>
       <Accordion defaultActiveKey="0">
         <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="0">
+          <Accordion.Toggle id="DRIVING" as={Card.Header} eventKey="0" onClick={props.getMode}>
             <h3>Use Your Vehicle</h3>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="0">
@@ -33,7 +33,7 @@ const AccordionComp = (props) => {
                 <div className="col-md-4 text-right ">
                   <span>
                     {number_format(
-                      (8.8 / ((userVehilceMpgCity + userVehilceMpgHwy) / 2)) *
+                      (8.8 / ((userVehicleMpgCity + userVehicleMpgHwy) / 2)) *
                         totalMiles,
                       2
                     )}
@@ -54,7 +54,7 @@ const AccordionComp = (props) => {
                 <div className="col-md-4 text-right">{props.distance}</div>
               </div>
               <div className="row mt-2 justify-content-center">
-                <div className="col-lg-6">
+                <div className="col-lg-12">
                   <hr />
                   <p>
                     The average American’s energy-related carbon footprint is
@@ -69,8 +69,8 @@ const AccordionComp = (props) => {
             </Card.Body>
           </Accordion.Collapse>
         </Card>
-        <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="1">
+        {/* <Card>
+          <Accordion.Toggle id="TRANSIT" as={Card.Header} eventKey="1" onClick={props.getMode}>
             <h3>Use Public Transportation</h3>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="1">
@@ -78,9 +78,9 @@ const AccordionComp = (props) => {
               <div className="row">
                 <div className="col-md-8 text-left">
                   Your carbon footprint for this trip is:
-                </div>
+                </div> */}
                 {/* Grey Hound Bus: 9mpg avg 55 seat compacity */}
-                <div className="col-md-4 text-right">
+                {/* <div className="col-md-4 text-right">
                   {number_format(((8.8 / (9 / 2)) * totalMiles) / 55, 2)}
                   &nbsp;kg CO2e
                 </div>
@@ -98,7 +98,7 @@ const AccordionComp = (props) => {
                 <div className="col-md-4 text-right">{props.distance}</div>
               </div>
               <div className="row mt-2 justify-content-center">
-                <div className="col-lg-6">
+                <div className="col-lg-12">
                   <hr />
                   <p>
                     A Greyhound Bus may only get 9mpg, but it can hold 55
@@ -108,9 +108,9 @@ const AccordionComp = (props) => {
               </div>
             </Card.Body>
           </Accordion.Collapse>
-        </Card>
+        </Card> */}
         <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="2">
+          <Accordion.Toggle id="WALKING" as={Card.Header} eventKey="2" onClick={props.getMode}>
             <h3>Take A Walk</h3>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="2">
@@ -138,7 +138,7 @@ const AccordionComp = (props) => {
                 <div className="col-md-4 text-right">{props.distance}</div>
               </div>
               <div className="row mt-2 justify-content-center">
-                <div className="col-lg-6">
+                <div className="col-lg-12">
                   <hr />
                   <p>Walking at 3 mph (4.8 km/hr) burns 250 kCal</p>
                   <p>
@@ -150,7 +150,7 @@ const AccordionComp = (props) => {
           </Accordion.Collapse>
         </Card>
         <Card>
-          <Accordion.Toggle as={Card.Header} eventKey="3">
+          <Accordion.Toggle id="BICYCLING" as={Card.Header} eventKey="3" onClick={props.getMode}>
             <h3>Ride Your Bike</h3>
           </Accordion.Toggle>
           <Accordion.Collapse eventKey="3">
@@ -178,7 +178,7 @@ const AccordionComp = (props) => {
                 <div className="col-md-4 text-right">{props.distance}</div>
               </div>
               <div className="row mt-2 justify-content-center">
-                <div className="col-lg-6">
+                <div className="col-lg-12">
                   <hr />
                   <p>Riding a bicycle at 8 mph (12.8 kph) burns 280 kCal</p>
                   <p>
