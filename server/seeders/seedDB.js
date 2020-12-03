@@ -101,32 +101,32 @@ let userSeed = [
     ],
     routes: [{
       mode: "Driving",
-      footprint: "0.41",
+      footprint: 0.41,
       created: "2020-12-01 23:21:18.028Z"
     },
     {
       mode: "Walking",
-      footprint: "0.41",
+      footprint: 0.12,
       created: "2020-11-03 23:21:18.028Z"
     },
     {
       mode: "Cycling",
-      footprint: "0.41",
+      footprint: 0.22,
       created: "2020-11-29 23:21:18.028Z"
     },
     {
       mode: "Driving",
-      footprint: "0.41",
+      footprint: 0.6,
       created: "2020-10-01 23:21:18.028Z"
     },
     {
       mode: "Walking",
-      footprint: "0.41",
+      footprint: 0.1,
       created: "2020-09-01 23:21:18.028Z"
     },
     {
       mode: "Cycling",
-      footprint: "0.41",
+      footprint: 0.25,
       created: "2020-11-27 23:21:18.028Z"
     },
   ],
