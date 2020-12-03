@@ -24,10 +24,6 @@ router.delete("/", UserController.deleteVehicle);
 router.delete("/", UserController.deletePlace);
 router.delete("/deleteMe", UserController.deleteMe);
 
-router
-  .route("/updateVehicle/:id")
-  .patch(UserController.updateVehicle)
-  
 // ↓↓↓ Only admin have permission to access for the below APIs ↓↓↓
 router.use(AuthController.restrictTo("admin", "user"));
 
@@ -40,11 +36,8 @@ router
   .patch(UserController.updateUser)
   .delete(UserController.deleteUser);
 
-router
-  .route("/updatePlaces/:id")
-  .patch(UserController.updatePlaces)
-
-
+router.route("/updatePlaces/:id").patch(UserController.updatePlaces);
+router.route("/updateVehicle/:id").patch(UserController.updateVehicle);
 
 // Export router
 module.exports = router;
