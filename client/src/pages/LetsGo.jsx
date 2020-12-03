@@ -8,6 +8,7 @@ import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
 import { CurrentUserContext } from "../utils/UserContext";
 
+
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
 // TODO: onClick() Let's Go! btn send address information to map and map to accordion
 
@@ -54,12 +55,21 @@ const LetsGo = () => {
     }
   };
 
-  const hanldeDistanceUpdate = (distance, time) => {
-    console.log('do the update!!', distance.text, time.value)
+
+  const handleDistanceUpdate = (distance, time) => {
+    console.log('do the update!!', distance.text, time.text)
     if (state.distance.length === 0) {
         setState({...state, 
         distance: distance.text,
-        totalTimeTravel: time.value})
+        totalTimeTravel: time.text})
+        console.log(state);
+    } else if (state.distance.text !== distance.text) {
+      setState({...state,
+        distance: distance.text,
+        totalTimeTravel: time.text
+      })
+    } else {
+      console.log("done");
     }
   };
 
@@ -83,6 +93,8 @@ const LetsGo = () => {
           })
     };
   };
+
+  
 
 console.log("current state", state)
 
@@ -165,7 +177,7 @@ console.log("current state", state)
                 toLat={state.latTo} 
                 toLon= {state.lonTo}
                 travelMode={state.travelMode}
-                hanldeDistanceUpdate= {hanldeDistanceUpdate}
+                handleDistanceUpdate={() => handleDistanceUpdate}
               />
             </div>
             <div className="col-md-6 mb-5">
