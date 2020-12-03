@@ -58,10 +58,12 @@ const LetsGo = () => {
   const hanldeDistanceUpdate = (distance, time) => {
     console.log("WE'RE IN HANDLEDISTANCEUPDATE, AND THE STATE IS ", state)
     console.log("WHAT WE'RE GOING TO DO IS CHANGE THE DISTANCE TO ", distance, " AND THE TIME TO ", time)
-    if (state.distance.length === 0) {
+    if (state.distance != distance.text) {
         setState({...state, 
         distance: distance.text,
         totalTimeTravel: time.text})
+    } else {
+      console.log("all set!  Nothing to update")
     }
   };
 
