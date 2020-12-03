@@ -5,91 +5,35 @@ import moment from "moment";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 function ColumnChart() {
+  const [{ routes }] = useUserContext();
   const today = moment();
-  console.log("Moment Today: ", today.format('YYYY-MM-DD'));
+  const now = today.format("YYYYMMDD");
 
-  const [footPrintState, setFootPrintState] = React.useState({
-    day: null,
-    week: null,
-    month: null,
-    year: null,
-  });
-
-  const [user] = useUserContext();
   const footPrintDay = [];
   const footPrintWeek = [];
   const footPrintMonth = [];
   const footPrintYear = [];
-
-  const now = new Date();
-  console.log("JavaScrip new Date(): ", now)
-
-  function sortRoutes() {
-    console.log("ROUTES", user.routes);
-    user.routes.map((date) => {
-
-      console.log("DB Date Moment Format: ", moment(date.created).format('YYYY-MM-DD'));
-
-      // console.log(date.created, "DATE CREATED | ", [date.created].diff(lastWeek))
-      if (now - date.created < 86400000) {
-        footPrintDay.push(date.footprint);
-      } else if (now - date.created > 604800000) {
-        footPrintWeek.push(date.footprint);
-      } else if (now - date.created > 2592000000) {
-        footPrintMonth.push(date.footprint);
-      } else if (now - date.created > 31104000000) {
-        footPrintYear.push(date.footprint);
-      }
-    });
-    console.log(footPrintDay, footPrintWeek, footPrintMonth, footPrintYear);
-    let daySum = 0;
-    let weekSum = 0;
-    let monthSum = 0;
-    let yearSum = 0;
-    console.log("PRIOR TO CONDITIONAL", daySum, weekSum, monthSum, yearSum);
-
-    if ((footPrintDay.length = 1)) {
-      daySum = footPrintDay[0];
-    } else if (footPrintDay.length > 1) {
-      for (let i = 1; i < footPrintDay.length; i++) {
-        daySum = daySum + footPrintDay[i];
-      }
-    } else {
-      daySum = 0;
+  routes.map((date) => {
+    if (now - moment(date.created).format("YYYYMMDD") < 1) {
+      footPrintDay.push(date.footprint);
+    } else if (now - moment(date.created).format("YYYYMMDD") < 7) {
+      footPrintWeek.push(date.footprint);
+    } else if (now - moment(date.created).format("YYYYMMDD") < 30) {
+      footPrintMonth.push(date.footprint);
+    } else if (now - moment(date.created).format("YYYYMMDD") < 365) {
+      footPrintYear.push(date.footprint);
     }
-    if ((footPrintWeek.length = 1)) {
-      weekSum = footPrintWeek[0];
-    } else if (footPrintWeek.length > 1) {
-      for (let i = 1; i < footPrintWeek.length; i++) {
-        weekSum = weekSum + footPrintWeek[i];
-      }
-    } else if ((footPrintWeek.length = 0)) {
-      weekSum = 0;
-    }
-    if ((footPrintMonth.length = 1)) {
-      monthSum = footPrintMonth[0];
-    } else if (footPrintMonth.length > 1) {
-      for (let i = 1; i < footPrintMonth.length; i++) {
-        monthSum = monthSum + footPrintMonth[i];
-      }
-    } else {
-      monthSum = 0;
-    }
-    if ((footPrintYear.length = 1)) {
-      yearSum = footPrintYear[0];
-    } else if (footPrintYear.length > 1) {
-      for (let i = 1; i < footPrintYear.length; i++) {
-        yearSum = yearSum + footPrintYear[i];
-      }
-    } else {
-      yearSum = 0;
-    }
+  });
 
-    console.log(daySum, weekSum, monthSum, yearSum);
-  }
+  console.log(parseInt(now) - parseInt(moment(routes[0].created).format("YYYYMMDD")))
+  console.log(parseInt(now))
 
-  // formatDates()
-  sortRoutes();
+  const dayCalc = footPrintDay.reduce((a, b) => a + b, 0);
+  const weekCalc = footPrintWeek.reduce((a, b) => a + b, 0);
+  const monthCalc = footPrintMonth.reduce((a, b) => a + b, 0);
+  const yearCalc = footPrintYear.reduce((a, b) => a + b, 0);
+
+  console.log(dayCalc, weekCalc, monthCalc, yearCalc)
 
   const options = {
     title: {
@@ -98,22 +42,17 @@ function ColumnChart() {
     animationEnabled: true,
     data: [
       {
-        // Change type to "doughnut", "line", "splineArea", etc.
         type: "column",
         dataPoints: [
           // TODO: Replace y cordinate with user data
-          { label: "Actual /Day", y: footPrintState.day, color: "OliveDrab" },
-          { label: "US Avg. /Day", y: 318.15, color: "YellowGreen" },
-          { label: "Actual /Week", y: footPrintState.week, color: "OliveDrab" },
-          { label: "US Avg. /Week", y: 318.15, color: "YellowGreen" },
-          {
-            label: "Actual /Month",
-            y: footPrintState.month,
-            color: "OliveDrab",
-          },
-          { label: "US Avg. /Month", y: 1383.33, color: "YellowGreen" },
-          { label: "Actual /Year", y: footPrintState.year, color: "OliveDrab" },
-          { label: "US Avg. /Year", y: 16600, color: "YellowGreen" },
+          { label: "Actual /Day", y: dayCalc, color: "OliveDrab" },
+          // { label: "US Avg. /Day", y: 318.15, color: "YellowGreen" },
+          { label: "Actual /Week", y: weekCalc, color: "OliveDrab" },
+          // { label: "US Avg. /Week", y: 318.15, color: "YellowGreen" },
+          { label: "Actual /Month", y: monthCalc, color: "OliveDrab" },
+          // { label: "US Avg. /Month", y: 1383.33, color: "YellowGreen" },
+          { label: "Actual /Year", y: yearCalc, color: "OliveDrab" },
+          // { label: "US Avg. /Year", y: 16600, color: "YellowGreen" },
         ],
       },
     ],
