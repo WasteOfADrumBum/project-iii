@@ -38,6 +38,8 @@ router
 
 router.route("/updatePlaces/:id").patch(UserController.updatePlaces);
 router.route("/updateVehicle/:id").patch(UserController.updateVehicle);
+router.route("/updateRoute/:id").patch(UserController.updateRoute);
+
 
 // Export router
 module.exports = router;

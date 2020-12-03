@@ -99,7 +99,7 @@ const LetsGo = () => {
     console.log("Data", routeData);
     console.log("user", user);
     if (routeData) {
-      console.log("Vehicle Parameters: ", routeData);
+      console.log("Route Parameters: ", routeData);
       console.log("Adding to User: ", user.firstName, user._id);
       try {
         const token = localStorage.getItem("__token__");
@@ -116,6 +116,38 @@ const LetsGo = () => {
       }
     }
   };
+
+  const testFn = () => {
+    console.log("hello")
+    const co2Arr = []
+    console.log(state.distance, state.travelMode)
+    const testVal = document.getElementsByClassName("co2Div")
+    for (let i = 0; i < testVal.length; i++) {
+      co2Arr.push(parseFloat(testVal[i].childNodes[0].data))
+    }
+    if (state.travelMode === "DRIVING") {
+      const routeData = {
+        mode: "Driving",
+        footprint: co2Arr[0]
+      } 
+      AddRoute(routeData)
+
+    } else if (state.travelMode === "Walking") {
+      const routeData = {
+        mode: "WALKING",
+        footprint: co2Arr[1]
+      }
+      AddRoute(routeData)
+
+    } else {
+      const routeData = {
+        mode: "Cycling",
+        footprint: co2Arr[2]
+      }
+      AddRoute(routeData)
+    }
+
+  }
 
   console.log("current state", state);
 
@@ -174,7 +206,7 @@ const LetsGo = () => {
                 className="btn-success mt-2 mb-5 pt-2 pb-2 pr-4 pl-4"
                 onClick={handleButtonClick}
               >
-                Let's Go!
+                Show Me Options!
               </button>
             </div>
           </div>
@@ -201,6 +233,16 @@ const LetsGo = () => {
                 time={state.totalTimeTravel}
                 getMode={getMode}
               />
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-md-12 justify-content-center">
+            <button
+                className="btn-success mt-2 mb-5 pt-2 pb-2 pr-4 pl-4"
+                onClick={testFn}
+              >
+                Let's Go!
+              </button>
             </div>
           </div>
         </div>
