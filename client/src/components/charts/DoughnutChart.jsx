@@ -1,9 +1,31 @@
-import React, { Component } from "react";
+import React from "react";
 import CanvasJSReact from "../../assets/canvasjs.react";
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import { useUserContext } from "../../utils/UserContext";
 
-class DoughnutChart extends Component {
-  render() {
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+const DoughnutChart = () => {
+    const [{ routes }] = useUserContext();
+    console.log("Doughnut Routes", routes)
+
+    const drivingArr = [ ];
+    const walkingArr = [ ];
+    const cyclingArr = [ ];
+    routes.map((route) => {
+      if (route.mode === "Driving") {
+      drivingArr.push(route.footprint)
+      } else if (route.mode === "Walking") {
+      walkingArr.push(route.footprint) 
+      } else { 
+      cyclingArr.push(route.footprint) };
+    })
+
+    const drivingFootPrint = drivingArr.reduce((a, b) => a + b, 0);
+    const walkingFootPrint = walkingArr.reduce((a, b) => a + b, 0);
+    const cyclingFootPrint = cyclingArr.reduce((a, b) => a + b, 0);
+
+    // routes.filter(routes.mode = driving).map
+
     const options = {
       animationEnabled: true,
       title: {
@@ -11,7 +33,7 @@ class DoughnutChart extends Component {
       },
       subtitles: [
         {
-          text: "Total % Here",
+          text: (drivingFootPrint + walkingFootPrint + cyclingFootPrint) + " kg CO2e",
           verticalAlign: "center",
           fontSize: 24,
           dockInsidePlotArea: true,
@@ -22,13 +44,13 @@ class DoughnutChart extends Component {
           type: "doughnut",
           showInLegend: true,
           indexLabel: "{name}: {y}",
-          yValueFormatString: "#,###'%'",
+          yValueFormatString: "#,###.##",
           dataPoints: [
             // TODO: Replace Placeholder text and y cordinate with user data
-            { name: "Driving", y: 25, color: "#CDB30C"},
-            { name: "Walking", y: 50, color: "#62760c" },
-            { name: "Bicycling", y: 15, color: "#535204" },
-            { name: "Transit", y: 10, color: "#523906" },
+            { name: "Driving", y: drivingFootPrint, color: "#CDB30C" },
+            { name: "Walking", y: walkingFootPrint, color: "#62760c" },
+            { name: "Bicycling", y: cyclingFootPrint, color: "#535204" },
+            // { name: "Transit", y: 10, color: "#523906" },
           ],
         },
       ],
@@ -44,7 +66,7 @@ class DoughnutChart extends Component {
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
     );
-  }
+
 }
 
 export default DoughnutChart;

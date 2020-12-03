@@ -41,8 +41,7 @@ const LoginPage = () => {
     <>
       <NavBar />
       <div className="image-container text-center">
-        <div className="row">
-          <div className="col-lg-4" />
+        <div className="row justify-content-center">
           <div className="login-text p-5 m-5 col-lg-4">
             <div className="row pb-3 text-center">
               <div className="col-md-12">
@@ -91,7 +90,6 @@ const LoginPage = () => {
               </Link>
             </p>
           </div>
-          <div className="col-lg-4" />
         </div>
       </div>
       <Footer />

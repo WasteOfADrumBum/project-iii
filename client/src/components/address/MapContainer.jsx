@@ -5,13 +5,14 @@ import {
   GoogleMap,
   DirectionsRenderer
 } from "react-google-maps";
+
+// TODO: Replace origion and destination with lat and lgn from Adderess Auto Complete values
+// TODO: Replace travelMode: google.maps.TravelMode.DRIVING with mode of transportation from Accordion
+
 class Map extends Component {
-  constructor(props) {
-  super(props);
-  this.state = {
+  state = {
     directions: null,
   };
-}
 
   componentDidMount() {
     const directionsService = new google.maps.DirectionsService();
@@ -29,9 +30,8 @@ class Map extends Component {
       (result, status) => {
         console.log("result", result)
         console.log("status", status)
-
-  
-        this.props.handleDistanceUpdate(result.routes[0].legs[0].distance, result.routes[0].legs[0].duration);
+        console.log("MAPCONTAINER, RESULTS ARE ", result.routes[0].legs[0].distance, result.routes[0].legs[0].duration)
+        this.props.hanldeDistanceUpdate(result.routes[0].legs[0].distance, result.routes[0].legs[0].duration)
 
         if (status === google.maps.DirectionsStatus.OK) {
           this.setState({
@@ -42,15 +42,10 @@ class Map extends Component {
         }
       }
     );
-  };
+  }
 
   render() {
-    
-    // if(this.state.directions !== null){
-    //   this.props.handleDistanceUpdate(this.state.directions.routes[0].legs[0].distance, this.state.directions.routes[0].legs[0].duration);
-    //   };
-
-    const GoogleMapExample = withGoogleMap(() => (
+    const GoogleMapExample = withGoogleMap(props => (
       <GoogleMap
         defaultCenter={{ lat: 40.756795, lng: -73.954298 }}
         defaultZoom={13}

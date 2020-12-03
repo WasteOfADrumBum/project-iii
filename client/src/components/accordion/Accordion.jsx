@@ -30,8 +30,8 @@ const AccordionComp = (props) => {
                 <div className="col-md-8 text-left ">
                   Your carbon footprint for this trip is:
                 </div>
-                <div className="col-md-4 text-right ">
-                  <span>
+                <div className="col-md-4 text-right">
+                  <span className="co2Div">
                     {number_format(
                       (8.8 / ((userVehicleMpgCity + userVehicleMpgHwy) / 2)) *
                         totalMiles,
@@ -120,7 +120,7 @@ const AccordionComp = (props) => {
                   Your carbon footprint for this trip is:
                 </div>
                 {/* 0.0195 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
-                <div className="col-md-4 text-right">
+                <div className="col-md-4 text-right co2Div">
                   {number_format(0.0195 * totalMiles, 2)}
                   &nbsp;kg CO2e
                 </div>
@@ -160,7 +160,7 @@ const AccordionComp = (props) => {
                   Your carbon footprint for this trip is:
                 </div>
                 {/* 0.0085 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
-                <div className="col-md-4 text-right">
+                <div className="col-md-4 text-right co2Div">
                   {number_format(0.0085 * totalMiles, 2)}
                   &nbsp;kg CO2e
                 </div>

@@ -37,9 +37,6 @@ const VehicleLoop = () => {
       >
         X
       </button>
-      <p className="mr-2 d-inline">
-        <b>{item.name}</b>
-      </p>
       <p className="d-inline">
         {item.year} {item.make} {item.model}
       </p>

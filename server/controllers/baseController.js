@@ -104,14 +104,59 @@ exports.updateUserVehicle = (Model) => async (req, res, next) => {
         $set: {
           "vehicles": [
             {
-                "id" : req.body.id,
                 "make" : req.body.make,
                 "model" : req.body.model,
                 "year" : req.body.year,
+                "type" : req.body.type,
+                "drive": req.body.drive,
+                "transmisson": req.body.transmisson,
+                "cylinders": req.body.cylinders,
+                "displacement": req.body.displacement,
+                "fueltype": req.body.fueltype,
                 "mpgcity": req.body.mpgcity,
                 "mpghwy" : req.body.mpghwy,
             },
             ...userData.vehicles
+          ]
+        }
+      }
+      );
+
+    if (!doc) {
+      return next(
+        new AppError(404, "fail", "No document found with that id"),
+        req,
+        res,
+        next
+      );
+    }
+
+    res.status(200).json({
+      status: "success",
+      data: {
+        doc,
+      },
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
+exports.updateUserRoute = (Model) => async (req, res, next) => {
+  try {
+
+    const userData = await Model.findById(req.params.id)
+    const doc = await Model.findByIdAndUpdate(
+      req.params.id,
+      {
+        $set: {
+          "routes": [
+            {
+                "mode" : req.body.mode,
+                "footprint" : req.body.footprint,
+                
+            },
+            ...userData.routes
           ]
         }
       }
