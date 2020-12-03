@@ -8,12 +8,13 @@ import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
 import { CurrentUserContext } from "../utils/UserContext";
 import LetsGoLoop from "../components/loops/LetsGoLoop";
+import axios from "axios"
 
 // TODO: Dropdown placeholder values to be replaced with saved locations from database
 // TODO: onClick() Let's Go! btn send address information to map and map to accordion
 
 const LetsGo = () => {
-  const { firstName } = React.useContext(CurrentUserContext);
+  const [user]= React.useContext(CurrentUserContext);
 
   const MapLoader = withScriptjs(Map);
 
@@ -94,6 +95,28 @@ const LetsGo = () => {
     }
   };
 
+  const AddRoute= async (routeData) => {
+    console.log("Data", routeData);
+    console.log("user", user);
+    if (routeData) {
+      console.log("Vehicle Parameters: ", routeData);
+      console.log("Adding to User: ", user.firstName, user._id);
+      try {
+        const token = localStorage.getItem("__token__");
+        if (!token) throw new Error("No token saved");
+        console.log("passed token error checking");
+
+        await axios.patch(`/api/v1/users/updateRoute/${user._id}`, routeData, {
+          headers: { Authorization: "Bearer " + token },
+        });
+        console.log("Posted Route Parameters: ", routeData);
+        console.log("Posted  Adding to User: ", user.firstName, user._id);
+      } catch (error) {
+        console.warn(error.message);
+      }
+    }
+  };
+
   console.log("current state", state);
 
   return (
@@ -103,7 +126,7 @@ const LetsGo = () => {
         <div className="letsgo-form-container">
           <div className="row text-center p-5">
             <div className="col-md-12">
-              <h1>Where are we going today {firstName}?</h1>
+              <h1>Where are we going today {user.firstName}?</h1>
               <p>Select from one of your places, or enter a new address!</p>
             </div>
           </div>

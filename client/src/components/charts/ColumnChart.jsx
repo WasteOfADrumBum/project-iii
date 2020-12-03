@@ -3,17 +3,16 @@ import CanvasJSReact from "../../assets/canvasjs.react";
 import { useUserContext } from "../../utils/UserContext";
 import moment from "moment";
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
-
 function ColumnChart() {
   const [{ routes }] = useUserContext();
   const today = moment();
   const now = today.format("YYYYMMDD");
-
   const footPrintDay = [];
   const footPrintWeek = [];
   const footPrintMonth = [];
   const footPrintYear = [];
   routes.map((date) => {
+
     if (now - moment(date.created).format("YYYYMMDD") < 1) {
       footPrintDay.push(date.footprint);
     } else if (now - moment(date.created).format("YYYYMMDD") < 7) {
@@ -45,6 +44,7 @@ function ColumnChart() {
         type: "column",
         dataPoints: [
           // TODO: Replace y cordinate with user data
+
           { label: "Actual /Day", y: dayCalc, color: "OliveDrab" },
           // { label: "US Avg. /Day", y: 318.15, color: "YellowGreen" },
           { label: "Actual /Week", y: dayCalc + weekCalc, color: "OliveDrab" },
@@ -69,5 +69,4 @@ function ColumnChart() {
     </div>
   );
 }
-
 export default ColumnChart;
