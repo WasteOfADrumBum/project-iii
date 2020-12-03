@@ -8,6 +8,22 @@ const DoughnutChart = () => {
     const [{ routes }] = useUserContext();
     console.log("Doughnut Routes", routes)
 
+    const drivingArr = [ ];
+    const walkingArr = [ ];
+    const cyclingArr = [ ];
+    routes.map((route) => {
+      if (route.mode === "Driving") {
+      drivingArr.push(route.footprint)
+      } else if (route.mode === "Walking") {
+      walkingArr.push(route.footprint) 
+      } else { 
+      cyclingArr.push(route.footprint) };
+    })
+
+    const drivingFootPrint = drivingArr.reduce((a, b) => a + b, 0);
+    const walkingFootPrint = walkingArr.reduce((a, b) => a + b, 0);
+    const cyclingFootPrint = cyclingArr.reduce((a, b) => a + b, 0);
+
     // routes.filter(routes.mode = driving).map
 
     const options = {
@@ -17,7 +33,7 @@ const DoughnutChart = () => {
       },
       subtitles: [
         {
-          text: "Total % Here",
+          text: (drivingFootPrint + walkingFootPrint + cyclingFootPrint) + " kg CO2e",
           verticalAlign: "center",
           fontSize: 24,
           dockInsidePlotArea: true,
@@ -28,13 +44,13 @@ const DoughnutChart = () => {
           type: "doughnut",
           showInLegend: true,
           indexLabel: "{name}: {y}",
-          yValueFormatString: "#,###'%'",
+          yValueFormatString: "#,###.##",
           dataPoints: [
             // TODO: Replace Placeholder text and y cordinate with user data
-            { name: "Driving", y: 50, color: "#CDB30C" },
-            { name: "Walking", y: 50, color: "#62760c" },
-            { name: "Bicycling", y: 15, color: "#535204" },
-            { name: "Transit", y: 10, color: "#523906" },
+            { name: "Driving", y: drivingFootPrint, color: "#CDB30C" },
+            { name: "Walking", y: walkingFootPrint, color: "#62760c" },
+            { name: "Bicycling", y: cyclingFootPrint, color: "#535204" },
+            // { name: "Transit", y: 10, color: "#523906" },
           ],
         },
       ],
