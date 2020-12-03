@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import CanvasJSReact from "../../assets/canvasjs.react";
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-class DoughnutChart extends Component {
-  render() {
+function DoughnutChart() {
+  
+    
     const options = {
       animationEnabled: true,
       title: {
@@ -44,7 +45,7 @@ class DoughnutChart extends Component {
         {/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
       </div>
     );
-  }
+  
 }
 
 export default DoughnutChart;
