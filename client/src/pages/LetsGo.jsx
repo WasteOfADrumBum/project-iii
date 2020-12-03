@@ -55,7 +55,6 @@ const LetsGo = () => {
     }
   };
 
-
   const handleDistanceUpdate = (distance, time) => {
     console.log('do the update!!', distance.text, time.text)
     if (state.distance.length === 0) {
