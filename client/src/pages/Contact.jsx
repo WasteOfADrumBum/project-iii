@@ -11,7 +11,7 @@ const Contact = () => {
       <div className="contact-container">
         <div className="container">
           <div className="row text-center">
-            <div className="col-md-12 pt-3 mt-3 contact-text-container border-radius-top" >
+            <div className="col-md-12 pt-3 mt-3 contact-text-container border-radius-top">
               <h1>Meet Our Team</h1>
               <div style={{ textTransform: "uppercase" }}>
                 - T<p className="mirror">E</p>AM-I Produ
@@ -20,7 +20,7 @@ const Contact = () => {
             </div>
           </div>
           <div className="row text-center contact-text-container">
-            <div className="col-md-1 m-0 p-0"/>
+            <div className="col-md-1 m-0 p-0" />
             <div className="col-md-2 m-0 p-0">
               <img
                 className="img-fluid"
@@ -56,7 +56,7 @@ const Contact = () => {
                 alt="Arlene"
               />
             </div>
-            <div className="col-md-1 m-0 p-0"/>
+            <div className="col-md-1 m-0 p-0" />
           </div>
           <div className="row text-center">
             <div className="col-md-12 p-3 mb-3 contact-text-container border-radius-bottom">

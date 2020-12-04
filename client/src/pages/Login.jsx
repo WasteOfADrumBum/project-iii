@@ -9,34 +9,30 @@ import { useUserContext } from "../utils/UserContext";
 
 const LoginPage = () => {
   const history = useHistory();
+  // Trigger the router context
   const [user, triggerUserContext] = useUserContext();
-
   // Set email & password State to ""
   const [state, setState] = React.useState({
     email: "",
     password: "",
   });
-
   // Hadle Change State
   const handleChange = ({ target: { name, value } }) =>
     setState({ ...state, [name]: value });
-
   // Handle onClick auth route
   const handleClick = async (e) => {
     e.preventDefault();
     try {
       const response = await axios.post("/api/v1/users/login", state);
-      // setUser(response.data.data.user);
       localStorage.setItem("__token__", response.data.token);
       triggerUserContext();
+      // Push to profile route after login
       history.push("/profile");
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Login.jsx functional and responding to seed data as of 11.18.2020
-  // DON'T Modify This Page!
   return (
     <>
       <NavBar />

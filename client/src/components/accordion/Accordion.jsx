@@ -3,7 +3,7 @@ import { Accordion, Card } from "react-bootstrap";
 import "../../assets/styles/accordion.scss";
 import { useUserContext } from "../../utils/UserContext";
 
-// (8.8 / (({ mpgcity } + { mpghwy }) / 2)) * { totalmiles } = CO2e
+// (8.8 / (({ mpgcity } + { mpghwy }) / 2)) * { totalmiles } = CO<sub>2</sub>e
 
 const AccordionComp = (props) => {
   const [user] = useUserContext();
@@ -37,7 +37,7 @@ const AccordionComp = (props) => {
                         totalMiles,
                       2
                     )}
-                    &nbsp;kg CO2e
+                    &nbsp;kg CO<sub>2</sub>e
                   </span>
                 </div>
               </div>
@@ -58,7 +58,7 @@ const AccordionComp = (props) => {
                   <hr />
                   <p>
                     The average American’s energy-related carbon footprint is
-                    16.6 metric tons of carbon dioxide (tCO2e) annually
+                    16.6 metric tons of carbon dioxide (tCO<sub>2</sub>e) annually
                     according to the latest information from the U.S. Department
                     of Energy. 15% of which is from owning a car. On average an
                     american travels 11,224 miles annually in a car that's
@@ -82,7 +82,7 @@ const AccordionComp = (props) => {
                 {/* Grey Hound Bus: 9mpg avg 55 seat compacity */}
                 {/* <div className="col-md-4 text-right">
                   {number_format(((8.8 / (9 / 2)) * totalMiles) / 55, 2)}
-                  &nbsp;kg CO2e
+                  &nbsp;kg CO<sub>2</sub>e
                 </div>
               </div>
               <div className="row">
@@ -122,7 +122,7 @@ const AccordionComp = (props) => {
                 {/* 0.0195 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
                 <div className="col-md-4 text-right co2Div">
                   {number_format(0.0195 * totalMiles, 2)}
-                  &nbsp;kg CO2e
+                  &nbsp;kg CO<sub>2</sub>e
                 </div>
               </div>
               <div className="row">
@@ -162,7 +162,7 @@ const AccordionComp = (props) => {
                 {/* 0.0085 kg CO2/mile © https://www.globe.gov/explore-science/scientists-blog/archived-posts/sciblog/index.html_p=186.html*/}
                 <div className="col-md-4 text-right co2Div">
                   {number_format(0.0085 * totalMiles, 2)}
-                  &nbsp;kg CO2e
+                  &nbsp;kg CO<sub>2</sub>e
                 </div>
               </div>
               <div className="row">
@@ -188,7 +188,7 @@ const AccordionComp = (props) => {
                   <p>
                     <i>
                       Biking leaves less of a carbon footprint then walking due
-                      to the amount of CO2 you exhale over the same distance.
+                      to the amount of CO<sub>2</sub> you exhale over the same distance.
                     </i>
                   </p>
                 </div>

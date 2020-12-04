@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.c6845895.chunk.css",
-    "main.js": "/static/js/main.4aa8331b.chunk.js",
-    "main.js.map": "/static/js/main.4aa8331b.chunk.js.map",
-    "runtime-main.js": "/static/js/runtime-main.1728d819.js",
-    "runtime-main.js.map": "/static/js/runtime-main.1728d819.js.map",
+    "main.css": "/static/css/main.6a3da63d.chunk.css",
+    "main.js": "/static/js/main.2975cbf4.chunk.js",
+    "main.js.map": "/static/js/main.2975cbf4.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.5e96afd6.js",
+    "runtime-main.js.map": "/static/js/runtime-main.5e96afd6.js.map",
     "static/css/2.43b2b750.chunk.css": "/static/css/2.43b2b750.chunk.css",
-    "static/js/2.cad729b3.chunk.js": "/static/js/2.cad729b3.chunk.js",
-    "static/js/2.cad729b3.chunk.js.map": "/static/js/2.cad729b3.chunk.js.map",
-    "static/js/3.53a96681.chunk.js": "/static/js/3.53a96681.chunk.js",
-    "static/js/3.53a96681.chunk.js.map": "/static/js/3.53a96681.chunk.js.map",
+    "static/js/2.80af28f5.chunk.js": "/static/js/2.80af28f5.chunk.js",
+    "static/js/2.80af28f5.chunk.js.map": "/static/js/2.80af28f5.chunk.js.map",
+    "static/js/3.dc251562.chunk.js": "/static/js/3.dc251562.chunk.js",
+    "static/js/3.dc251562.chunk.js.map": "/static/js/3.dc251562.chunk.js.map",
     "index.html": "/index.html",
     "service-worker.js": "/service-worker.js",
     "service-worker.js.map": "/service-worker.js.map",
     "static/css/2.43b2b750.chunk.css.map": "/static/css/2.43b2b750.chunk.css.map",
-    "static/css/main.c6845895.chunk.css.map": "/static/css/main.c6845895.chunk.css.map",
-    "static/js/2.cad729b3.chunk.js.LICENSE.txt": "/static/js/2.cad729b3.chunk.js.LICENSE.txt",
+    "static/css/main.6a3da63d.chunk.css.map": "/static/css/main.6a3da63d.chunk.css.map",
+    "static/js/2.80af28f5.chunk.js.LICENSE.txt": "/static/js/2.80af28f5.chunk.js.LICENSE.txt",
     "static/media/contact.scss": "/static/media/contact-bg.04abb220.jpg",
     "static/media/profile.scss": "/static/media/footprint-bg.52c5f43e.jpg",
     "static/media/landingpage.scss": "/static/media/landing-page-bg.df0a16a8.jpg",
@@ -25,10 +25,10 @@
     "static/media/vehicle.scss": "/static/media/vehicle-bg.a355ffb6.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.1728d819.js",
+    "static/js/runtime-main.5e96afd6.js",
     "static/css/2.43b2b750.chunk.css",
-    "static/js/2.cad729b3.chunk.js",
-    "static/css/main.c6845895.chunk.css",
-    "static/js/main.4aa8331b.chunk.js"
+    "static/js/2.80af28f5.chunk.js",
+    "static/css/main.6a3da63d.chunk.css",
+    "static/js/main.2975cbf4.chunk.js"
   ]
 }

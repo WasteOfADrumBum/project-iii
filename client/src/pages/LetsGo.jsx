@@ -8,13 +8,13 @@ import Map from "../components/address/MapContainer";
 import { withScriptjs } from "react-google-maps";
 import { CurrentUserContext } from "../utils/UserContext";
 import LetsGoLoop from "../components/loops/LetsGoLoop";
-import axios from "axios"
+import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const LetsGo = () => {
-  const [user]= React.useContext(CurrentUserContext);
-
+  const [user] = React.useContext(CurrentUserContext);
+  const history = useHistory();
   const MapLoader = withScriptjs(Map);
-
   const [state, setState] = React.useState({
     latFrom: "",
     lonFrom: "",
@@ -92,7 +92,7 @@ const LetsGo = () => {
     }
   };
 
-  const AddRoute= async (routeData) => {
+  const AddRoute = async (routeData) => {
     console.log("Data", routeData);
     console.log("user", user);
     if (routeData) {
@@ -103,11 +103,14 @@ const LetsGo = () => {
         if (!token) throw new Error("No token saved");
         console.log("passed token error checking");
 
-        await axios.patch(`/api/v1/users/updateRoute/${user._id}`, routeData, {
-          headers: { Authorization: "Bearer " + token },
-        }).then(function (response) {
-          console.log("Patch Response", response);
-        });
+        await axios
+          .patch(`/api/v1/users/updateRoute/${user._id}`, routeData, {
+            headers: { Authorization: "Bearer " + token },
+          })
+          .then(function (response) {
+            console.log("Patch Response", response);
+            history.push("/profile");
+          });
         console.log("Posted Route Parameters: ", routeData);
         console.log("Posted  Adding to User: ", user.firstName, user._id);
       } catch (error) {
@@ -117,35 +120,32 @@ const LetsGo = () => {
   };
 
   const testFn = () => {
-    const co2Arr = []
-    console.log(state.distance, state.travelMode)
-    const testVal = document.getElementsByClassName("co2Div")
+    const co2Arr = [];
+    console.log(state.distance, state.travelMode);
+    const testVal = document.getElementsByClassName("co2Div");
     for (let i = 0; i < testVal.length; i++) {
-      co2Arr.push(parseFloat(testVal[i].childNodes[0].data))
+      co2Arr.push(parseFloat(testVal[i].childNodes[0].data));
     }
     if (state.travelMode === "DRIVING") {
       const routeData = {
         mode: "Driving",
-        footprint: co2Arr[0]
-      } 
-      AddRoute(routeData)
-
+        footprint: co2Arr[0],
+      };
+      AddRoute(routeData);
     } else if (state.travelMode === "Walking") {
       const routeData = {
         mode: "WALKING",
-        footprint: co2Arr[1]
-      }
-      AddRoute(routeData)
-
+        footprint: co2Arr[1],
+      };
+      AddRoute(routeData);
     } else {
       const routeData = {
         mode: "Cycling",
-        footprint: co2Arr[2]
-      }
-      AddRoute(routeData)
+        footprint: co2Arr[2],
+      };
+      AddRoute(routeData);
     }
-
-  }
+  };
 
   console.log("current state", state);
 
@@ -235,7 +235,7 @@ const LetsGo = () => {
           </div>
           <div class="row text-center">
             <div class="col-md-12 justify-content-center">
-            <button
+              <button
                 className="btn-success mt-2 mb-5 pt-2 pb-2 pr-4 pl-4"
                 onClick={testFn}
               >

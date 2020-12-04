@@ -8,26 +8,30 @@
     background-position: center;
     max-width: 100% !important;
     min-height: 100vh;
-}
 
-.profile-content-container {
-    background-color: rgba(255, 255, 255, .5) !important;
-    border-radius: 2rem;
+    .profile-content-container {
+        background-color: rgba(255, 255, 255, .5) !important;
+        border-radius: 2rem;
 
-    .btn-success {
-        margin-left: .5rem;
-        padding: 0px 2px 2px 2px;
-        line-height: 1rem;
+        .btn-success {
+            margin-left: .5rem;
+            padding: 0px 2px 2px 2px;
+            line-height: 1rem;
+        }
     }
-}
 
-#canvasjs-react-chart-container-3,
-#canvasjs-react-chart-container-7,
-.canvasjs-chart-container,
-.canvasjs-chart-canvas {
-    border-radius: 2rem;
-}
+    #canvasjs-react-chart-container-3,
+    #canvasjs-react-chart-container-7,
+    .canvasjs-chart-container,
+    .canvasjs-chart-canvas {
+        border-radius: 2rem;
+    }
 
-.canvasjs-chart-credit {
-    display: none;
+    .canvasjs-chart-credit {
+        display: none;
+    }
+    
+    hr {
+        border-top: .1rem solid black;
+    }
 }
