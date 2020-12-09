@@ -8,23 +8,20 @@ import Register from "./pages/Register";
 import LetsGo from "./pages/LetsGo";
 import Profile from "./pages/Profile";
 import { CurrentUserProvider, useUserContext } from "./utils/UserContext";
-import dotenv from "dotenv"
+// import dotenv from "dotenv"
 
-dotenv.config()
-
-console.log(process.env)
+// dotenv.config()
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const [user] = useUserContext();
   return <Route {...rest} component={user.firstName ? Component : Login} />;
 };
 
-
 export default () => (
   <Router basename={process.env.PUBLIC_URL + "/"}>
     <CurrentUserProvider>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />S
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <ProtectedRoute exact path="/vehicle" component={Vehicle} />

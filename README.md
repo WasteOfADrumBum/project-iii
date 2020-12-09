@@ -122,13 +122,19 @@ mongoimport --type csv -d project3_db -c VehicleInfo --headerline --drop vehicle
 
 Link to deployed [Heroku App](https://unc-team1-project3.herokuapp.com/).
 
+Due to a new security update from Google, this application is back under development and it unable to render on Heroku. We are working vigorously to get it back online, but for the time being it's still available in a developers mode while running it locally. 
+
+Issue: Exposed API key in index.html is a security violation from Google forbidding Heroku to deploy the application. 
+
+Resolution: converting the components using that script to make the calls using the back end of the application vs. the front end and using .env to hide the key.
+
 ## Features
 
-Project 3 Features
+Carbon FX features advanced user authentication and protection measures using JSON Web Token (JWT). This app allows for user's to create a secure profile that's stored in a MondoDB Atlas database. The user then can choose from over +50k vehicles and add their vehicle to thier profile store in the same database. The user can also use Google Places to find locations and sotre them in the database as well. The user can then use those store options to calculate the distance between two points and give options of modes of transportation and the carbon footprint that each option has. After choseing the options the route is then stored in to the user's database once again to provide visual charts of thier effects on the environment and how well they're comparing to the national average. 
 
 ## Example Gif
 
-<img src="https://via.placeholder.com/500x300" width="500" />
+<img src="client/public/assets/images/carbonfx-demo.gif" width="500" />
 
 ### Design Layouts with Annotations describing all UI/UX components with all relevant screen data
 
