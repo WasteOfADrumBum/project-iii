@@ -8,6 +8,11 @@ import Register from "./pages/Register";
 import LetsGo from "./pages/LetsGo";
 import Profile from "./pages/Profile";
 import { CurrentUserProvider, useUserContext } from "./utils/UserContext";
+import dotenv from "dotenv"
+
+dotenv.config()
+
+console.log(process.env)
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   const [user] = useUserContext();
