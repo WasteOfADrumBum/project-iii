@@ -16,7 +16,7 @@ function PlacesApi() {
     const getSearch = async () => {
       try {
         let results = await fetch(
-          `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/jason?=input=${state.search}&key=${process.env.REACT_APP_GOOGLE_API}`
+          `https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/autocomplete/json?=input=${state.search}&key=${process.env.REACT_APP_GOOGLE_API}`
         );
         results = await results.json();
         console.log(results);

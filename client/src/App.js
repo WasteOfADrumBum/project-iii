@@ -19,12 +19,11 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   return <Route {...rest} component={user.firstName ? Component : Login} />;
 };
 
-
 export default () => (
   <Router basename={process.env.PUBLIC_URL + "/"}>
     <CurrentUserProvider>
       <Switch>
-        <Route exact path="/" component={LandingPage} />
+        <Route exact path="/" component={LandingPage} />S
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
         <ProtectedRoute exact path="/vehicle" component={Vehicle} />
