@@ -4,11 +4,7 @@ const app = require("./app");
 const PORT = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
-const fetch = require("node-fetch")
 dotenv.config();
-
-console.log("API KEY: ", process.env.REACT_APP_GOOGLE_API)
-
 
 process.on("uncaughtException", (err) => {
   console.log("UNCAUGHT EXCEPTION!!! shutting down...");
@@ -34,23 +30,6 @@ mongoose
   .then((con) => {
     console.log("DB connection Successful");
   });
-
-  app.get("/api/search", async (req, res) => {
-    try {
-
-      const response = await fetch(`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_API}&libraries=places`);
-      
-      return res.json({
-              success: true,
-              results
-            })
-          } catch (err) {
-            return res.status(500).json({
-              success: false,
-              message: err.message,
-            })
-          }
-        })
 
 // PORT
 app.listen(PORT, () => {
