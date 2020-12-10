@@ -1,4 +1,4 @@
-# **Project III** [![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
+# **CarbonFX** [![Build Status](https://travis-ci.com/WasteOfADrumBum/project-iii.svg?branch=main)](https://travis-ci.com/github/WasteOfADrumBum/project-iii)
 
 ![GitHub license](https://img.shields.io/badge/Front%20End%20Developer-%40WasteOfADrumBum-green)
 ![GitHub license](https://img.shields.io/badge/Front%20End%20Developer-%40maxgerringer-green)
@@ -9,11 +9,11 @@
 
 ## Description
 
-Project III Description
+Carbon FX: An application made to track your carnonfootprint of your daily commute. 
 
 ### Why Project III
 
-Project III brings value to the modern world of transportation by allowing users to track their carbon foot print they leave behind on thier daily commute. By making users consiously aware of their carbon footprint we can help make a difference in the world. We calculate the carboon footprint left behing during a user's commute and compare that to various other forms of public and alternative transportation options giving mesuarble charts and statistics on how they can improve our environment. Transportation continues to contribute a large percentage of U.S. emissions, there are many opportunities to deliver greenhouse gas reductions. Low-carbon fuels, new and improved vehicle technologies, strategies to reduce the number of vehicle miles traveled, and operating vehicles more efficiently are all approaches to reducing greenhouse gases from transportation.
+CarbonFX brings value to the modern world of transportation by allowing users to track their carbon footprint they leave behind on their daily commute. By making users consciously aware of their carbon footprint we can help make a difference in the world. We calculate the carbon footprint left behind during a user's commute and compare that to various other forms of public and alternative transportation options giving measurable charts and statistics on how they can improve our environment. Transportation continues to contribute a large percentage of U.S. emissions, there are many opportunities to deliver greenhouse gas reductions. Low-carbon fuels, new and improved vehicle technologies, strategies to reduce the number of vehicle miles traveled, and operating vehicles more efficiently are all approaches to reducing greenhouse gases from transportation.
 
 > "_Burning fossil fuels like gasoline and diesel releases carbon dioxide, a greenhouse gas, into the atmosphere. The buildup of carbon dioxide (CO2) and other greenhouse gases like methane (CH4), nitrous oxide (N2O), and hydrofluorocarbons (HFCs) is causing the Earth’s atmosphere to warm, resulting in changes to the climate we are already starting to see today. Greenhouse gas (GHG) emissions from transportation account for about 28 percent of total U.S. greenhouse gas emissions, making it the largest contributor of U.S. GHG emissions. Between 1990 and 2018, GHG emissions in the transportation sector increased more in absolute terms than any other sector._"
 
