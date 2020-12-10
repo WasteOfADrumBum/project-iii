@@ -11,7 +11,7 @@
 
 Carbon FX: An application made to track your carnonfootprint of your daily commute. 
 
-### Why Project III
+### Why CarbonFX
 
 CarbonFX brings value to the modern world of transportation by allowing users to track their carbon footprint they leave behind on their daily commute. By making users consciously aware of their carbon footprint we can help make a difference in the world. We calculate the carbon footprint left behind during a user's commute and compare that to various other forms of public and alternative transportation options giving measurable charts and statistics on how they can improve our environment. Transportation continues to contribute a large percentage of U.S. emissions, there are many opportunities to deliver greenhouse gas reductions. Low-carbon fuels, new and improved vehicle technologies, strategies to reduce the number of vehicle miles traveled, and operating vehicles more efficiently are all approaches to reducing greenhouse gases from transportation.
 
