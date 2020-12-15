@@ -44,10 +44,10 @@ app.use(hpp());
 app.use("/api/v1/users", apiRoutes);
 
 // handle undefined Routes
-// app.use("*", (req, res, next) => {
-//   const err = new AppError(404, "fail", "undefined route");
-//   next(err, req, res, next);
-// });
+app.use("*", (req, res, next) => {
+  const err = new AppError(404, "fail", "undefined route");
+  next(err, req, res, next);
+});
 
 app.use(globalErrHandler);
 
