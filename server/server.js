@@ -1,7 +1,7 @@
 const express = require("express");
 const app = require("./app");
-// REACT_APP_PORT=3001
-const PORT = process.env.PORT || 3001;
+// REACT_APP_PORT=3002
+const PORT = process.env.PORT || 3002;
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 dotenv.config();
